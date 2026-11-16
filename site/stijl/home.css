@@ -1,0 +1,108 @@
+/* De homepage: de brief van Hans, de bakwagen, de kaart, de doelen, de avond en de tafels.
+   De gedeelde huisstijl staat in basis.css, de bakwagen in wagen.css. */
+
+/* de uitnodiging: links de brief, rechts de wagen met de polaroids */
+.uitnodiging{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(460px,100%),1fr));gap:56px;align-items:start;padding-block:44px 72px}
+.brief{padding:44px 44px 40px;box-shadow:0 14px 34px rgba(43,33,24,.2);transform:rotate(-1deg);display:flex;flex-direction:column;gap:18px}
+.brief .adresregel{font-weight:500;font-size:15px}
+.brief h1{font-family:var(--hand);font-weight:700;font-size:clamp(48px,5.4vw,76px);line-height:.95;color:var(--rood);text-wrap:balance}
+.brief .aanhef,.brief .groet{font-family:var(--hand);font-weight:700;font-size:34px;line-height:1.1}
+.brief .naam{font-family:var(--hand);font-weight:700;font-size:56px;line-height:1;color:var(--rood2)}
+.brief .knoppen{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+
+.wagenkolom{display:flex;flex-direction:column;gap:30px;padding-top:8px;min-width:0}
+.wagenplek{display:flex;flex-direction:column;gap:6px;padding-bottom:70px}
+.hint{text-align:center;font-family:var(--hand);font-weight:700;font-size:28px;line-height:1.1;color:var(--rood2)}
+.polaroids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.polaroid{padding:12px 12px 6px;box-shadow:0 10px 24px rgba(43,33,24,.22);display:flex;flex-direction:column;gap:4px}
+.polaroid:nth-child(1){transform:rotate(-2.5deg)}
+.polaroid:nth-child(2){transform:rotate(2deg)}
+.polaroid img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.polaroid figcaption{font-family:var(--hand);font-weight:700;font-size:26px;line-height:1.2;text-align:center}
+.fotonoot{text-align:center}
+
+/* de drie gele memobriefjes */
+.memos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:20px;padding-bottom:72px}
+.memos .memo:nth-child(1){transform:rotate(-1deg)}
+.memos .memo:nth-child(2){transform:rotate(1deg)}
+.memos .memo:nth-child(3){transform:rotate(-.5deg)}
+
+/* dertig adressen */
+.adressen{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:40px 64px;align-items:center;padding-bottom:80px}
+.adressen .uitleg{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.adressen .teller{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
+.adressen .teller span{font-family:var(--hand);font-weight:700;font-size:30px;line-height:1}
+.adressen .teller b{color:var(--rood)}
+.kaart{padding:14px 14px 6px;box-shadow:0 10px 24px rgba(43,33,24,.2);transform:rotate(.8deg);display:flex;flex-direction:column;gap:4px;min-width:0}
+.kaart canvas{display:block;width:100%}
+.kaart figcaption{font-family:var(--hand);font-weight:700;font-size:24px;line-height:1.2;text-align:center}
+
+/* de twee goede doelen */
+.doelen{background:var(--papier2);padding-block:64px}
+.doelen .wrap{display:flex;flex-direction:column;gap:32px}
+.doelen .intro{display:flex;flex-direction:column;gap:6px;max-width:780px}
+.doelen .twee{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:32px;align-items:stretch}
+.doel{padding:34px 30px 28px;display:flex;flex-direction:column;gap:10px}
+.doel:nth-child(1){transform:rotate(-.6deg)}
+.doel:nth-child(2){transform:rotate(.6deg)}
+.doel .nummer{font-weight:500;font-size:15px;color:var(--inkt2)}
+.doel h3{font-family:var(--hand);font-weight:700;font-size:44px;line-height:1;color:var(--rood)}
+.doelen .waarom{max-width:860px;font-size:20px}
+.doelen .waarom span{background:var(--geel);padding:2px 6px;font-weight:700}
+
+/* de avond */
+.avond{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:40px 64px;align-items:start;padding-block:64px}
+.avond .verloop{display:flex;flex-direction:column;gap:14px}
+.tijden{margin:0;padding:0;list-style:none}
+.tijden li{display:grid;grid-template-columns:132px minmax(0,1fr);gap:4px 20px;align-items:baseline;padding:14px 0;border-bottom:2px dashed var(--lijn)}
+.tijden .uur{font-family:var(--hand);font-weight:700;font-size:34px;line-height:1;color:var(--rood);white-space:nowrap}
+.avond .erbij{display:flex;flex-direction:column;gap:24px;padding-top:12px}
+.inbegrepen{padding:28px 30px;box-shadow:0 10px 24px rgba(43,33,24,.14);transform:rotate(.8deg);display:flex;flex-direction:column;gap:14px}
+.inbegrepen h3{font-family:var(--hand);font-weight:700;font-size:40px;line-height:1}
+.vinkjes{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.vinkjes li{display:flex;gap:12px;align-items:flex-start}
+.vinkjes li::before{content:"";flex:none;width:26px;height:26px;margin-top:2px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 13l5 5L20 6' fill='none' stroke='%23C81E16' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.avond .memo{transform:rotate(-1.2deg)}
+
+/* de tafels, op laadbonnen */
+.tafels{display:flex;flex-direction:column;gap:24px;padding-bottom:64px}
+.tafels .intro{display:flex;flex-direction:column;gap:4px;max-width:760px}
+.tafels .bonnen{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:28px;align-items:stretch}
+.tafelbon{padding:26px 28px;display:flex;flex-direction:column;gap:12px}
+.tafelbon h3{font-family:var(--hand);font-weight:700;font-size:44px;line-height:1}
+.tafelbon .prijs{font-weight:700;font-size:30px;line-height:1.1;color:var(--rood2)}
+.tafelbon .tekst{flex-grow:1}
+.tafelbon .knop{align-self:flex-start}
+.tafelbon .melding{background:var(--geel);padding:10px 14px;font-weight:500;font-size:16px}
+
+/* goed om te weten */
+.weten{display:flex;flex-direction:column;gap:20px;padding-bottom:64px}
+.weten dl{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:20px}
+.weten dl div{background:var(--wit);padding:18px 20px;box-shadow:0 6px 14px rgba(43,33,24,.12)}
+.weten dt{font-family:var(--hand);font-weight:700;font-size:30px;line-height:1.1;color:var(--rood)}
+.weten dd{margin:4px 0 0}
+
+/* contact */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:32px 64px;align-items:start;padding-bottom:72px}
+.contact .uitleg{display:flex;flex-direction:column;gap:10px}
+.contact form,.contact .gelukt{padding:28px 30px;box-shadow:0 10px 24px rgba(43,33,24,.14);display:flex;flex-direction:column;gap:16px}
+.contact form .knop{align-self:flex-start}
+.contact .fout:empty{display:none}
+.contact .gelukt h3{font-family:var(--hand);font-weight:700;font-size:40px;line-height:1;color:var(--rood)}
+.contact .gelukt .knop{align-self:flex-start}
+
+/* de confetti ligt over de hele pagina, maar je klikt er dwars doorheen */
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
+
+@media (max-width:640px){
+  .uitnodiging{gap:40px;padding-block:28px 56px}
+  .brief{padding:28px 22px 26px}
+  .brief .aanhef,.brief .groet{font-size:30px}
+  .wagenplek{padding-bottom:40px}
+  .polaroids{gap:18px}
+  .polaroid figcaption{font-size:22px}
+  .tijden li{grid-template-columns:104px minmax(0,1fr);gap:4px 14px}
+  .tijden .uur{font-size:30px}
+  .doel,.inbegrepen,.tafelbon,.contact form,.contact .gelukt{padding-inline:22px}
+  .doel h3,.tafelbon h3{font-size:38px}
+}

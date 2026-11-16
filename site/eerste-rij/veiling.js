@@ -109,7 +109,7 @@
     if (!b) { klassen += ' vrij'; naam = dicht ? 'Leeg gebleven' : 'Nog vrij'; bedrag = dicht ? '' : 'vanaf ' + euro(R().bodem); }
     else {
       naam = esc(b.bedrijf); bedrag = euro(b.bedrag);
-      if (mij && sleutel(b.bedrijf) === sleutel(mij.bedrijf)) klassen += ' mij'; else if (plek === 1) klassen += ' kop';
+      if (mij && sleutel(b.bedrijf) === sleutel(mij.bedrijf)) klassen += ' mij'; else if (plek === 1) klassen += ' eerste';
       if (flits[sleutel(b.bedrijf)]) klassen += ' wissel';
     }
     return '<div class="' + klassen + '" style="--col:' + kolom + '"><span class="rk">' + plek + '</span><b class="nm">' + naam + '</b><span class="bd">' + bedrag + '</span></div>';
@@ -205,7 +205,7 @@
     $('bonBod').textContent = euro(bedrag) + ' exclusief btw';
     $('bonIncl').textContent = euro(bedrag * (100 + r.btwProcent) / 100);
     $('bonFec').textContent = euro(Math.max(0, bedrag - r.bodem));
-    $('bonPlek').textContent = f === 'voor' ? 'Volgt bij de opening' : !S.zichtbaar ? 'Volgt zodra de stand opent' : plekTekst(plekBij(bedrag)) + (f === 'open' ? ', voorlopig' : '');
+    $('bonPlek').textContent = f === 'gesloten' ? 'De veiling is gesloten' : f === 'voor' ? 'Volgt bij de opening' : !S.zichtbaar ? 'Volgt zodra de stand opent' : plekTekst(plekBij(bedrag)) + (f === 'open' ? ', voorlopig' : '');
   }
 
   // ---------- wat er verandert terwijl je kijkt ----------
@@ -219,7 +219,7 @@
     var nieuwBod = top && (!topOud || topOud.bedrijf !== top.bedrijf || topOud.bedrag !== top.bedrag) ? top : null;
     var door = nieuwBod && (!mij || sleutel(nieuwBod.bedrijf) !== sleutel(mij.bedrijf)) ? '<b>' + esc(nieuwBod.bedrijf) + '</b> biedt ' + euro(nieuwBod.bedrag) + '. ' : '';
     if (pOud && pOud <= r.plekken && pNieuw > r.plekken) {
-      toon('eraf', '<p>Je bent van de eerste rij gereden. ' + door + 'Bied minimaal ' + euro(minimum()) + ' om terug te komen.</p><a class="btn sm" href="#bieden" id="terug">Bied opnieuw</a>');
+      toon('eraf', '<p>Je bent van de eerste rij gereden. ' + door + 'Bied minimaal ' + euro(minimum()) + ' om terug te komen.</p><a class="knop klein-knop" href="#bieden" id="terug">Bied opnieuw</a>');
       el.bod.value = punten(minimum()); bon();
     } else if (pOud && pNieuw > pOud && pNieuw <= r.plekken) {
       toon('', '<p>' + (door || 'Je bent een plek opgeschoven. ') + 'Je zit nu op plek ' + pNieuw + '.</p>');
