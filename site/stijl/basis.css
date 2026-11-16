@@ -1,0 +1,104 @@
+/* De huisstijl van Oplaaie: een handgeschreven uitnodiging op papier.
+   Dit bestand wordt gedeeld door de homepage, de biedpagina en de voorwaarden.
+   Wil je een kleur of lettertype overal aanpassen, dan doe je dat hier bovenaan. */
+
+:root{
+  /* kleuren */
+  --papier:#F4EBDA;      /* de ondergrond */
+  --papier2:#EADDC5;     /* een iets donkerder strook papier */
+  --wit:#FFFEFA;         /* vellen en kaarten */
+  --inkt:#2B2118;        /* tekst */
+  --inkt2:#5C4D3E;       /* bijschriften en kleine tekst */
+  --rood:#C81E16;        /* koppen en de hoofdknop */
+  --rood2:#A3140E;       /* rood voor tekst op wit, iets donkerder voor de leesbaarheid */
+  --geel:#FFD84D;        /* markeringen, memo's en de tweede knop */
+  --lijn:#CDBFA8;        /* stippellijnen */
+  --groen:#1F7A4D;       /* gelukt */
+  /* lettertypen */
+  --hand:'Caveat','Segoe Print','Comic Sans MS',cursive;   /* alles wat handgeschreven is */
+  --tekst:'Rubik','Segoe UI',Arial,sans-serif;             /* leestekst */
+  /* vormen */
+  --krabbel:255px 18px 225px 18px / 18px 225px 18px 255px; /* de licht scheve, met de hand getekende knop */
+  --schaduw:0 10px 24px rgba(43,33,24,.16);
+  color-scheme:light;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papier);color:var(--inkt);font-family:var(--tekst);font-size:18px;line-height:1.6}
+h1,h2,h3,p,figure{margin:0}
+img{max-width:100%;height:auto}
+a{color:var(--inkt)}
+a:hover{color:var(--rood2)}
+[hidden]{display:none!important}
+section,article{scroll-margin-top:24px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--rood);outline-offset:3px}
+
+/* Gedraaide vellen steken een paar pixels buiten beeld. Dit voorkomt dat je daardoor opzij kunt scrollen. */
+.pagina{display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
+@supports (overflow:clip){.pagina{overflow:visible;overflow-x:clip}}
+.wrap{width:100%;max-width:1248px;margin:0 auto;padding-inline:24px}
+
+/* handschrift */
+.hand{font-family:var(--hand);font-weight:700;line-height:1.1}
+.kopje{font-family:var(--hand);font-weight:700;font-size:clamp(44px,4.6vw,64px);line-height:1;color:var(--inkt)}
+.inleiding{font-size:20px}
+.klein{font-size:15px;color:var(--inkt2)}
+.streep{background:var(--geel);padding:0 4px}
+
+/* knoppen */
+.knop{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border:0;border-radius:var(--krabbel);background:var(--rood);color:#FFF;font-family:var(--tekst);font-weight:700;font-size:19px;line-height:1.15;text-decoration:none;text-align:center;cursor:pointer;transition:transform .12s}
+.knop:hover{color:#FFF;transform:rotate(-1deg) scale(1.03)}
+.knop:active{transform:scale(.97)}
+.knop.geel{background:var(--geel);color:var(--inkt)}
+.knop.geel:hover{color:var(--inkt)}
+.knop.klein-knop{min-height:44px;padding:0 20px;font-size:17px}
+.knop:disabled{opacity:.45;cursor:default;transform:none}
+
+/* papier: vellen, memo's en plakband */
+.vel{position:relative;background:var(--wit);box-shadow:var(--schaduw)}
+.memo{background:var(--geel);padding:18px 22px;font-family:var(--hand);font-weight:700;font-size:30px;line-height:1.1;box-shadow:0 6px 14px rgba(43,33,24,.16)}
+.tape{position:absolute;top:-14px;left:50%;width:110px;height:28px;margin-left:-55px;background:rgba(255,216,77,.85);transform:rotate(-3deg);pointer-events:none}
+.laadbon{background:var(--wit);border:3px dashed var(--inkt);border-radius:10px;box-shadow:0 10px 24px rgba(43,33,24,.14)}
+.bonkop{display:flex;justify-content:space-between;gap:12px;border-bottom:2px solid var(--inkt);padding-bottom:8px;font-weight:500;font-size:15px}
+
+/* de bovenkant van elke pagina */
+.kop{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;padding-top:18px}
+.kop .logo{display:block;flex:none;width:190px}
+.kop .logo img{display:block;width:100%;height:auto}
+.kop nav{display:flex;flex-wrap:wrap;gap:6px 24px;margin-left:auto;font-weight:500;font-size:17px}
+.kop nav a{text-decoration:none;padding:12px 0}
+.kop .knop{min-height:48px}
+
+/* formulieren */
+.veld{display:flex;flex-direction:column;gap:6px;font-weight:500;min-width:0}
+.veld small{font-weight:400;font-size:15px;color:var(--inkt2)}
+input[type=text],input[type=email],input[type=tel],input:not([type]),textarea{font:inherit;width:100%;min-width:0;height:52px;padding:0 14px;border:2px solid var(--inkt);border-radius:6px;background:#FFF;color:var(--inkt)}
+textarea{height:auto;padding:12px 14px;resize:vertical}
+input[aria-invalid="true"]{border-color:var(--rood)}
+.fout{color:var(--rood2);font-weight:500;font-size:16px;min-height:1.4em}
+.onzichtbaar{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+
+/* de onderkant van elke pagina */
+.voet{flex-grow:1;background:var(--inkt);color:var(--wit);padding:44px 0 40px}
+.voet .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px 48px}
+.voet .kopje{color:var(--geel)}
+.voet .ps{flex:1 1 380px;font-size:19px}
+.voet .kleine-letters{flex-basis:100%;display:grid;gap:8px;margin-top:22px;padding-top:20px;border-top:2px dashed rgba(255,254,250,.3);font-size:15px;color:rgba(255,254,250,.82);max-width:86ch}
+.voet a{color:var(--geel)}
+.voet a:hover{color:#FFF}
+.voet b{color:var(--wit);font-weight:500}
+
+@media (max-width:640px){
+  body{font-size:17px}
+  .kop .logo{width:150px}
+  .kop nav{order:3;margin-left:0;width:100%;gap:0 18px;font-size:16px}
+  .kop nav a{padding:8px 0}
+  .kop .knop{margin-left:auto}
+  .memo{font-size:27px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .knop{transition:none}
+  .knop:hover{transform:none}
+}

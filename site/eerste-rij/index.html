@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>De eerste rij onder de hamer | Oplaaie</title>
+<meta name="description" content="De zittafels vlak voor de laaiklep verkopen we niet, die veilen we. Bied vanaf € 2.400,- op de eerste rij van Oplaaie op donderdag 4 februari 2027. Alles daarboven gaat naar de Federatie Eindhovens Carnaval.">
+<link rel="canonical" href="https://oplaaie.nl/eerste-rij">
+<meta name="theme-color" content="#F4EBDA">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="Oplaaie">
+<meta property="og:title" content="De eerste rij van Oplaaie gaat onder de hamer">
+<meta property="og:description" content="De zestien hoogste biedingen zitten vooraan bij Zanger Hans. Alles boven € 2.400,- per tafel gaat naar de Federatie Eindhovens Carnaval.">
+<meta property="og:url" content="https://oplaaie.nl/eerste-rij">
+<meta property="og:image" content="https://oplaaie.nl/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Rubik:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/stijl/basis.css">
+<link rel="stylesheet" href="/eerste-rij/veiling.css">
+</head>
+<body>
+
+<div class="pagina">
+
+<header class="balk">
+  <div class="kop wrap">
+    <a class="logo" href="/" aria-label="Naar de homepage van Oplaaie"><img src="/img/logo.svg" alt="Oplaaie" width="716" height="331"></a>
+    <span class="paginanaam">De eerste rij onder de hamer</span>
+    <div class="klok"><span id="klokTopLabel">De hamer valt over</span><b id="klokTop">...</b></div>
+    <a class="knop klein-knop" href="#bieden">Doe een bod</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero wrap" id="top">
+  <div class="heroblad vel">
+    <p class="adresregel">Oplaaie · donderdag 4 februari 2027 · Bavaria Bierhal, Stadhuisplein Eindhoven</p>
+    <h1>De eerste rij <span>gaat onder de hamer</span></h1>
+    <p class="lead">De zittafels vlak voor de laaiklep verkopen we niet, die veilen we. De zestien hoogste biedingen zitten vooraan bij Zanger Hans. Hoe hoger je bod, hoe dichter je bij de klep zit. Alles wat je boven <span data-r="bodem">€ 2.400,-</span> biedt, gaat rechtstreeks naar de Federatie Eindhovens Carnaval.</p>
+    <div class="cta"><a class="knop" href="#bieden">Doe een bod</a><a class="knop geel" href="#werkt">Zo werkt het</a></div>
+    <ul class="facts"><li>Bieden vanaf <span data-r="bodem">€ 2.400,-</span></li><li>Tafel voor acht personen</li><li>Alles inbegrepen</li><li class="hl">Alles boven <span data-r="bodem">€ 2.400,-</span> gaat naar de FEC</li></ul>
+  </div>
+</section>
+
+<section class="zaal" id="stand">
+  <div class="wrap">
+    <header class="sec-head"><p class="eyebrow">De stand</p><h2 class="kopje">Wie zit er pal voor de klep</h2><p id="standUitleg">Zo ziet de eerste rij er nu uit. Plek 1 zit recht voor de laaiklep. Wie overboden wordt, schuift een plek op of rijdt van de eerste rij af.</p></header>
+
+    <div class="stats">
+      <div class="stat fec"><span>Opgeladen voor de FEC</span><b id="stFec">...</b><small>Alles wat boven <span data-r="bodem">€ 2.400,-</span> per tafel geboden is</small></div>
+      <div class="stat"><span>Hoogste bod</span><b id="stHoog">...</b><small id="stHoogNaam"></small></div>
+      <div class="stat"><span>Instappen vanaf</span><b id="stInstap">...</b><small id="stInstapUitleg"></small></div>
+      <div class="stat"><span id="klokLabel">De hamer valt over</span><b id="klok">...</b><small id="klokDatum"></small></div>
+    </div>
+
+    <p class="tel" id="tel" hidden></p>
+
+    <div class="melding" id="melding" role="status" aria-live="polite" hidden></div>
+
+    <div class="vloer">
+      <span class="tape" aria-hidden="true"></span>
+      <div class="podium" aria-hidden="true"><div class="bak"><span>De laaiklep</span></div><div class="plaat hazard"></div></div>
+      <div class="dicht" id="dicht" hidden></div>
+      <div id="tafels" hidden>
+        <p class="rijlabel">Eerste rij</p>
+        <div class="rij" id="rij1"></div>
+        <p class="rijlabel">Tweede rij</p>
+        <div class="rij" id="rij2"></div>
+      </div>
+    </div>
+
+    <div class="onder" id="onder" hidden>
+      <div class="lijst"><h3>Laatste biedingen</h3><ul id="feed"></ul></div>
+      <div class="lijst"><h3>Net buiten de eerste rij</h3><ul id="buiten"></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="bieden" id="bieden">
+  <div class="wrap">
+    <header class="sec-head"><p class="eyebrow">Jouw bod</p><h2 class="kopje">Bied en laai op</h2><p>Vul je gegevens en je bod in. Op de biedbon zie je meteen wat je bod betekent. We bellen je om je bod te bevestigen.</p></header>
+    <div class="laad">
+      <form class="vel" id="form" novalidate>
+        <p class="slot" id="slot" hidden></p>
+        <label class="veld" for="bedrijf">Bedrijfsnaam<input id="bedrijf" name="bedrijf" maxlength="40" autocomplete="organization" placeholder="Jouw bedrijf" required></label>
+        <div class="twee">
+          <label class="veld" for="contact">Contactpersoon<input id="contact" name="contact" maxlength="60" autocomplete="name" placeholder="Voor- en achternaam" required></label>
+          <label class="veld" for="telefoon">Telefoonnummer<input id="telefoon" name="telefoon" type="tel" maxlength="25" autocomplete="tel" inputmode="tel" placeholder="06 12 34 56 78" required></label>
+        </div>
+        <label class="veld" for="email">E-mailadres<input id="email" name="email" type="email" maxlength="100" autocomplete="email" inputmode="email" placeholder="naam@bedrijf.nl" required></label>
+        <div class="onzichtbaar" aria-hidden="true"><label>Laat dit veld leeg<input id="website" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="veld"><label for="bod">Jouw bod, exclusief btw</label>
+          <div class="bodveld" id="bodveld"><span aria-hidden="true">€</span><input id="bod" name="bod" inputmode="numeric" autocomplete="off" aria-describedby="fout" required></div>
+          <small>In stappen van <span data-r="stap">€ 100,-</span>. Kies een plek of vul zelf een bedrag in.</small>
+        </div>
+        <div class="chips" id="chips">
+          <button class="chip" type="button" id="chErbij">Erbij op de eerste rij<em></em></button>
+          <button class="chip" type="button" id="chVoor" hidden>Bij de voorste acht<em></em></button>
+          <button class="chip" type="button" id="chKlep" hidden>Pal voor de klep<em></em></button>
+        </div>
+        <label class="vink" for="akkoord"><input id="akkoord" name="akkoord" type="checkbox" required><span>Ik bied namens mijn bedrijf en ben daartoe bevoegd. Ik weet dat mijn bod bindend is en ga akkoord met de <a href="/eerste-rij/voorwaarden" target="_blank" rel="noopener">veilingvoorwaarden</a> en de <a href="/eerste-rij/voorwaarden#privacy" target="_blank" rel="noopener">privacytekst</a>.</span></label>
+        <p class="fout" id="fout" role="alert"></p>
+        <div><button class="knop" type="submit" id="biedBtn">Breng bod uit</button></div>
+        <p class="fine">Een bod is bindend. We bellen je om je bod te bevestigen, daarna staat je bedrijfsnaam in de stand. Je tafel is voor acht personen en je kunt bijkopen tot tien voor € 200,- per persoon. Alles is inbegrepen: drinken de hele avond, eten, de show en de garderobe. Alles boven <span data-r="bodem">€ 2.400,-</span> gaat naar de Federatie Eindhovens Carnaval. Bedragen exclusief 21% btw.</p>
+      </form>
+      <div class="bonwrap">
+        <div class="bon laadbon" id="bon">
+          <div class="bon-head"><span class="bon-title">Biedbon</span><span class="bon-nr" id="bonNr">Nr. volgt</span></div>
+          <dl>
+            <div><dt>Bieder</dt><dd id="bonNaam">Jouw bedrijf</dd></div>
+            <div class="big"><dt>Bod</dt><dd id="bonBod">...</dd></div>
+            <div><dt>Inclusief btw</dt><dd id="bonIncl">...</dd></div>
+            <div class="big"><dt>Plek</dt><dd id="bonPlek">...</dd></div>
+            <div><dt>Lading</dt><dd>Zittafel voor acht personen</dd></div>
+            <div><dt>Laadadres</dt><dd>Bavaria Bierhal, Stadhuisplein Eindhoven</dd></div>
+            <div><dt>Laaddatum</dt><dd>Donderdag 4 februari 2027, 16.00 uur</dd></div>
+            <div class="big"><dt>Naar de FEC</dt><dd id="bonFec">...</dd></div>
+          </dl>
+          <div class="stamp" aria-hidden="true">Geboden</div>
+        </div>
+        <div class="klaar" id="klaar" hidden tabindex="-1">
+          <h3>Je bod is binnen</h3>
+          <p id="klaarTekst"></p>
+          <p>Je bod staat nog niet in de stand. Dat gebeurt zodra we het met je hebben bevestigd. Word je daarna overboden, dan hoor je dat van ons.</p>
+        </div>
+        <div class="deel" id="deel" hidden>
+          <h3>Laat zien dat je meebiedt</h3>
+          <p>Elk bod dat gedeeld wordt, lokt het volgende uit. Kopieer dit bericht en zet het op LinkedIn.</p>
+          <p class="tekst" id="deelTekst"></p>
+          <div class="knoppen"><button class="knop klein-knop" type="button" id="kopieer">Kopieer het bericht</button><a class="knop geel klein-knop" id="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Foplaaie.nl%2Feerste-rij" target="_blank" rel="noopener">Open LinkedIn</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="werkt" id="werkt">
+  <div class="wrap">
+    <header class="sec-head"><p class="eyebrow">Zo werkt het</p><h2 class="kopje">Van bod tot eerste rij</h2></header>
+    <ol class="stappen">
+      <li><h3>Je biedt</h3><p>Vanaf <span data-r="bodem">€ 2.400,-</span> per zittafel, in stappen van <span data-r="stap">€ 100,-</span>. Alles daarboven gaat naar de FEC.</p></li>
+      <li><h3>Wij bevestigen</h3><p>We bellen je om je bod te bevestigen. Daarna staat je bedrijfsnaam in de stand.</p></li>
+      <li><h3>Word je overboden</h3><p>Dan hoor je dat van ons en kun je opnieuw bieden. Een bod in de laatste vijf minuten verlengt de veiling met vijf minuten.</p></li>
+      <li><h3>De hamer valt</h3><p>De zestien hoogste biedingen zitten vooraan, de hoogste pal voor de klep. Val je erbuiten, dan krijg je als eerste een staantafel aangeboden voor <span data-r="staantafel">€ 1.600,-</span>.</p></li>
+    </ol>
+    <div class="waarheen"><h3>Waar je bod naartoe gaat</h3><p>De eerste <span data-r="bodem">€ 2.400,-</span> is de prijs van je tafel, met alles inbegrepen. Alles wat je daarboven biedt, gaat rechtstreeks naar de Federatie Eindhovens Carnaval, de organisatie achter carnaval in Lampegat. Alles wat Oplaaie na aftrek van de kosten overhoudt, gaat naar de Muziekspeelplaats Eindhoven, een plek waar kinderen straks kennismaken met muziek.</p></div>
+    <p class="afsluiter">Hans kwam altijd naar jou. Nu ga jij naar Hans. <b>Salaai! Oplaaie!</b></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="voet">
+  <div class="wrap">
+    <h2 class="kopje">PS Lampegat in lichterlaaie</h2>
+    <p class="ps">Salaai! Oplaaie! Oplaaie wordt georganiseerd door Bravo B.V. Wat de avond na aftrek van de kosten overhoudt, gaat naar de Muziekspeelplaats Eindhoven. De opbrengst van de veiling boven € 2.400,- per tafel gaat naar de Federatie Eindhovens Carnaval.</p>
+    <div class="kleine-letters">
+      <p><b>Bravo B.V.</b>, Ekkersweijer 7, 5681 RZ Best · KvK 68503040 · <a href="mailto:info@oplaaie.nl">info@oplaaie.nl</a></p>
+      <p><a href="/">Terug naar oplaaie.nl</a> · <a href="/eerste-rij/voorwaarden">Veilingvoorwaarden en privacy</a> · <a href="/#contact">Stel een vraag</a></p>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script src="/eerste-rij/veiling.js" defer></script>
+</body>
+</html>
