@@ -19,7 +19,8 @@ export async function ververStand() {
       return true;
     } catch (fout) {
       if (poging === 3) console.error('De stand verversen is niet gelukt:', fout?.message || fout);
-      else await wacht(2600 * (poging + 1));
+      // Netlify staat twee keer verversen per vijf seconden toe. Na een weigering wachten we die vijf seconden af.
+      else await wacht(5500);
     }
   }
   return false;
@@ -31,6 +32,7 @@ export async function meldNieuwBod(herkomst, bod) {
   if (lokaal()) return true;
   const velden = new URLSearchParams({
     'form-name': 'bod-melding',
+    subject: `Nieuw bod op de eerste rij: ${bod.bedrijf}, ${euro(bod.bedrag)}`,
     bedrijf: bod.bedrijf,
     contact: bod.contact,
     email: bod.email,
