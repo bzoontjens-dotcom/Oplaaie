@@ -6,11 +6,11 @@
 .hero .bg{position:absolute;inset:0;background:url(/img/hero.jpg) center/cover no-repeat;opacity:.30}
 .hero .fade{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(14,29,74,.35) 0%,rgba(14,29,74,.85) 70%),linear-gradient(180deg,rgba(14,29,74,0) 60%,var(--diep) 100%)}
 .hero .wrap{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:48px 0 76px}
-.hero .medaille{width:min(380px,78vw,32vh)}
+.hero .medaille{width:min(400px,78vw,34vh)}
 .hero .medaille img{width:100%;filter:drop-shadow(0 18px 40px rgba(0,0,0,.45))}
-.hero h1{margin-top:26px;font-size:clamp(26px,4.2vw,46px);color:var(--ivoor)}
-.hero h1 .x{color:var(--oranje);font-family:var(--tekst);font-weight:800;font-size:.72em;margin:0 .12em}
-.hero .sub{margin-top:14px;font-size:clamp(17px,2vw,20px);font-weight:700;color:var(--ivoor)}
+/* de kop staat niet in beeld, de medaille is de kop. Zoekmachines en voorleessoftware lezen hem wel. */
+.hero h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hero .sub{margin-top:30px;font-size:clamp(17px,2vw,20px);font-weight:700;color:var(--ivoor)}
 .hero .when{margin-top:10px;font-size:clamp(15px,1.8vw,18px);font-weight:600;color:var(--muted-l)}
 .hero .when span{color:var(--oranje);margin:0 10px}
 .hero .lead{margin:22px auto 0;max-width:700px;font-size:clamp(18px,2.2vw,22px);font-weight:600;line-height:1.45;color:var(--ivoor)}
@@ -20,8 +20,8 @@
 @media (max-width:700px){.hero .when span{display:block;height:0;overflow:hidden}.hero .when{line-height:1.6;color:var(--ivoor);font-size:16px;font-weight:700}}
 @media (max-width:600px){
   .startmelding{font-size:15px;border-radius:14px;padding:8px 16px}
-  .hero .wrap{padding:24px 0 48px}.hero .medaille{width:min(200px,50vw)}.hero h1{margin-top:16px}
-  .hero .sub{margin-top:10px;font-size:16px}.hero .lead{margin-top:14px;font-size:17px}.hero .cta{margin-top:20px}
+  .hero .wrap{padding:24px 0 48px}.hero .medaille{width:min(200px,50vw)}
+  .hero .sub{margin-top:16px;font-size:16px}.hero .lead{margin-top:14px;font-size:17px}.hero .cta{margin-top:20px}
 }
 
 /* wat is het */
