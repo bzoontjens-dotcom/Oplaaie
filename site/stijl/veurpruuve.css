@@ -1,0 +1,136 @@
+/* De huisstijl van Veurpruuve: blauwe en ivoren banden, met oranje als accent.
+   Dit bestand wordt gedeeld door alle pagina's van de site, behalve de beheerpagina.
+   Wil je een kleur of lettertype overal aanpassen, dan doe je dat hier bovenaan. */
+
+:root{
+  color-scheme:light;
+  /* kleuren */
+  --diep:#0E1D4A;        /* de donkerblauwe basis */
+  --oranje:#F07D1A;      /* accent en knoppen */
+  --oranje-2:#FF9636;    /* oranje bij aanwijzen, en op blauw */
+  --blauw:#16307A;       /* koppen op ivoor, de blauwe kaart */
+  --lichtblauw:#3B66CF;  /* het midden van de driekleur */
+  --ivoor:#FAF6EE;       /* de lichte ondergrond */
+  --ivoor-2:#F1EADC;     /* een iets donkerder ivoren band */
+  --wit:#FFFFFF;
+  --ink:#0E1D4A;         /* tekst */
+  --muted:rgba(14,29,74,.70);       /* kleine tekst op ivoor */
+  --muted-l:rgba(250,246,238,.78);  /* kleine tekst op blauw */
+  --lijn:rgba(14,29,74,.14);
+  --groen:#1C7C4A;       /* gelukt */
+  --rood:#B3261E;        /* fout */
+  /* lettertypen */
+  --kop:"Alfa Slab One",Rockwell,"Roboto Slab",Georgia,serif;          /* koppen en prijzen */
+  --tekst:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;       /* leestekst */
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;font-family:var(--tekst);font-weight:500;color:var(--ink);background:var(--ivoor);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;line-height:1.12;text-wrap:balance}
+h1,h2{font-family:var(--kop);font-weight:400}
+h2{font-size:clamp(28px,3.6vw,40px)}
+h3{font-family:var(--tekst);font-weight:800;font-size:20px;line-height:1.25}
+p{margin:0 0 1em}
+a{color:var(--blauw)}
+img{display:block;max-width:100%;height:auto}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--oranje);outline-offset:2px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+.u{color:var(--oranje)}
+.nw{white-space:nowrap}
+
+/* de driekleur oranje, blauw, oranje scheidt de banden */
+.driekleur{height:6px;background:linear-gradient(90deg,var(--oranje) 0 33.333%,var(--lichtblauw) 33.333% 66.666%,var(--oranje) 66.666%)}
+.kicker{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--blauw);margin-bottom:16px}
+.kicker::before{content:"";flex:none;width:36px;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--oranje) 0 33.333%,var(--lichtblauw) 33.333% 66.666%,var(--oranje) 66.666%)}
+.blauw .kicker{color:var(--oranje-2)}
+
+/* knoppen */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 26px;border-radius:999px;background:var(--oranje);color:var(--diep);font-weight:800;text-decoration:none;font-size:16px;line-height:1.2;text-align:center;border:0;cursor:pointer;transition:background .15s,transform .15s;font-family:var(--tekst)}
+.btn:hover{background:var(--oranje-2);transform:translateY(-1px)}
+.btn:disabled{opacity:.5;cursor:default;transform:none}
+.btn.ghost{background:transparent;color:var(--ivoor);box-shadow:inset 0 0 0 2px rgba(250,246,238,.5)}
+.btn.ghost:hover{background:rgba(250,246,238,.08)}
+.btn.lijn{background:transparent;color:var(--blauw);box-shadow:inset 0 0 0 2px var(--blauw)}
+.btn.lijn:hover{background:rgba(22,48,122,.07)}
+.btn.klein{min-height:44px;padding:10px 18px;font-size:15px}
+
+/* banden */
+.band{padding:88px 0}
+.blauw{background:var(--diep);color:var(--ivoor)}
+.blauw a{color:var(--ivoor)}
+.zacht{background:var(--ivoor-2)}
+@media (max-width:700px){.band{padding:64px 0}}
+
+/* de bovenkant van elke pagina */
+.site-kop{position:sticky;top:0;z-index:20;background:rgba(14,29,74,.94);backdrop-filter:blur(8px)}
+.site-kop .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:70px}
+.site-kop .brand img{height:48px;width:auto}
+.site-kop nav{display:flex;gap:24px;align-items:center}
+.site-kop nav a{color:var(--ivoor);text-decoration:none;font-weight:700;font-size:15px;opacity:.85;white-space:nowrap}
+.site-kop nav a:hover{opacity:1;color:var(--oranje-2)}
+.site-kop nav .btn{min-height:42px;padding:10px 18px;font-size:14px;opacity:1;white-space:nowrap;color:var(--diep)}
+.site-kop nav .btn:hover{color:var(--diep)}
+.menu{display:flex;gap:24px;align-items:center}
+.menuknop{display:none;background:transparent;border:0;color:var(--ivoor);width:44px;height:44px;padding:10px;cursor:pointer;border-radius:10px;flex:none}
+.menuknop svg{width:24px;height:24px;display:block}
+.menuknop:hover{background:rgba(250,246,238,.08)}
+@media (max-width:1060px){
+  .site-kop nav{gap:8px}
+  .menuknop{display:inline-flex;align-items:center;justify-content:center}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;background:var(--diep);padding:6px 24px 18px;box-shadow:0 18px 30px rgba(0,0,0,.3);border-top:1px solid rgba(250,246,238,.12)}
+  .menu.open{display:flex}
+  .menu a{padding:13px 0;font-size:17px;opacity:1;border-bottom:1px solid rgba(250,246,238,.1)}
+}
+@media (max-width:420px){.site-kop .brand img{height:38px}.site-kop nav .btn{padding:10px 14px}}
+
+/* kaarten */
+.card{background:var(--wit);border:1.5px solid var(--lijn);border-radius:18px;padding:30px 32px;display:flex;flex-direction:column;min-width:0}
+.card.blauw{background:var(--blauw);border-color:var(--blauw)}
+.note{font-size:14px;color:var(--muted);margin-top:18px;max-width:880px}
+.blauw .note{color:var(--muted-l)}
+@media (max-width:760px){.card{padding:26px 22px}}
+
+/* formulieren */
+.formulier{background:var(--wit);border:1.5px solid var(--lijn);border-radius:18px;padding:30px;color:var(--ink)}
+.f{display:grid;gap:6px;margin-bottom:16px;min-width:0}
+.f label{font-size:13px;font-weight:800;letter-spacing:.01em;color:var(--muted)}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid rgba(14,29,74,.25);border-radius:10px;background:var(--wit);color:var(--ink);min-height:48px;width:100%;min-width:0}
+.f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--oranje);outline-offset:1px;border-color:var(--oranje)}
+.f input[aria-invalid="true"]{border-color:var(--rood)}
+.f small{font-size:13px;font-weight:500;color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.fout{color:var(--rood);font-weight:700;font-size:15px;min-height:1.4em}
+@media (max-width:520px){.row{grid-template-columns:1fr}.formulier{padding:22px}}
+
+/* genummerde regels */
+.regels ol{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:20px 40px}
+.regels li{display:flex;gap:14px;font-size:15.5px}
+.regels .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--diep);color:var(--ivoor);font-family:var(--kop);display:flex;align-items:center;justify-content:center;font-size:15px;margin-top:1px;box-shadow:0 0 0 3px var(--oranje)}
+.regels b{display:block;font-weight:800;color:var(--blauw)}
+@media (max-width:760px){.regels ol{grid-template-columns:1fr}}
+
+/* leespagina's: de spelregels en de veilingvoorwaarden */
+.leespagina{padding:72px 0 88px}
+.leespagina h1{font-size:clamp(32px,4.4vw,48px);color:var(--blauw);margin:0 0 14px}
+.leespagina .intro{max-width:720px;font-size:17px}
+.leespagina h2{margin-top:64px;font-size:clamp(24px,3vw,32px);color:var(--blauw)}
+.leespagina .tekst{max-width:760px}
+.leespagina .tekst p{margin:14px 0 0}
+.leespagina .tekst h3{margin-top:28px;color:var(--blauw)}
+.leespagina .terug{margin-top:48px}
+.leespagina mark{background:#FFE2BF;color:inherit;padding:0 4px;border-radius:4px}
+.conceptnoot{margin:22px 0 0;background:#F3E4C6;border-left:6px solid var(--oranje);border-radius:12px;padding:16px 20px;font-size:15.5px;max-width:760px}
+
+/* de onderkant van elke pagina */
+.site-voet{background:var(--diep);color:var(--muted-l);padding:48px 0 36px;font-size:14px}
+.site-voet .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+.site-voet .wm{height:56px;width:auto;margin-left:-14px}
+.site-voet .slogan{height:26px;width:auto;margin-top:14px}
+.site-voet a{color:var(--ivoor);text-decoration:none}
+.site-voet a:hover{color:var(--oranje-2)}
+.site-voet .links{display:flex;gap:10px 18px;flex-wrap:wrap;margin-top:10px;max-width:520px}
+.site-voet .klein{flex-basis:100%;margin:8px 0 0;padding-top:18px;border-top:1px solid rgba(250,246,238,.14);font-size:13px;max-width:none}

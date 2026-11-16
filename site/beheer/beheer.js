@@ -75,13 +75,13 @@
   function fase() { var t = nu(); return t >= Date.parse(O.sluit) ? 'gesloten' : t < Date.parse(O.opent) ? 'voor' : 'open'; }
 
   function belTekst(m) {
-    var f = fase(), r = O.regels, groet = 'Dag ' + (voornaam(m.contact) || 'daar') + ',\n\n', slot = '\n\nGroet,\nhet team van Oplaaie\ninfo@oplaaie.nl';
+    var f = fase(), r = O.regels, groet = 'Dag ' + (voornaam(m.contact) || 'daar') + ',\n\n', slot = '\n\nGroet,\nhet team van Veurpruuve\ninfo@veurpruuve.nl';
     if (m.soort === 'eraf') {
-      if (f === 'gesloten') return groet + m.bedrijf + ' is in de laatste ronde overboden en staat bij de sluiting net buiten de eerste rij van Oplaaie. Jullie bod was ' + euro(m.bedrag) + '. Dat bod vervalt, je betaalt niets.\n\nJe krijgt als eerste een staantafel aangeboden voor ' + euro(r.staantafelPrijs) + ' exclusief btw. Laat je ons weten of je die wilt?' + slot;
-      return groet + m.bedrijf + ' is overboden op de eerste rij van Oplaaie en staat nu net buiten de ' + getal(r.plekken) + ' plekken. Jullie bod was ' + euro(m.bedrag) + '.\n\nWil je terug op de eerste rij, dan is nu een bod van minimaal ' + euro(m.terugOpRij) + ' nodig. Bieden kan tot ' + O.sluitTekst + ' op oplaaie.nl/eerste-rij. Een bod in de laatste ' + getal(r.verlengMinuten) + ' minuten verlengt de veiling.\n\nBied je niet opnieuw, dan krijg je als eerste een staantafel aangeboden voor ' + euro(r.staantafelPrijs) + ' exclusief btw.' + slot;
+      if (f === 'gesloten') return groet + m.bedrijf + ' is in de laatste ronde overboden en staat bij de sluiting net buiten de eerste rij van Veurpruuve. Jullie bod was ' + euro(m.bedrag) + '. Dat bod vervalt, je betaalt niets.\n\nJe krijgt als eerste een staantafel aangeboden voor ' + euro(r.staantafelPrijs) + ' exclusief btw. Laat je ons weten of je die wilt?' + slot;
+      return groet + m.bedrijf + ' is overboden op de eerste rij van Veurpruuve en staat nu net buiten de ' + getal(r.plekken) + ' plekken. Jullie bod was ' + euro(m.bedrag) + '.\n\nWil je terug op de eerste rij, dan is nu een bod van minimaal ' + euro(m.terugOpRij) + ' nodig. Bieden kan tot ' + O.sluitTekst + ' op veurpruuve.nl/eerste-rij. Een bod in de laatste ' + getal(r.verlengMinuten) + ' minuten verlengt de veiling.\n\nBied je niet opnieuw, dan krijg je als eerste een staantafel aangeboden voor ' + euro(r.staantafelPrijs) + ' exclusief btw.' + slot;
     }
-    if (f === 'gesloten') return groet + m.bedrijf + ' zit bij de sluiting op plek ' + m.naarPlek + ' van de eerste rij van Oplaaie, met een bod van ' + euro(m.bedrag) + '. Je krijgt de factuur van ons.' + slot;
-    return groet + m.bedrijf + ' is op de eerste rij van Oplaaie opgeschoven van plek ' + m.vanPlek + ' naar plek ' + m.naarPlek + '. Jullie bod is ' + euro(m.bedrag) + '. Je zit nog steeds op de eerste rij.\n\nWil je terug naar plek ' + m.vanPlek + ', bied dan minimaal ' + euro(m.terugOpPlek) + '. Bieden kan tot ' + O.sluitTekst + ' op oplaaie.nl/eerste-rij.' + slot;
+    if (f === 'gesloten') return groet + m.bedrijf + ' zit bij de sluiting op plek ' + m.naarPlek + ' van de eerste rij van Veurpruuve, met een bod van ' + euro(m.bedrag) + '. Je krijgt de factuur van ons.' + slot;
+    return groet + m.bedrijf + ' is op de eerste rij van Veurpruuve opgeschoven van plek ' + m.vanPlek + ' naar plek ' + m.naarPlek + '. Jullie bod is ' + euro(m.bedrag) + '. Je zit nog steeds op de eerste rij.\n\nWil je terug naar plek ' + m.vanPlek + ', bied dan minimaal ' + euro(m.terugOpPlek) + '. Bieden kan tot ' + O.sluitTekst + ' op veurpruuve.nl/eerste-rij.' + slot;
   }
 
   var LOG = {
@@ -158,7 +158,7 @@
     $('bellen').innerHTML = O.meldingen.length ? O.meldingen.map(function (m) {
       var kop = m.soort === 'eraf' ? esc(m.bedrijf) + ' is van de eerste rij af' : esc(m.bedrijf) + ' is opgeschoven van plek ' + m.vanPlek + ' naar plek ' + m.naarPlek;
       var tekst = belTekst(m);
-      var mailto = m.email ? '<a class="btn sm line" href="mailto:' + esc(m.email) + '?subject=' + encodeURIComponent('De eerste rij van Oplaaie') + '&body=' + encodeURIComponent(tekst) + '">Open als mail</a>' : '';
+      var mailto = m.email ? '<a class="btn sm line" href="mailto:' + esc(m.email) + '?subject=' + encodeURIComponent('De eerste rij van Veurpruuve') + '&body=' + encodeURIComponent(tekst) + '">Open als mail</a>' : '';
       return '<article class="kaart ' + (m.soort === 'eraf' ? 'eraf' : '') + '"><h3>' + kop + '</h3>'
         + '<dl><dt>Contact</dt><dd>' + esc(m.contact) + '</dd><dt>Telefoon</dt><dd>' + telLink(m.telefoon) + '</dd><dt>E-mail</dt><dd>' + mailLink(m.email) + '</dd><dt>Bod</dt><dd>' + euro(m.bedrag) + '</dd><dt>Sinds</dt><dd>' + tijd(m.sinds) + '</dd></dl>'
         + '<details data-melding="' + m.id + '"' + (m.soort === 'eraf' || openTeksten[m.id] ? ' open' : '') + '><summary>Tekst om te kopiëren</summary><textarea readonly aria-label="Tekst voor ' + esc(m.bedrijf) + '">' + esc(tekst) + '</textarea></details>'

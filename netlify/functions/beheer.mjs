@@ -27,7 +27,7 @@ export default async (req, context) => {
     return new Response(csv, {
       headers: {
         'content-type': 'text/csv; charset=utf-8',
-        'content-disposition': `attachment; filename="oplaaie-eerste-rij-${dag}.csv"`,
+        'content-disposition': `attachment; filename="veurpruuve-eerste-rij-${dag}.csv"`,
         'cache-control': 'no-store',
       },
     });

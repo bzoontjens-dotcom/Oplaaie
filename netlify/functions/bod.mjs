@@ -5,7 +5,7 @@ import { json, leesJson, eigenHerkomst, ipAfdruk } from '../../veiling/http.mjs'
 import { ververStand, meldNieuwBod } from '../../veiling/berichten.mjs';
 
 export default async (req, context) => {
-  if (!eigenHerkomst(req)) return json(403, { ok: false, bericht: 'Dit verzoek komt niet van oplaaie.nl.' });
+  if (!eigenHerkomst(req)) return json(403, { ok: false, bericht: 'Dit verzoek komt niet van veurpruuve.nl.' });
   const data = await leesJson(req);
   if (!data) return json(400, { ok: false, bericht: 'We konden je bod niet lezen. Ververs de pagina en probeer het opnieuw.' });
 
@@ -24,7 +24,7 @@ export default async (req, context) => {
   } catch (fout) {
     if (fout instanceof VeilingFout) return json(fout.status, { ok: false, code: fout.code, veld: fout.veld, bericht: fout.message });
     console.error('Een bod opslaan is mislukt:', fout);
-    return json(500, { ok: false, bericht: 'Er ging iets mis aan onze kant en je bod is niet opgeslagen. Probeer het opnieuw of mail naar info@oplaaie.nl.' });
+    return json(500, { ok: false, bericht: 'Er ging iets mis aan onze kant en je bod is niet opgeslagen. Probeer het opnieuw of mail naar info@veurpruuve.nl.' });
   }
 };
 

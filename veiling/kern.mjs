@@ -86,7 +86,7 @@ export function leesInvoer(invoer, { beheer = false } = {}) {
 function controleerBedrag(bedrag) {
   if (bedrag < R.bodem) throw new VeilingFout('onder_bodem', `Bieden kan vanaf ${euro(R.bodem)}. Een lager bod nemen we niet aan.`, 'bod');
   if (bedrag % R.stap !== 0) throw new VeilingFout('geen_stap', `Bieden gaat in stappen van ${euro(R.stap)}. Maak er bijvoorbeeld ${euro(Math.ceil(bedrag / R.stap) * R.stap)} van.`, 'bod');
-  if (bedrag > R.maxBod) throw new VeilingFout('te_hoog', `Een bod boven ${euro(R.maxBod)} nemen we niet via de site aan. Mail naar info@oplaaie.nl, dan bellen we je.`, 'bod');
+  if (bedrag > R.maxBod) throw new VeilingFout('te_hoog', `Een bod boven ${euro(R.maxBod)} nemen we niet via de site aan. Mail naar info@veurpruuve.nl, dan bellen we je.`, 'bod');
 }
 
 // ---------- de klok ----------
@@ -216,7 +216,7 @@ export async function plaatsBod(pool, invoer, { ipHash = '' } = {}) {
     const perEmail = (await client.query(
       `SELECT count(*)::int AS n FROM biedingen WHERE bron = 'site' AND ingediend_op > $1 AND lower(email) = $2`, [sinds, bod.email])).rows[0].n;
     if (perAansluiting >= R.maxBiedingenPerUurPerAansluiting || perEmail >= R.maxBiedingenPerUurPerEmail) {
-      throw new VeilingFout('te_vaak', 'Je hebt het afgelopen uur al een paar keer geboden. Probeer het later opnieuw of mail naar info@oplaaie.nl.', '', 429);
+      throw new VeilingFout('te_vaak', 'Je hebt het afgelopen uur al een paar keer geboden. Probeer het later opnieuw of mail naar info@veurpruuve.nl.', '', 429);
     }
 
     const stand = await rangorde(client);

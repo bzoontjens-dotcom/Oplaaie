@@ -27,3 +27,23 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "no-store"
+
+# oplaaie.nl verwijst door naar veurpruuve.nl. Deze regels doen pas iets zodra
+# het domein oplaaie.nl aan deze site gekoppeld is. Zie README.md, "Live zetten".
+[[redirects]]
+  from = "https://oplaaie.nl/*"
+  to = "https://veurpruuve.nl/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.oplaaie.nl/*"
+  to = "https://veurpruuve.nl/:splat"
+  status = 301
+  force = true
+
+# De oude adressen van de Veurpruuve-site blijven werken.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301

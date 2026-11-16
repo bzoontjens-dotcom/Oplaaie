@@ -219,7 +219,7 @@
     var nieuwBod = top && (!topOud || topOud.bedrijf !== top.bedrijf || topOud.bedrag !== top.bedrag) ? top : null;
     var door = nieuwBod && (!mij || sleutel(nieuwBod.bedrijf) !== sleutel(mij.bedrijf)) ? '<b>' + esc(nieuwBod.bedrijf) + '</b> biedt ' + euro(nieuwBod.bedrag) + '. ' : '';
     if (pOud && pOud <= r.plekken && pNieuw > r.plekken) {
-      toon('eraf', '<p>Je bent van de eerste rij gereden. ' + door + 'Bied minimaal ' + euro(minimum()) + ' om terug te komen.</p><a class="knop klein-knop" href="#bieden" id="terug">Bied opnieuw</a>');
+      toon('eraf', '<p>Je bent van de eerste rij gereden. ' + door + 'Bied minimaal ' + euro(minimum()) + ' om terug te komen.</p><a class="btn klein" href="#bieden" id="terug">Bied opnieuw</a>');
       el.bod.value = punten(minimum()); bon();
     } else if (pOud && pNieuw > pOud && pNieuw <= r.plekken) {
       toon('', '<p>' + (door || 'Je bent een plek opgeschoven. ') + 'Je zit nu op plek ' + pNieuw + '.</p>');
@@ -295,7 +295,7 @@
       el.bon.classList.remove('stamped'); void el.bon.offsetWidth; el.bon.classList.add('stamped');
       $('klaarTekst').innerHTML = '<b>' + esc(mij.bedrijf) + '</b> biedt <b>' + euro(mij.bedrag) + '</b> exclusief btw. We bellen ' + esc(contact) + ' op ' + esc(telefoon) + ' om het bod te bevestigen. Je biednummer is ' + esc(d.bonnummer) + '.'
         + (d.verlengd ? ' Omdat je in de laatste ' + woord(r.verlengMinuten) + ' minuten bood, is de veiling met ' + woord(r.verlengMinuten) + ' minuten verlengd.' : '');
-      $('deelTekst').textContent = mij.bedrijf + ' biedt mee op de eerste rij van Oplaaie, de zakelijke carnavalsavond van Lampegat op donderdag 4 februari 2027 in de Bavaria Bierhal. Wie biedt er over ons heen? Alles boven het startbod van ' + euro(r.bodem) + ' gaat naar de Federatie Eindhovens Carnaval. Salaai! Oplaaie! oplaaie.nl/eerste-rij';
+      $('deelTekst').textContent = mij.bedrijf + ' biedt mee op de eerste rij van Veurpruuve x Oplaaie mee Hans, de zakelijke carnavalsavond van Lampegat op donderdag 4 februari 2027 in de Bavaria Bierhal. Wie biedt er over ons heen? Alles boven het startbod van ' + euro(r.bodem) + ' gaat naar de Federatie Eindhovens Carnaval. Salaai! Oplaaie! veurpruuve.nl/eerste-rij';
       $('klaar').hidden = false; $('deel').hidden = false;
       el.bod.value = ''; el.akkoord.checked = false;
       // De klok meteen bijwerken; een oudere kopie van de stand mag dit niet terugdraaien.

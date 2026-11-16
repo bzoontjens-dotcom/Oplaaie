@@ -1,0 +1,265 @@
+/* Het blok "x Oplaaie mee Hans", het programma van Veurpruuve in 2027.
+   Alles in dit bestand geldt alleen binnen het blok (alles begint met .oplaaie),
+   zodat de stijl van Veurpruuve eromheen er geen last van heeft en andersom.
+   Volgend jaar kan deze hele map vervangen worden door een ander blok. */
+
+.oplaaie{
+  /* kleuren */
+  --papier:#F4EBDA;      /* de ondergrond */
+  --papier2:#EADDC5;     /* een iets donkerder strook papier */
+  --wit:#FFFEFA;         /* vellen en kaarten */
+  --inkt:#2B2118;        /* tekst */
+  --inkt2:#5C4D3E;       /* bijschriften en kleine tekst */
+  --rood:#C81E16;        /* koppen en de hoofdknop */
+  --rood2:#A3140E;       /* rood voor tekst op wit */
+  --geel:#FFD84D;        /* markeringen, memo's en de tweede knop */
+  --lijn:#CDBFA8;        /* stippellijnen */
+  /* lettertypen */
+  --hand:'Caveat','Segoe Print','Comic Sans MS',cursive;   /* alles wat handgeschreven is */
+  --tekst:'Rubik','Segoe UI',Arial,sans-serif;             /* leestekst */
+  /* vormen */
+  --krabbel:255px 18px 225px 18px / 18px 225px 18px 255px; /* de licht scheve, met de hand getekende knop */
+  --schaduw:0 10px 24px rgba(43,33,24,.16);
+}
+.oplaaie *{box-sizing:border-box}
+/* Het blok is een strook papier in de site van Veurpruuve. Gedraaide vellen steken een paar pixels uit; overflow voorkomt dat je daardoor opzij kunt scrollen. */
+.oplaaie{position:relative;margin:0;padding:0;background:var(--papier);color:var(--inkt);font-family:var(--tekst);font-weight:400;font-size:18px;line-height:1.6;overflow:hidden}
+@supports (overflow:clip){.oplaaie{overflow:visible;overflow-x:clip}}
+/* de koppen en alinea's van Veurpruuve gelden hier niet */
+.oplaaie h2,.oplaaie h3{font-family:inherit;font-weight:inherit;font-size:inherit;line-height:inherit;text-wrap:wrap}
+.oplaaie h2,.oplaaie h3,.oplaaie p,.oplaaie figure{margin:0}
+.oplaaie img{max-width:100%;height:auto}
+.oplaaie a{color:var(--inkt)}
+.oplaaie a:hover{color:var(--rood2)}
+.oplaaie [hidden]{display:none!important}
+.oplaaie a:focus-visible,.oplaaie button:focus-visible,.oplaaie summary:focus-visible{outline:3px solid var(--rood);outline-offset:3px}
+.oplaaie .wrap{width:100%;max-width:1248px;margin:0 auto;padding-inline:24px}
+.oplaaie .hand{font-family:var(--hand);font-weight:700;line-height:1.1}
+.oplaaie .kopje{font-family:var(--hand);font-weight:700;font-size:clamp(44px,4.6vw,64px);line-height:1;color:var(--inkt)}
+.oplaaie .inleiding{font-size:20px}
+.oplaaie .klein{font-size:15px;color:var(--inkt2)}
+.oplaaie .streep{background:var(--geel);padding:0 4px}
+.oplaaie .knop{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border:0;border-radius:var(--krabbel);background:var(--rood);color:#FFF;font-family:var(--tekst);font-weight:700;font-size:19px;line-height:1.15;text-decoration:none;text-align:center;cursor:pointer;transition:transform .12s}
+.oplaaie .knop:hover{color:#FFF;transform:rotate(-1deg) scale(1.03)}
+.oplaaie .knop:active{transform:scale(.97)}
+.oplaaie .knop.geel{background:var(--geel);color:var(--inkt)}
+.oplaaie .knop.geel:hover{color:var(--inkt)}
+.oplaaie .knop.klein-knop{min-height:44px;padding:0 20px;font-size:17px}
+.oplaaie .knop:disabled{opacity:.45;cursor:default;transform:none}
+.oplaaie .vel{position:relative;background:var(--wit);box-shadow:var(--schaduw)}
+.oplaaie .memo{background:var(--geel);padding:18px 22px;font-family:var(--hand);font-weight:700;font-size:30px;line-height:1.1;box-shadow:0 6px 14px rgba(43,33,24,.16)}
+.oplaaie .tape{position:absolute;top:-14px;left:50%;width:110px;height:28px;margin-left:-55px;background:rgba(255,216,77,.85);transform:rotate(-3deg);pointer-events:none}
+@media (max-width:640px){
+  .oplaaie{font-size:17px}
+  .oplaaie .memo{font-size:27px}
+}
+@media (prefers-reduced-motion:reduce){
+  .oplaaie .knop{transition:none}
+  .oplaaie .knop:hover{transform:none}
+}
+
+/* de kop van het blok: de formule, met de twee logo's */
+.oplaaie .blokkop{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:56px;text-align:center}
+.oplaaie .blokkop .opschrift{font-family:var(--hand);font-weight:700;font-size:30px;line-height:1.1;color:var(--inkt2)}
+.oplaaie .formule{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 22px;font-family:var(--hand);font-weight:700;font-size:clamp(44px,6vw,72px);line-height:1;color:var(--rood)}
+.oplaaie .formule .vp{width:clamp(190px,24vw,300px);height:auto}
+.oplaaie .formule .x{color:var(--inkt);font-size:.8em}
+.oplaaie .formule .op{width:clamp(200px,26vw,330px);height:auto}
+.oplaaie .verborgen{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* de uitnodiging, de memobriefjes, de kaart en de route van de avond */
+.oplaaie .uitnodiging{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(460px,100%),1fr));gap:56px;align-items:start;padding-block:40px 72px}
+.oplaaie .brief{padding:44px 44px 40px;box-shadow:0 14px 34px rgba(43,33,24,.2);transform:rotate(-1deg);display:flex;flex-direction:column;gap:18px}
+.oplaaie .brief .adresregel{font-weight:500;font-size:15px}
+.oplaaie .brief .kopregel{font-family:var(--hand);font-weight:700;font-size:clamp(48px,5.4vw,76px);line-height:.95;color:var(--rood);text-wrap:balance}
+.oplaaie .brief .aanhef,.oplaaie .brief .groet{font-family:var(--hand);font-weight:700;font-size:34px;line-height:1.1}
+.oplaaie .brief .naam{font-family:var(--hand);font-weight:700;font-size:56px;line-height:1;color:var(--rood2)}
+.oplaaie .brief .knoppen{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.oplaaie .wagenkolom{display:flex;flex-direction:column;gap:30px;padding-top:8px;min-width:0}
+.oplaaie .wagenplek{display:flex;flex-direction:column;gap:6px;padding-bottom:70px}
+.oplaaie .hint{text-align:center;font-family:var(--hand);font-weight:700;font-size:28px;line-height:1.1;color:var(--rood2)}
+.oplaaie .polaroids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.oplaaie .polaroid{padding:12px 12px 6px;box-shadow:0 10px 24px rgba(43,33,24,.22);display:flex;flex-direction:column;gap:4px}
+.oplaaie .polaroid:nth-child(1){transform:rotate(-2.5deg)}
+.oplaaie .polaroid:nth-child(2){transform:rotate(2deg)}
+.oplaaie .polaroid img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.oplaaie .polaroid figcaption{font-family:var(--hand);font-weight:700;font-size:26px;line-height:1.2;text-align:center}
+.oplaaie .memos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:20px;padding-bottom:72px}
+.oplaaie .memos .memo:nth-child(1){transform:rotate(-1deg)}
+.oplaaie .memos .memo:nth-child(2){transform:rotate(1deg)}
+.oplaaie .memos .memo:nth-child(3){transform:rotate(-.5deg)}
+.oplaaie .adressen{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:40px 64px;align-items:center;padding-bottom:80px}
+.oplaaie .adressen .uitleg{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.oplaaie .adressen .teller{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
+.oplaaie .adressen .teller span{font-family:var(--hand);font-weight:700;font-size:30px;line-height:1}
+.oplaaie .adressen .teller b{color:var(--rood)}
+.oplaaie .kaart{padding:14px 14px 6px;box-shadow:0 10px 24px rgba(43,33,24,.2);transform:rotate(.8deg);display:flex;flex-direction:column;gap:4px;min-width:0}
+.oplaaie .kaart canvas{display:block;width:100%}
+.oplaaie .kaart figcaption{font-family:var(--hand);font-weight:700;font-size:24px;line-height:1.2;text-align:center}
+.oplaaie .avond{display:flex;flex-direction:column;gap:36px;padding-block:8px 72px}
+.oplaaie .avond .memo{align-self:flex-start}
+.oplaaie .avond .intro{display:flex;flex-direction:column;gap:6px;max-width:760px}
+.oplaaie .route{position:relative}
+.oplaaie .borden{list-style:none;margin:0;padding:0;position:relative;z-index:2;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.oplaaie .halte{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.oplaaie .bord{position:relative;width:100%;height:124px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:10px;background:var(--geel);color:var(--inkt);border:3px solid var(--inkt);border-radius:12px;box-shadow:inset 0 0 0 4px var(--geel),inset 0 0 0 6px var(--inkt),0 7px 0 rgba(43,33,24,.22);transition:transform .3s,background .3s}
+.oplaaie .bord::before{content:"";position:absolute;top:-16px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;border:3px solid var(--inkt);background:var(--lijn);transition:background .2s,box-shadow .2s}
+.oplaaie .bord b{font-family:var(--hand);font-weight:700;font-size:50px;line-height:.9;transition:color .3s}
+.oplaaie .bord span{font-weight:700;font-size:17px;line-height:1.15}
+.oplaaie .halte.aan .bord{background:#FFE680;transform:translateY(-5px) rotate(-1.2deg)}
+.oplaaie .halte:nth-child(even).aan .bord{transform:translateY(-5px) rotate(1.2deg)}
+.oplaaie .halte.aan .bord::before{background:var(--rood);box-shadow:0 0 14px rgba(200,30,22,.75)}
+.oplaaie .halte.aan .bord b{color:var(--rood2)}
+.oplaaie .paal{width:10px;height:40px;background:var(--inkt)}
+.oplaaie .wegruimte{height:66px}
+.oplaaie .halte p{margin-top:14px;max-width:24ch;font-size:16px;color:var(--inkt2)}
+.oplaaie .weg{position:absolute;left:0;right:0;top:164px;height:66px;z-index:1;background:var(--inkt);border-radius:8px}
+.oplaaie .weg::before{content:"";position:absolute;left:14px;right:14px;top:50%;height:4px;margin-top:-2px;background:repeating-linear-gradient(90deg,var(--wit) 0 28px,transparent 28px 56px);opacity:.85}
+.oplaaie .wagentje{position:absolute;left:0;top:3px;width:122px;height:60px;transform:translateX(var(--x,0px));will-change:transform}
+.oplaaie .avond .memo{transform:rotate(-1.2deg)}
+.oplaaie #confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
+@media (max-width:640px){
+  .oplaaie .uitnodiging{gap:40px;padding-block:28px 56px}
+  .oplaaie .brief{padding:28px 22px 26px}
+  .oplaaie .brief .aanhef,.oplaaie .brief .groet{font-size:30px}
+  .oplaaie .wagenplek{padding-bottom:40px}
+  .oplaaie .polaroids{gap:18px}
+  .oplaaie .polaroid figcaption{font-size:22px}
+}
+@media (max-width:760px){
+  .oplaaie .borden{grid-template-columns:1fr;gap:22px;padding-left:78px}
+  .oplaaie .weg{left:0;right:auto;top:0;bottom:0;width:58px;height:auto}
+  .oplaaie .weg::before{left:50%;right:auto;top:14px;bottom:14px;width:4px;height:auto;margin:0 0 0 -2px;background:repeating-linear-gradient(180deg,var(--wit) 0 28px,transparent 28px 56px)}
+  .oplaaie .wagentje{left:50%;top:0;width:80px;height:39px;margin-left:-40px;transform:translateY(var(--y,0px)) rotate(90deg)}
+  .oplaaie .halte{align-items:flex-start;text-align:left}
+  .oplaaie .bord{height:auto;min-height:92px;align-items:flex-start;padding:14px 44px 14px 18px}
+  .oplaaie .bord::before{left:auto;right:14px;top:14px;margin:0}
+  .oplaaie .bord b{font-size:44px}
+  .oplaaie .paal,.oplaaie .wegruimte{display:none}
+  .oplaaie .halte p{margin-top:10px;max-width:none}
+}
+
+/* De bakwagen met de laaiklep, van achteren gezien.
+   Alle maten zijn in cqw: procenten van de breedte van de wagen, zodat hij op elk scherm meeschaalt. */
+.oplaaie .truck-wrap{--ink:#15171C;--red:#E2231A;--yellow:#FFC21A;--blue:#1F4FD1;--white:#F6F7F9;--cond:'Barlow Condensed','Arial Narrow',sans-serif;--stencil:'Saira Stencil One','Arial Black',Impact,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;container-type:inline-size;width:min(440px,100%);margin-inline:auto;position:relative}
+.oplaaie .truck-wrap{transition:transform .25s ease-out;transform-style:preserve-3d}
+.oplaaie .truck{position:relative;width:100%;display:flex;flex-direction:column;align-items:center}
+.oplaaie .truck.rijdt{animation:rijden 1.9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rijden{0%{transform:translateX(-135%) scale(.92)}70%{transform:translateX(1.5%) scale(1)}82%{transform:translateX(-.6%) rotate(-1.1deg)}100%{transform:none}}
+.oplaaie .truck.rem .tl .red{background:#FF2A1A;box-shadow:0 0 2.6cqw rgba(255,42,26,.85)}
+.oplaaie .rook{position:absolute;left:6%;bottom:9cqw;width:5cqw;height:5cqw;border-radius:50%;background:rgba(200,205,213,.35);opacity:0;pointer-events:none}
+.oplaaie .truck.rijdt .rook{animation:rook 1.4s ease-out 1.1s forwards}
+.oplaaie .truck.rijdt .rook.b{animation-delay:1.35s;left:9%}
+@keyframes rook{0%{opacity:.8;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(-9cqw,-11cqw) scale(2.6)}}
+.oplaaie .marker{position:relative;z-index:3;display:flex;justify-content:space-between;width:62%;height:3.4cqw;margin-bottom:-1.7cqw}
+.oplaaie .marker i{width:7cqw;height:3.4cqw;border-radius:1.2cqw;background:#9A5A00;border:.5cqw solid var(--ink);transition:background .3s,box-shadow .3s}
+.oplaaie .truck.lit .marker i{background:#FFB000;box-shadow:0 0 3.4cqw #FFB000}
+.oplaaie .box{position:relative;z-index:2;width:100%;aspect-ratio:1/1.02;background:linear-gradient(90deg,#9AA2AE 0 3cqw,#D7DCE3 3cqw 4.2cqw,#EEF0F3 4.2cqw calc(100% - 4.2cqw),#D7DCE3 calc(100% - 4.2cqw) calc(100% - 3cqw),#9AA2AE calc(100% - 3cqw));border:.8cqw solid var(--ink);border-radius:2.6cqw 2.6cqw 1cqw 1cqw;box-shadow:inset 0 2cqw 0 #F7F8FA,inset 0 -1.4cqw 0 #C3C9D2,0 3cqw 7cqw rgba(0,0,0,.55)}
+.oplaaie .box::before{content:"";position:absolute;left:5cqw;right:5cqw;top:2.6cqw;height:2.2cqw;border-radius:1cqw;background:radial-gradient(circle,#6B7380 0 .55cqw,transparent .7cqw) 0 50%/4cqw 2.2cqw repeat-x;opacity:.55}
+.oplaaie .box::after{content:"";position:absolute;left:0;right:0;top:0;height:1.2cqw;border-radius:2cqw 2cqw 0 0;background:linear-gradient(#FFFFFF,#C9CED6)}
+.oplaaie .portal{position:absolute;left:7cqw;right:7cqw;top:7.2cqw;bottom:3.2cqw;border-radius:1cqw;background:#07080B;box-shadow:0 0 0 1.1cqw #7B8390,0 0 0 1.6cqw #3A3F4A;perspective:240cqw;perspective-origin:50% -30%}
+.oplaaie .inside{position:absolute;inset:0;overflow:hidden;border-radius:inherit;background:#07080B}
+.oplaaie .inside .zaal{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:brightness(.5) saturate(1.25);transform:scale(1.1);transition:opacity .9s .2s,transform 2.6s .2s}
+.oplaaie .truck.lit .inside .zaal{opacity:1;transform:scale(1)}
+.oplaaie .stralen{position:absolute;left:50%;top:36%;width:190cqw;height:190cqw;margin:-95cqw 0 0 -95cqw;background:repeating-conic-gradient(rgba(255,205,90,.34) 0 6deg,transparent 6deg 18deg);-webkit-mask-image:radial-gradient(closest-side,#000 8%,transparent 60%);mask-image:radial-gradient(closest-side,#000 8%,transparent 60%);opacity:0;transition:opacity .9s .4s}
+.oplaaie .truck.lit .stralen{opacity:1;animation:draai 48s linear infinite}
+@keyframes draai{to{transform:rotate(360deg)}}
+.oplaaie .hansplek{position:absolute;left:50%;top:6cqw;width:57.3cqw;height:90cqw;margin-left:-28.65cqw;transform:translateY(104%);transition:transform .35s ease-in}
+.oplaaie .truck.lit .hansplek{transform:none;transition:transform .85s .25s cubic-bezier(.2,1.35,.4,1)}
+.oplaaie .inside .hans{display:block;width:100%;height:100%;transform-origin:50% 92%;filter:drop-shadow(0 0 1.4cqw rgba(255,196,80,.6)) drop-shadow(0 1cqw 2.4cqw rgba(0,0,0,.55))}
+.oplaaie .truck.lit .inside .hans{animation:deinen 1.1s ease-in-out 1.2s infinite alternate}
+@keyframes deinen{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg) translateY(-.8cqw)}}
+.oplaaie .schemer{position:absolute;left:0;right:0;bottom:0;height:46cqw;background:linear-gradient(rgba(7,8,11,0),rgba(7,8,11,.9) 58%)}
+.oplaaie .inside .glow{position:absolute;inset:0;background:radial-gradient(75% 60% at 50% 100%,rgba(255,170,40,.6),transparent 70%);opacity:0;transition:opacity .9s .3s}
+.oplaaie .truck.lit .inside .glow{opacity:1}
+.oplaaie .bulbrow{position:absolute;left:3cqw;right:3cqw;height:3.4cqw;background:radial-gradient(circle,#FFE6A0 0 30%,rgba(255,200,90,.35) 44%,transparent 62%) 0 50%/5cqw 3.4cqw repeat-x;opacity:.12}
+.oplaaie .bulbrow.t{top:2cqw}
+.oplaaie .bulbrow.b{bottom:2cqw}
+.oplaaie .truck.lit .bulbrow{opacity:1;animation:chase .7s steps(2) infinite}
+@keyframes chase{to{background-position:5cqw 50%}}
+.oplaaie .marquee small{display:block;font-size:4.2cqw;font-weight:700;letter-spacing:.06em;color:#FFE6A0;margin-bottom:.8cqw}
+.oplaaie .marquee{position:absolute;left:0;right:0;bottom:13cqw;margin:0;white-space:nowrap;text-align:center;font-family:var(--cond);font-weight:800;font-size:11.5cqw;line-height:.95;letter-spacing:.01em;color:#FFF1C4;text-shadow:0 0 1.6cqw rgba(255,190,60,.95),0 0 5cqw rgba(255,140,20,.8);opacity:0;transform:translateY(3cqw);transition:opacity .5s .9s,transform .8s .9s cubic-bezier(.2,1.4,.4,1)}
+.oplaaie .truck.lit .marquee{opacity:1;transform:none}
+.oplaaie .klep{position:absolute;inset:0;z-index:2;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;transform-origin:50% 100%;transform-style:preserve-3d;transition:transform 1.5s cubic-bezier(.55,.05,.3,1)}
+.oplaaie .truck.open .klep{transform:translateY(12cqw) rotateX(-86deg)}
+.oplaaie .front{opacity:1;transition:opacity .2s .75s}
+.oplaaie .back{opacity:0;transition:opacity .2s .8s}
+.oplaaie .truck.open .front{opacity:0;transition:opacity .2s .62s}
+.oplaaie .truck.open .back{opacity:1;transition:opacity .2s .55s}
+.oplaaie .truck.open .box{z-index:4}
+.oplaaie .face{position:absolute;inset:0;border-radius:1cqw;backface-visibility:visible;-webkit-backface-visibility:visible;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1.6cqw;padding:5cqw 6cqw 7cqw}
+.oplaaie .front{background:repeating-linear-gradient(45deg,transparent 0 2.4cqw,rgba(255,255,255,.28) 2.4cqw 3cqw,transparent 3cqw 4.8cqw),repeating-linear-gradient(-45deg,transparent 0 2.4cqw,rgba(0,0,0,.14) 2.4cqw 3cqw,transparent 3cqw 4.8cqw),linear-gradient(#D5DAE1,#B4BBC6 60%,#9FA7B3);border:.6cqw solid #6B7380;box-shadow:inset 0 1cqw 0 rgba(255,255,255,.45),inset 0 -1cqw 0 rgba(0,0,0,.18)}
+.oplaaie .front::before,.oplaaie .front::after{content:"";position:absolute;top:0;bottom:0;width:2.2cqw;background:repeating-linear-gradient(-45deg,var(--red) 0 1.8cqw,#F4F4F4 1.8cqw 3.6cqw)}
+.oplaaie .front::before{left:0;border-radius:.6cqw 0 0 .6cqw}
+.oplaaie .front::after{right:0;border-radius:0 .6cqw .6cqw 0}
+.oplaaie .scharnier{position:absolute;left:4cqw;right:4cqw;bottom:0;height:3.2cqw;border-radius:1cqw 1cqw 0 0;background:linear-gradient(#5F6673,#2D323B);display:flex;justify-content:space-around;align-items:flex-end}
+.oplaaie .scharnier i{width:9cqw;height:4.4cqw;border-radius:1cqw 1cqw 0 0;background:linear-gradient(#8E97A3,#4A5160);border:.4cqw solid var(--ink);border-bottom:0}
+.oplaaie .back .stencil{width:70%;opacity:.28;filter:grayscale(1) contrast(1.4)}
+.oplaaie .spot{position:absolute;top:4cqw;width:30%;height:92%;z-index:5;pointer-events:none;opacity:0;background:linear-gradient(rgba(255,226,150,.55),rgba(255,226,150,0) 88%);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);filter:blur(3px);mix-blend-mode:screen;transition:opacity .8s 1.2s}
+.oplaaie .spot.l{left:6%;transform:rotate(-16deg);transform-origin:50% 0}
+.oplaaie .spot.r{right:6%;transform:rotate(16deg);transform-origin:50% 0}
+.oplaaie .truck.lit .spot{opacity:1;animation:sweep 4s ease-in-out 2s infinite alternate}
+@keyframes sweep{to{transform:rotate(0deg)}}
+.oplaaie .aftel{position:absolute;left:0;right:0;bottom:6.2cqw;margin:0;text-align:center;font-family:var(--cond);font-weight:700;font-size:4.6cqw;color:#FFE6A0;text-shadow:0 0 1.4cqw rgba(255,190,60,.9);opacity:0;transition:opacity .6s 1.6s}
+.oplaaie .aftel b{font-family:var(--mono);font-weight:600;font-size:5.4cqw;color:#FFF}
+.oplaaie .truck.lit .aftel{opacity:1}
+.oplaaie .back{justify-content:center;transform:rotateX(180deg);background:repeating-linear-gradient(45deg,transparent 0 2.2cqw,rgba(255,255,255,.22) 2.2cqw 2.9cqw,transparent 2.9cqw 4.4cqw),repeating-linear-gradient(-45deg,transparent 0 2.2cqw,rgba(0,0,0,.12) 2.2cqw 2.9cqw,transparent 2.9cqw 4.4cqw),linear-gradient(#A3ABB7,#D3D8DF);border:.6cqw solid #6B7380}
+.oplaaie .back span{font-family:var(--stencil);font-size:10cqw;color:rgba(21,23,28,.5)}
+.oplaaie .truck:not(.open) .handle{animation:nudge 2.6s ease-in-out infinite}
+@keyframes nudge{0%,78%,100%{transform:none}84%{transform:translateY(-1.4cqw)}90%{transform:translateY(.4cqw)}}
+.oplaaie .handle{position:relative;width:30%;height:3.4cqw;border-radius:2cqw;background:linear-gradient(#FFFFFF,#A3ABB7 60%,#6B7380);border:.5cqw solid var(--ink);margin-bottom:.2cqw}
+.oplaaie .plaat{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;gap:1.2cqw;padding:3cqw 3cqw 3.4cqw;background:#FBFCFD;border:.5cqw solid #AEB6C2;border-radius:1.4cqw;box-shadow:0 .8cqw 2cqw rgba(0,0,0,.25)}
+.oplaaie .plaat::after{content:"";position:absolute;inset:1.2cqw;border:.3cqw dashed #CBD1DA;border-radius:.8cqw;pointer-events:none}
+.oplaaie .decal{width:96%}
+.oplaaie .decal-date{font-family:var(--stencil);font-size:4.9cqw;line-height:1;color:var(--ink);white-space:nowrap}
+.oplaaie .decal-loc{font-family:var(--cond);font-weight:700;font-size:3.8cqw;line-height:1.1;letter-spacing:.03em;color:#4A5160}
+.oplaaie .sticker{position:absolute;right:4.6cqw;bottom:6.6cqw;max-width:31cqw;background:var(--yellow);color:var(--ink);border:.5cqw solid var(--ink);border-radius:1.4cqw;padding:1.2cqw 1.8cqw;font-family:var(--cond);font-weight:600;font-size:2.8cqw;line-height:1.15;text-align:left;transform:rotate(-5deg);box-shadow:.6cqw .8cqw 0 rgba(0,0,0,.2)}
+.oplaaie .sticker b{display:block;font-weight:800;font-size:3.8cqw}
+.oplaaie .bumper{position:relative;z-index:3;width:104%;height:10.5cqw;margin-top:-.4cqw;background:linear-gradient(#3B404B,#1F232B);border:.7cqw solid var(--ink);border-radius:1.2cqw;display:flex;align-items:center;padding:0 2.2cqw}
+.oplaaie .tl{display:flex;gap:.5cqw;height:6.2cqw;padding:.6cqw;background:#0C0D10;border-radius:.9cqw;flex:none}
+.oplaaie .tl i{width:4.2cqw;border-radius:.5cqw;transition:background .2s,box-shadow .2s}
+.oplaaie .tl .ind{background:#6E4300}
+.oplaaie .tl .red{width:6.4cqw;background:#6E0E0A}
+.oplaaie .tl .rev{background:#4F545D}
+.oplaaie .truck.lit .tl .red{background:#FF2A1A;box-shadow:0 0 2.6cqw rgba(255,42,26,.85)}
+.oplaaie .truck.reverse .tl .rev{background:#FFFFFF;box-shadow:0 0 2.6cqw rgba(255,255,255,.95)}
+.oplaaie .truck.blink .tl .ind{animation:ind .55s steps(1) infinite}
+@keyframes ind{50%{background:#FFB000;box-shadow:0 0 2.4cqw #FFB000}}
+.oplaaie .strip{flex:1;height:2.6cqw;margin:0 1.8cqw;border-radius:.4cqw;background:repeating-linear-gradient(-45deg,var(--red) 0 1.6cqw,#F2F2F2 1.6cqw 3.2cqw)}
+.oplaaie .plate{flex:none;display:flex;height:6.8cqw;background:#F7C600;border:.5cqw solid #111;border-radius:.8cqw;overflow:hidden;font-family:var(--cond);font-weight:700;font-size:5cqw;line-height:1;color:#111;letter-spacing:.06em}
+.oplaaie .plate i{display:grid;place-items:end center;width:3.6cqw;background:var(--blue);color:#FFF;font-style:normal;font-weight:600;font-size:1.9cqw;letter-spacing:0;padding-bottom:.7cqw}
+.oplaaie .plate span{display:grid;place-items:center;padding:0 1.5cqw}
+.oplaaie .chassis{position:relative;z-index:1;width:100%;height:21cqw;margin-top:-1cqw}
+.oplaaie .cil{position:absolute;top:0;width:3.2cqw;height:3cqw;background:linear-gradient(90deg,#6B7380,#C8CDD5 45%,#6B7380);border:.4cqw solid var(--ink);border-radius:0 0 .8cqw .8cqw;transition:height 1.5s cubic-bezier(.55,.05,.3,1)}
+.oplaaie .cil::after{content:"";position:absolute;left:-.9cqw;right:-.9cqw;bottom:-1.6cqw;height:2cqw;border-radius:.5cqw;background:#2A2E36;border:.4cqw solid var(--ink)}
+.oplaaie .cil.l{left:33%}
+.oplaaie .cil.r{right:33%}
+.oplaaie .truck.open .cil{height:11cqw}
+.oplaaie .zwaai{position:absolute;left:3cqw;top:-4.2cqw;z-index:4;width:6cqw;height:4.6cqw;border-radius:3cqw 3cqw .6cqw .6cqw;background:#8A4A00;border:.5cqw solid var(--ink);overflow:hidden}
+.oplaaie .zwaai::before{content:"";position:absolute;inset:-60%;background:conic-gradient(from 0deg,rgba(255,200,60,0) 0 70%,#FFD36B 82%,rgba(255,200,60,0) 100%);opacity:0}
+.oplaaie .truck.blink .zwaai{background:#FF9B00;box-shadow:0 0 4cqw #FF9B00}
+.oplaaie .truck.blink .zwaai::before{opacity:1;animation:zwaai .7s linear infinite}
+@keyframes zwaai{to{transform:rotate(360deg)}}
+.oplaaie .balk{position:absolute;left:8%;right:8%;top:0;height:3.6cqw;background:linear-gradient(#262A33,#111318);border:.5cqw solid var(--ink);border-radius:.6cqw}
+.oplaaie .axle{position:absolute;left:24%;right:24%;top:5cqw;height:4.6cqw;background:linear-gradient(#2A2E36,#0C0D10);border-radius:0 0 2cqw 2cqw}
+.oplaaie .diff{position:absolute;left:50%;top:3cqw;width:12cqw;height:9cqw;margin-left:-6cqw;border-radius:45%;background:radial-gradient(circle at 40% 35%,#4A5160,#15171C 70%);border:.5cqw solid var(--ink)}
+.oplaaie .wheel{position:absolute;top:1cqw;width:26cqw;height:20cqw}
+.oplaaie .wheel.l{left:4%}
+.oplaaie .wheel.r{right:4%}
+.oplaaie .wheel i{position:absolute;bottom:0;width:13cqw;height:20cqw;border-radius:0 0 6.5cqw 6.5cqw/0 0 9cqw 9cqw;background:repeating-linear-gradient(90deg,transparent 0 1.6cqw,rgba(255,255,255,.07) 1.6cqw 2.2cqw),radial-gradient(ellipse at 50% 20%,#4A4E57 0 26%,#2A2D34 34%,#383C45 60%,#1A1C21 100%);border:.5cqw solid #000;border-top:0;box-shadow:inset 0 -1.4cqw 0 rgba(255,255,255,.1),0 .6cqw 1.2cqw rgba(0,0,0,.6)}
+.oplaaie .wheel i:first-child{left:0}
+.oplaaie .wheel i:last-child{right:0}
+.oplaaie .wheel i::after{content:"";position:absolute;left:50%;bottom:4cqw;width:5cqw;height:5cqw;margin-left:-2.5cqw;border-radius:50%;background:radial-gradient(circle at 40% 40%,#B9C0CA,#5F6673 70%);border:.4cqw solid #000}
+.oplaaie .flap{position:absolute;top:0;width:13cqw;height:17cqw;background:linear-gradient(#1C1E23,#0C0D10);border:.4cqw solid #000;border-top:0;border-radius:0 0 1.4cqw 1.4cqw;display:grid;place-items:end center;padding-bottom:1.6cqw;font-family:var(--cond);font-weight:800;font-size:3.4cqw;color:var(--white);z-index:2}
+.oplaaie .flap::before{content:"";position:absolute;left:1cqw;right:1cqw;bottom:5.2cqw;height:1.6cqw;background:repeating-linear-gradient(-45deg,var(--red) 0 1.2cqw,#F2F2F2 1.2cqw 2.4cqw);opacity:.9}
+.oplaaie .flap.l{left:calc(4% + 13cqw)}
+.oplaaie .flap.r{right:calc(4% + 13cqw)}
+.oplaaie .shadow{width:118%;height:8cqw;margin-top:-5cqw;background:radial-gradient(closest-side,rgba(0,0,0,.7),transparent)}
+.oplaaie .klep{touch-action:manipulation}
+.oplaaie .box{box-shadow:inset 0 2cqw 0 #F7F8FA,inset 0 -1.4cqw 0 #C3C9D2,0 2cqw 5cqw rgba(43,33,24,.32)}
+.oplaaie .shadow{background:radial-gradient(closest-side,rgba(43,33,24,.4),transparent)}
+@media (prefers-reduced-motion:reduce){
+  .oplaaie .truck,.oplaaie .truck *{animation:none !important;transition:none !important}
+}
+.oplaaie .truck-wrap .logo{display:block;width:100%;height:auto}
+.oplaaie .fotonoot{text-align:center}

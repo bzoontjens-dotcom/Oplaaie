@@ -1,134 +1,82 @@
-/* De homepage: de brief van Hans, de bakwagen, de kaart, de doelen, de avond en de tafels.
-   De gedeelde huisstijl staat in basis.css, de bakwagen in wagen.css. */
+/* De homepage van Veurpruuve. De gedeelde huisstijl staat in veurpruuve.css.
+   Het blok "x Oplaaie mee Hans" heeft zijn eigen opmaak in /oplaaie-2027/blok.css. */
 
-/* de uitnodiging: links de brief, rechts de wagen met de polaroids */
-.uitnodiging{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(460px,100%),1fr));gap:56px;align-items:start;padding-block:44px 72px}
-.brief{padding:44px 44px 40px;box-shadow:0 14px 34px rgba(43,33,24,.2);transform:rotate(-1deg);display:flex;flex-direction:column;gap:18px}
-.brief .adresregel{font-weight:500;font-size:15px}
-.brief h1{font-family:var(--hand);font-weight:700;font-size:clamp(48px,5.4vw,76px);line-height:.95;color:var(--rood);text-wrap:balance}
-.brief .aanhef,.brief .groet{font-family:var(--hand);font-weight:700;font-size:34px;line-height:1.1}
-.brief .naam{font-family:var(--hand);font-weight:700;font-size:56px;line-height:1;color:var(--rood2)}
-.brief .knoppen{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+/* de opening: de medaille op de foto van de volle Bierhal */
+.hero{position:relative;padding:0;overflow:hidden}
+.hero .bg{position:absolute;inset:0;background:url(/img/hero.jpg) center/cover no-repeat;opacity:.30}
+.hero .fade{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(14,29,74,.35) 0%,rgba(14,29,74,.85) 70%),linear-gradient(180deg,rgba(14,29,74,0) 60%,var(--diep) 100%)}
+.hero .wrap{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:48px 0 76px}
+.hero .medaille{width:min(380px,78vw,32vh)}
+.hero .medaille img{width:100%;filter:drop-shadow(0 18px 40px rgba(0,0,0,.45))}
+.hero h1{margin-top:26px;font-size:clamp(26px,4.2vw,46px);color:var(--ivoor)}
+.hero h1 .x{color:var(--oranje);font-family:var(--tekst);font-weight:800;font-size:.72em;margin:0 .12em}
+.hero .sub{margin-top:14px;font-size:clamp(17px,2vw,20px);font-weight:700;color:var(--ivoor)}
+.hero .when{margin-top:10px;font-size:clamp(15px,1.8vw,18px);font-weight:600;color:var(--muted-l)}
+.hero .when span{color:var(--oranje);margin:0 10px}
+.hero .lead{margin:22px auto 0;max-width:700px;font-size:clamp(18px,2.2vw,22px);font-weight:600;line-height:1.45;color:var(--ivoor)}
+.startmelding{display:inline-block;margin:18px 0 0;background:var(--oranje);color:var(--diep);font-weight:800;font-size:16px;line-height:1.35;padding:9px 20px;border-radius:999px}
+.bestellen .startmelding{margin:0 0 22px}
+.hero .cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;justify-content:center}
+@media (max-width:700px){.hero .when span{display:block;height:0;overflow:hidden}.hero .when{line-height:1.6;color:var(--ivoor);font-size:16px;font-weight:700}}
+@media (max-width:600px){
+  .startmelding{font-size:15px;border-radius:14px;padding:8px 16px}
+  .hero .wrap{padding:24px 0 48px}.hero .medaille{width:min(200px,50vw)}.hero h1{margin-top:16px}
+  .hero .sub{margin-top:10px;font-size:16px}.hero .lead{margin-top:14px;font-size:17px}.hero .cta{margin-top:20px}
+}
 
-.wagenkolom{display:flex;flex-direction:column;gap:30px;padding-top:8px;min-width:0}
-.wagenplek{display:flex;flex-direction:column;gap:6px;padding-bottom:70px}
-.hint{text-align:center;font-family:var(--hand);font-weight:700;font-size:28px;line-height:1.1;color:var(--rood2)}
-.polaroids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
-.polaroid{padding:12px 12px 6px;box-shadow:0 10px 24px rgba(43,33,24,.22);display:flex;flex-direction:column;gap:4px}
-.polaroid:nth-child(1){transform:rotate(-2.5deg)}
-.polaroid:nth-child(2){transform:rotate(2deg)}
-.polaroid img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
-.polaroid figcaption{font-family:var(--hand);font-weight:700;font-size:26px;line-height:1.2;text-align:center}
-.fotonoot{text-align:center}
+/* wat is het */
+.wat .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.wat .grid > *{min-width:0}
+.wat p{font-size:18px}
+.wat p b{display:block;font-family:var(--kop);font-weight:400;font-size:21px;color:var(--blauw);margin-bottom:2px}
+.wat .photos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.wat .photos img{border-radius:14px;aspect-ratio:3/2;object-fit:cover;width:100%}
+.wat .photos img:first-child{grid-column:1/-1;aspect-ratio:16/9}
+@media (max-width:860px){.wat .grid{grid-template-columns:1fr;gap:36px}}
 
-/* de drie gele memobriefjes */
-.memos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:20px;padding-bottom:72px}
-.memos .memo:nth-child(1){transform:rotate(-1deg)}
-.memos .memo:nth-child(2){transform:rotate(1deg)}
-.memos .memo:nth-child(3){transform:rotate(-.5deg)}
-
-/* dertig adressen */
-.adressen{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:40px 64px;align-items:center;padding-bottom:80px}
-.adressen .uitleg{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
-.adressen .teller{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
-.adressen .teller span{font-family:var(--hand);font-weight:700;font-size:30px;line-height:1}
-.adressen .teller b{color:var(--rood)}
-.kaart{padding:14px 14px 6px;box-shadow:0 10px 24px rgba(43,33,24,.2);transform:rotate(.8deg);display:flex;flex-direction:column;gap:4px;min-width:0}
-.kaart canvas{display:block;width:100%}
-.kaart figcaption{font-family:var(--hand);font-weight:700;font-size:24px;line-height:1.2;text-align:center}
+/* tafels en kaarten */
+.tafels .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:40px}
+.tafels .card h3{font-size:21px}
+.card .prijs{font-family:var(--kop);font-size:46px;color:var(--blauw);line-height:1;margin:14px 0 6px;white-space:nowrap}
+.card .prijs small{font-family:var(--tekst);font-weight:800;font-size:15px;margin-right:6px}
+.card.blauw .prijs{color:var(--oranje)}
+.card .per{font-size:14px;color:var(--muted);margin-bottom:16px}
+.card.blauw .per{color:var(--muted-l)}
+.card ul{margin:0 0 22px;padding-left:18px;font-size:15.5px}
+.card ul li{margin-bottom:6px}
+.card ul li::marker{color:var(--oranje)}
+.card .btn{margin-top:auto;align-self:flex-start}
+.inbegrepen{margin-top:26px;background:#F3E4C6;border-left:6px solid var(--oranje);border-radius:12px;padding:18px 22px;font-size:16px;max-width:880px}
+.inbegrepen b{font-weight:800}
+@media (max-width:980px){.tafels .cards{grid-template-columns:1fr;max-width:560px}}
 
 /* de twee goede doelen */
-.doelen{background:var(--papier2);padding-block:64px}
-.doelen .wrap{display:flex;flex-direction:column;gap:32px}
-.doelen .intro{display:flex;flex-direction:column;gap:6px;max-width:780px}
-.doelen .twee{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:32px;align-items:stretch}
-.doel{padding:34px 30px 28px;display:flex;flex-direction:column;gap:10px}
-.doel:nth-child(1){transform:rotate(-.6deg)}
-.doel:nth-child(2){transform:rotate(.6deg)}
-.doel .nummer{font-weight:500;font-size:15px;color:var(--inkt2)}
-.doel h3{font-family:var(--hand);font-weight:700;font-size:44px;line-height:1;color:var(--rood)}
-.doelen .waarom{max-width:860px;font-size:20px}
-.doelen .waarom span{background:var(--geel);padding:2px 6px;font-weight:700}
+.doelen .intro{max-width:760px;font-size:18px;margin-top:18px}
+.doelen .twee{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+.doelen .twee > div{background:rgba(250,246,238,.06);border:1.5px solid rgba(250,246,238,.16);border-top:4px solid var(--oranje);border-radius:16px;padding:26px 28px}
+.doelen .nr{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--oranje-2);margin-bottom:8px}
+.doelen h3{font-family:var(--kop);font-weight:400;font-size:24px;margin-bottom:10px}
+.doelen .twee p{margin:0;color:var(--muted-l);font-size:16px}
+.doelen .waarom{margin:28px 0 0;max-width:760px;font-size:18px;font-weight:700}
+@media (max-width:760px){.doelen .twee{grid-template-columns:1fr}}
 
-/* de avond: een weg met vijf borden, het wagentje rijdt mee met het scrollen */
-.avond{display:flex;flex-direction:column;gap:36px;padding-block:64px}
-.avond .intro{display:flex;flex-direction:column;gap:6px;max-width:760px}
-.route{position:relative}
-.borden{list-style:none;margin:0;padding:0;position:relative;z-index:2;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
-.halte{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
-.bord{position:relative;width:100%;height:124px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:10px;background:var(--geel);color:var(--inkt);border:3px solid var(--inkt);border-radius:12px;box-shadow:inset 0 0 0 4px var(--geel),inset 0 0 0 6px var(--inkt),0 7px 0 rgba(43,33,24,.22);transition:transform .3s,background .3s}
-.bord::before{content:"";position:absolute;top:-16px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;border:3px solid var(--inkt);background:var(--lijn);transition:background .2s,box-shadow .2s}
-.bord b{font-family:var(--hand);font-weight:700;font-size:50px;line-height:.9;transition:color .3s}
-.bord span{font-weight:700;font-size:17px;line-height:1.15}
-.halte.aan .bord{background:#FFE680;transform:translateY(-5px) rotate(-1.2deg)}
-.halte:nth-child(even).aan .bord{transform:translateY(-5px) rotate(1.2deg)}
-.halte.aan .bord::before{background:var(--rood);box-shadow:0 0 14px rgba(200,30,22,.75)}
-.halte.aan .bord b{color:var(--rood2)}
-.paal{width:10px;height:40px;background:var(--inkt)}
-.wegruimte{height:66px}
-.halte p{margin-top:14px;max-width:24ch;font-size:16px;color:var(--inkt2)}
-.weg{position:absolute;left:0;right:0;top:164px;height:66px;z-index:1;background:var(--inkt);border-radius:8px}
-.weg::before{content:"";position:absolute;left:14px;right:14px;top:50%;height:4px;margin-top:-2px;background:repeating-linear-gradient(90deg,var(--wit) 0 28px,transparent 28px 56px);opacity:.85}
-.wagentje{position:absolute;left:0;top:3px;width:122px;height:60px;transform:translateX(var(--x,0px));will-change:transform}
-.avond .erbij{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:28px 56px;align-items:center}
-.avond .erbij .memo{justify-self:start}
-.inbegrepen{padding:28px 30px;box-shadow:0 10px 24px rgba(43,33,24,.14);transform:rotate(.8deg);display:flex;flex-direction:column;gap:14px}
-.inbegrepen h3{font-family:var(--hand);font-weight:700;font-size:40px;line-height:1}
-.vinkjes{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.vinkjes li{display:flex;gap:12px;align-items:flex-start}
-.vinkjes li::before{content:"";flex:none;width:26px;height:26px;margin-top:2px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 13l5 5L20 6' fill='none' stroke='%23C81E16' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
-.avond .memo{transform:rotate(-1.2deg)}
+/* veelgestelde vragen */
+.faq details{border-top:1px solid rgba(250,246,238,.18);padding:18px 0}
+.faq details:last-of-type{border-bottom:1px solid rgba(250,246,238,.18)}
+.faq summary{cursor:pointer;font-weight:800;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--oranje);font-family:var(--kop);font-size:26px;flex:none}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:12px 0 0;color:var(--muted-l);max-width:720px}
+.faq .list{margin-top:36px}
 
-/* de tafels, op laadbonnen */
-.tafels{display:flex;flex-direction:column;gap:24px;padding-bottom:64px}
-.tafels .intro{display:flex;flex-direction:column;gap:4px;max-width:760px}
-.tafels .bonnen{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:28px;align-items:stretch}
-.tafelbon{padding:26px 28px;display:flex;flex-direction:column;gap:12px}
-.tafelbon h3{font-family:var(--hand);font-weight:700;font-size:44px;line-height:1}
-.tafelbon .prijs{font-weight:700;font-size:30px;line-height:1.1;color:var(--rood2)}
-.tafelbon .tekst{flex-grow:1}
-.tafelbon .knop{align-self:flex-start}
-.tafelbon .melding{background:var(--geel);padding:10px 14px;font-weight:500;font-size:16px}
-
-/* goed om te weten */
-.weten{display:flex;flex-direction:column;gap:20px;padding-bottom:64px}
-.weten dl{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:20px}
-.weten dl div{background:var(--wit);padding:18px 20px;box-shadow:0 6px 14px rgba(43,33,24,.12)}
-.weten dt{font-family:var(--hand);font-weight:700;font-size:30px;line-height:1.1;color:var(--rood)}
-.weten dd{margin:4px 0 0}
-
-/* contact */
-.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:32px 64px;align-items:start;padding-bottom:72px}
-.contact .uitleg{display:flex;flex-direction:column;gap:10px}
-.contact form,.contact .gelukt{padding:28px 30px;box-shadow:0 10px 24px rgba(43,33,24,.14);display:flex;flex-direction:column;gap:16px}
-.contact form .knop{align-self:flex-start}
-.contact .fout:empty{display:none}
-.contact .gelukt h3{font-family:var(--hand);font-weight:700;font-size:40px;line-height:1;color:var(--rood)}
-.contact .gelukt .knop{align-self:flex-start}
-
-/* de confetti ligt over de hele pagina, maar je klikt er dwars doorheen */
-#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
-
-@media (max-width:640px){
-  .uitnodiging{gap:40px;padding-block:28px 56px}
-  .brief{padding:28px 22px 26px}
-  .brief .aanhef,.brief .groet{font-size:30px}
-  .wagenplek{padding-bottom:40px}
-  .polaroids{gap:18px}
-  .polaroid figcaption{font-size:22px}
-  .doel,.inbegrepen,.tafelbon,.contact form,.contact .gelukt{padding-inline:22px}
-  .doel h3,.tafelbon h3{font-size:38px}
-}
-@media (max-width:760px){
-  /* op een telefoon loopt de weg van boven naar beneden, links van de borden */
-  .borden{grid-template-columns:1fr;gap:22px;padding-left:78px}
-  .weg{left:0;right:auto;top:0;bottom:0;width:58px;height:auto}
-  .weg::before{left:50%;right:auto;top:14px;bottom:14px;width:4px;height:auto;margin:0 0 0 -2px;background:repeating-linear-gradient(180deg,var(--wit) 0 28px,transparent 28px 56px)}
-  .wagentje{left:50%;top:0;width:80px;height:39px;margin-left:-40px;transform:translateY(var(--y,0px)) rotate(90deg)}
-  .halte{align-items:flex-start;text-align:left}
-  .bord{height:auto;min-height:92px;align-items:flex-start;padding:14px 44px 14px 18px}
-  .bord::before{left:auto;right:14px;top:14px;margin:0}
-  .bord b{font-size:44px}
-  .paal,.wegruimte{display:none}
-  .halte p{margin-top:10px;max-width:none}
-}
+/* bestellen en contact */
+.shop{background:var(--wit);border:1.5px solid var(--lijn);border-radius:18px;padding:18px;min-height:420px}
+.shop .nognet{min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px}
+.shop .nognet b{font-family:var(--kop);font-weight:400;font-size:26px;line-height:1.2;color:var(--blauw);text-wrap:balance}
+.shop .nognet p{margin:0;max-width:36ch;color:var(--muted)}
+.bestellen .grid,.contact .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.bestellen .grid > *,.contact .grid > *{min-width:0}
+.bestellen .tekst p,.contact .tekst p{font-size:17px}
+.bestellen .tekst .kl,.contact .tekst .kl{font-size:14px;color:var(--muted)}
+@media (max-width:860px){.bestellen .grid,.contact .grid{grid-template-columns:1fr;gap:36px}}

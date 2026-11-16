@@ -1,5 +1,5 @@
 // Wat er na een wijziging nog moet gebeuren: de openbare stand verversen en
-// bij een nieuw bod een e-mail naar info@oplaaie.nl laten sturen.
+// bij een nieuw bod een e-mail naar info@veurpruuve.nl laten sturen.
 import { purgeCache } from '@netlify/cache';
 import { euro, datumTekst } from './kern.mjs';
 
@@ -27,12 +27,12 @@ export async function ververStand() {
 }
 
 // De e-mail loopt via Netlify Forms: we vullen het verborgen formulier
-// 'bod-melding' in, en Netlify stuurt de melding door naar info@oplaaie.nl.
+// 'bod-melding' in, en Netlify stuurt de melding door naar info@veurpruuve.nl.
 export async function meldNieuwBod(herkomst, bod) {
   if (lokaal()) return true;
   const velden = new URLSearchParams({
     'form-name': 'bod-melding',
-    subject: `Nieuw bod op de eerste rij: ${bod.bedrijf}, ${euro(bod.bedrag)}`,
+    subject: `Veurpruuve: nieuw bod op de eerste rij: ${bod.bedrijf}, ${euro(bod.bedrag)}`,
     bedrijf: bod.bedrijf,
     contact: bod.contact,
     email: bod.email,
