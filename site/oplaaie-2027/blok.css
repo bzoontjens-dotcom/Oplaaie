@@ -100,9 +100,10 @@
 .oplaaie .avond .memo{align-self:flex-start}
 .oplaaie .avond .intro{display:flex;flex-direction:column;gap:6px;max-width:760px}
 .oplaaie .route{position:relative}
-.oplaaie .borden{list-style:none;margin:0;padding:0;position:relative;z-index:2;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+/* het aantal borden mag wisselen: elk bord krijgt een even brede kolom */
+.oplaaie .borden{list-style:none;margin:0;padding:0;position:relative;z-index:2;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
 .oplaaie .halte{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
-.oplaaie .bord{position:relative;width:100%;height:124px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:10px;background:var(--geel);color:var(--inkt);border:3px solid var(--inkt);border-radius:12px;box-shadow:inset 0 0 0 4px var(--geel),inset 0 0 0 6px var(--inkt),0 7px 0 rgba(43,33,24,.22);transition:transform .3s,background .3s}
+.oplaaie .bord{position:relative;width:100%;max-width:320px;height:124px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:10px;background:var(--geel);color:var(--inkt);border:3px solid var(--inkt);border-radius:12px;box-shadow:inset 0 0 0 4px var(--geel),inset 0 0 0 6px var(--inkt),0 7px 0 rgba(43,33,24,.22);transition:transform .3s,background .3s}
 .oplaaie .bord::before{content:"";position:absolute;top:-16px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;border:3px solid var(--inkt);background:var(--lijn);transition:background .2s,box-shadow .2s}
 .oplaaie .bord b{font-family:var(--hand);font-weight:700;font-size:50px;line-height:.9;transition:color .3s}
 .oplaaie .bord span{font-weight:700;font-size:17px;line-height:1.15}
@@ -127,12 +128,12 @@
   .oplaaie .polaroid figcaption{font-size:22px}
 }
 @media (max-width:760px){
-  .oplaaie .borden{grid-template-columns:1fr;gap:22px;padding-left:78px}
+  .oplaaie .borden{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:1fr;gap:22px;padding-left:78px}
   .oplaaie .weg{left:0;right:auto;top:0;bottom:0;width:58px;height:auto}
   .oplaaie .weg::before{left:50%;right:auto;top:14px;bottom:14px;width:4px;height:auto;margin:0 0 0 -2px;background:repeating-linear-gradient(180deg,var(--wit) 0 28px,transparent 28px 56px)}
   .oplaaie .wagentje{left:50%;top:0;width:80px;height:39px;margin-left:-40px;transform:translateY(var(--y,0px)) rotate(90deg)}
   .oplaaie .halte{align-items:flex-start;text-align:left}
-  .oplaaie .bord{height:auto;min-height:92px;align-items:flex-start;padding:14px 44px 14px 18px}
+  .oplaaie .bord{max-width:none;height:auto;min-height:92px;align-items:flex-start;padding:14px 44px 14px 18px}
   .oplaaie .bord::before{left:auto;right:14px;top:14px;margin:0}
   .oplaaie .bord b{font-size:44px}
   .oplaaie .paal,.oplaaie .wegruimte{display:none}
