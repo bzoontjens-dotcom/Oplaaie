@@ -1,4 +1,4 @@
-/* De homepage: de laaiklep, de confetti, de kaart met dertig adressen,
+/* De homepage: de laaiklep, de confetti, de kaart met dertig adressen, de route van de avond,
    de knop voor de staantafels en het contactformulier. */
 (function(){
   'use strict';
@@ -163,5 +163,22 @@
       .catch(function(){ msg.textContent = 'Versturen is niet gelukt. Probeer het nog eens of mail naar info@oplaaie.nl.'; })
       .then(function(){ knop.disabled = false; knop.textContent = 'Verstuur je bericht'; });
   });
+  /* ---------- de route van de avond: het wagentje rijdt mee met het scrollen ---------- */
+  var routeEl = $('#route'), weg = $('.weg'), wagentje = $('#wagentje'), haltes = [].slice.call(document.querySelectorAll('.halte'));
+  function route(){
+    var r = routeEl.getBoundingClientRect(), wr = weg.getBoundingClientRect();
+    var p = Math.max(0, Math.min(1, (innerHeight * .72 - r.top) / Math.max(1, r.height)));
+    if (innerWidth > 760) {
+      var x = p * (wr.width - 122); wagentje.style.setProperty('--x', x + 'px');
+      haltes.forEach(function(h){ var b = h.getBoundingClientRect(); h.classList.toggle('aan', b.left + b.width / 2 - wr.left < x + 100); });
+    } else {
+      var y = p * (wr.height - 80); wagentje.style.setProperty('--y', y + 'px');
+      haltes.forEach(function(h){ var b = h.getBoundingClientRect(); h.classList.toggle('aan', b.top + 30 - wr.top < y + 60); });
+    }
+  }
+  var routeBezig = false;
+  addEventListener('scroll', function(){ if (!routeBezig) { routeBezig = true; requestAnimationFrame(function(){ routeBezig = false; route(); }); } }, { passive: true });
+  addEventListener('resize', route); route();
+
   $('#reset').addEventListener('click', function(){ form.reset(); form.hidden = false; done.hidden = true; });
 })();
