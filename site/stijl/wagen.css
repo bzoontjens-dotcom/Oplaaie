@@ -18,16 +18,26 @@
 .box::after{content:"";position:absolute;left:0;right:0;top:0;height:1.2cqw;border-radius:2cqw 2cqw 0 0;background:linear-gradient(#FFFFFF,#C9CED6)}
 .portal{position:absolute;left:7cqw;right:7cqw;top:7.2cqw;bottom:3.2cqw;border-radius:1cqw;background:#07080B;box-shadow:0 0 0 1.1cqw #7B8390,0 0 0 1.6cqw #3A3F4A;perspective:240cqw;perspective-origin:50% -30%}
 .inside{position:absolute;inset:0;overflow:hidden;border-radius:inherit;background:#07080B}
-.inside img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:brightness(.62) saturate(1.25);transform:scale(1.1);transition:opacity .9s .2s,transform 2.6s .2s}
-.truck.lit .inside img{opacity:1;transform:scale(1)}
+.inside .zaal{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:brightness(.5) saturate(1.25);transform:scale(1.1);transition:opacity .9s .2s,transform 2.6s .2s}
+.truck.lit .inside .zaal{opacity:1;transform:scale(1)}
+/* Zanger Hans zelf: een stralenkrans van lamplicht, en Hans die omhoog komt zodra de klep open is */
+.stralen{position:absolute;left:50%;top:36%;width:190cqw;height:190cqw;margin:-95cqw 0 0 -95cqw;background:repeating-conic-gradient(rgba(255,205,90,.34) 0 6deg,transparent 6deg 18deg);-webkit-mask-image:radial-gradient(closest-side,#000 8%,transparent 60%);mask-image:radial-gradient(closest-side,#000 8%,transparent 60%);opacity:0;transition:opacity .9s .4s}
+.truck.lit .stralen{opacity:1;animation:draai 48s linear infinite}
+@keyframes draai{to{transform:rotate(360deg)}}
+.hansplek{position:absolute;left:50%;top:6cqw;width:57.3cqw;height:90cqw;margin-left:-28.65cqw;transform:translateY(104%);transition:transform .35s ease-in}
+.truck.lit .hansplek{transform:none;transition:transform .85s .25s cubic-bezier(.2,1.35,.4,1)}
+.inside .hans{display:block;width:100%;height:100%;transform-origin:50% 92%;filter:drop-shadow(0 0 1.4cqw rgba(255,196,80,.6)) drop-shadow(0 1cqw 2.4cqw rgba(0,0,0,.55))}
+.truck.lit .inside .hans{animation:deinen 1.1s ease-in-out 1.2s infinite alternate}
+@keyframes deinen{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg) translateY(-.8cqw)}}
+.schemer{position:absolute;left:0;right:0;bottom:0;height:46cqw;background:linear-gradient(rgba(7,8,11,0),rgba(7,8,11,.9) 58%)}
 .inside .glow{position:absolute;inset:0;background:radial-gradient(75% 60% at 50% 100%,rgba(255,170,40,.6),transparent 70%);opacity:0;transition:opacity .9s .3s}
 .truck.lit .inside .glow{opacity:1}
 .bulbrow{position:absolute;left:3cqw;right:3cqw;height:3.4cqw;background:radial-gradient(circle,#FFE6A0 0 30%,rgba(255,200,90,.35) 44%,transparent 62%) 0 50%/5cqw 3.4cqw repeat-x;opacity:.12}
 .bulbrow.t{top:2cqw}.bulbrow.b{bottom:2cqw}
 .truck.lit .bulbrow{opacity:1;animation:chase .7s steps(2) infinite}
 @keyframes chase{to{background-position:5cqw 50%}}
-.marquee small{display:block;font-size:4.6cqw;font-weight:700;letter-spacing:.06em;color:#FFE6A0;margin-bottom:1cqw}
-.marquee{position:absolute;left:0;right:0;top:7cqw;text-align:center;font-family:var(--cond);font-weight:800;font-size:12.5cqw;line-height:.95;letter-spacing:.01em;color:#FFF1C4;text-shadow:0 0 1.6cqw rgba(255,190,60,.95),0 0 5cqw rgba(255,140,20,.8);opacity:0;transform:translateY(3cqw);transition:opacity .5s .9s,transform .8s .9s cubic-bezier(.2,1.4,.4,1)}
+.marquee small{display:block;font-size:4.2cqw;font-weight:700;letter-spacing:.06em;color:#FFE6A0;margin-bottom:.8cqw}
+.marquee{position:absolute;left:0;right:0;bottom:13cqw;margin:0;white-space:nowrap;text-align:center;font-family:var(--cond);font-weight:800;font-size:11.5cqw;line-height:.95;letter-spacing:.01em;color:#FFF1C4;text-shadow:0 0 1.6cqw rgba(255,190,60,.95),0 0 5cqw rgba(255,140,20,.8);opacity:0;transform:translateY(3cqw);transition:opacity .5s .9s,transform .8s .9s cubic-bezier(.2,1.4,.4,1)}
 .truck.lit .marquee{opacity:1;transform:none}
 .klep{position:absolute;inset:0;z-index:2;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;transform-origin:50% 100%;transform-style:preserve-3d;transition:transform 1.5s cubic-bezier(.55,.05,.3,1)}
 .truck.open .klep{transform:translateY(12cqw) rotateX(-86deg)}
@@ -51,7 +61,7 @@
 .spot.r{right:6%;transform:rotate(16deg);transform-origin:50% 0}
 .truck.lit .spot{opacity:1;animation:sweep 4s ease-in-out 2s infinite alternate}
 @keyframes sweep{to{transform:rotate(0deg)}}
-.aftel{position:absolute;left:0;right:0;bottom:7cqw;text-align:center;font-family:var(--cond);font-weight:700;font-size:4.6cqw;color:#FFE6A0;text-shadow:0 0 1.4cqw rgba(255,190,60,.9);opacity:0;transition:opacity .6s 1.6s}
+.aftel{position:absolute;left:0;right:0;bottom:6.2cqw;margin:0;text-align:center;font-family:var(--cond);font-weight:700;font-size:4.6cqw;color:#FFE6A0;text-shadow:0 0 1.4cqw rgba(255,190,60,.9);opacity:0;transition:opacity .6s 1.6s}
 .aftel b{font-family:var(--mono);font-weight:600;font-size:5.4cqw;color:#FFF}
 .truck.lit .aftel{opacity:1}
 .back{justify-content:center;transform:rotateX(180deg);background:repeating-linear-gradient(45deg,transparent 0 2.2cqw,rgba(255,255,255,.22) 2.2cqw 2.9cqw,transparent 2.9cqw 4.4cqw),repeating-linear-gradient(-45deg,transparent 0 2.2cqw,rgba(0,0,0,.12) 2.2cqw 2.9cqw,transparent 2.9cqw 4.4cqw),linear-gradient(#A3ABB7,#D3D8DF);border:.6cqw solid #6B7380}

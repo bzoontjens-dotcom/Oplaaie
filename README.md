@@ -10,7 +10,7 @@ De site van Oplaaie, de zakelijke carnavalsavond van Lampegat op donderdag 4 feb
 | `site/home.js` | Het script van de homepage: de laaiklep, de confetti, de kaart, de knop naar Weeztix en het contactformulier. |
 | `site/stijl/basis.css` | De huisstijl voor alle pagina's: kleuren, lettertypen, knoppen en vellen papier. Een kleur of lettertype overal aanpassen doe je hier bovenaan. |
 | `site/stijl/home.css` en `site/stijl/wagen.css` | De opmaak van de homepage en van de bakwagen. |
-| `site/img/` | Het logo en de foto's. De foto's zijn bijgesneden en klein opgeslagen, zodat gasten niet herkenbaar in beeld zijn. |
+| `site/img/` | Het logo en de foto's. De foto's zijn bijgesneden en klein opgeslagen, zodat gasten niet herkenbaar in beeld zijn. `zanger-hans.webp` is Zanger Hans, uitgeknipt uit een hoesfoto, voor achter de laaiklep. Komt er een grotere foto, vervang dan dit bestand. |
 | `site/og.jpg` | Het plaatje dat WhatsApp en LinkedIn tonen als iemand de link deelt. |
 | `site/eerste-rij/` | De biedpagina van de veiling en de pagina met de voorwaarden. |
 | `site/beheer/` | De beheerpagina, met een eigen donkere stijl. Zonder wachtwoord zie je alleen het inlogscherm. |
