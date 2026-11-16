@@ -165,7 +165,7 @@
     if (f === 'gesloten') {
       var p = z ? mijnPlek() : 0, tekst;
       if (z) {
-        tekst = 'De hamer is gevallen. De eerste rij is verdeeld over ' + S.rij.length + ' bedrijven, samen goed voor <b>' + euro(S.totaal) + '</b> exclusief btw. Daarvan gaat <b>' + euro(S.fec) + '</b> naar de Federatie Eindhovens Carnaval.';
+        tekst = 'De hamer is gevallen. De eerste rij is verdeeld over ' + S.rij.length + ' bedrijven, samen goed voor <b>' + euro(S.totaal) + '</b> exclusief btw. Daarvan gaat <b>' + euro(S.fec) + '</b> naar het carnaval in Lampegat.';
         tekst += S.eindstandVast ? ' Dit is de eindstand.' : ' Dit is de voorlopige eindstand: we handelen de laatste biedingen nog af.';
         if (p && p <= r.plekken) tekst += ' Jij zit op plek ' + p + '. Je krijgt de factuur en wij zetten je bedrijfsnaam op je tafel.';
         else if (p) tekst += ' Jouw bod viel net buiten de eerste rij. Je krijgt als eerste een staantafel aangeboden.';
@@ -225,7 +225,7 @@
       toon('', '<p>' + (door || 'Je bent een plek opgeschoven. ') + 'Je zit nu op plek ' + pNieuw + '.</p>');
     } else if (pNieuw && pNieuw <= r.plekken && (!pOud || pNieuw < pOud)) {
       var eigen = eigenBod();
-      toon('goed', '<p><b>' + esc(mij.bedrijf) + '</b> staat erin met ' + euro(eigen) + '. ' + plekTekst(pNieuw) + '.' + (eigen > r.bodem ? ' Daarvan gaat ' + euro(eigen - r.bodem) + ' naar de FEC.' : '') + '</p>');
+      toon('goed', '<p><b>' + esc(mij.bedrijf) + '</b> staat erin met ' + euro(eigen) + '. ' + plekTekst(pNieuw) + '.' + (eigen > r.bodem ? ' Daarvan gaat ' + euro(eigen - r.bodem) + ' naar het carnaval in Lampegat.' : '') + '</p>');
     } else if (nieuwBod && door) {
       toon('', '<p>' + (nieuwBod.soort === 'verhoogd' ? '<b>' + esc(nieuwBod.bedrijf) + '</b> verhoogt het bod naar ' + euro(nieuwBod.bedrag) + '.' : 'Nieuw bod van <b>' + esc(nieuwBod.bedrijf) + '</b>: ' + euro(nieuwBod.bedrag) + '.') + '</p>');
     }
@@ -295,7 +295,7 @@
       el.bon.classList.remove('stamped'); void el.bon.offsetWidth; el.bon.classList.add('stamped');
       $('klaarTekst').innerHTML = '<b>' + esc(mij.bedrijf) + '</b> biedt <b>' + euro(mij.bedrag) + '</b> exclusief btw. We bellen ' + esc(contact) + ' op ' + esc(telefoon) + ' om het bod te bevestigen. Je biednummer is ' + esc(d.bonnummer) + '.'
         + (d.verlengd ? ' Omdat je in de laatste ' + woord(r.verlengMinuten) + ' minuten bood, is de veiling met ' + woord(r.verlengMinuten) + ' minuten verlengd.' : '');
-      $('deelTekst').textContent = mij.bedrijf + ' biedt mee op de eerste rij van Veurpruuve x Oplaaie mee Hans, de zakelijke carnavalsavond van Lampegat op donderdag 4 februari 2027 in de Bavaria Bierhal. Wie biedt er over ons heen? Alles boven het startbod van ' + euro(r.bodem) + ' gaat naar de Federatie Eindhovens Carnaval. Salaai! Oplaaie! veurpruuve.nl/eerste-rij';
+      $('deelTekst').textContent = mij.bedrijf + ' biedt mee op de eerste rij van Veurpruuve x Oplaaie mee Hans, de zakelijke carnavalsavond van Lampegat op donderdag 4 februari 2027 in de Bavaria Bierhal. Wie biedt er over ons heen? Alles boven het startbod van ' + euro(r.bodem) + ' gaat naar het carnaval in Lampegat. Salaai! Oplaaie! veurpruuve.nl/eerste-rij';
       $('klaar').hidden = false; $('deel').hidden = false;
       el.bod.value = ''; el.akkoord.checked = false;
       // De klok meteen bijwerken; een oudere kopie van de stand mag dit niet terugdraaien.
