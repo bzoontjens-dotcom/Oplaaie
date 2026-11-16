@@ -2,7 +2,7 @@
 import { pool } from '../../veiling/db.mjs';
 import {
   VeilingFout, overzicht, bevestig, wijsAf, trekIn, zetTerug, corrigeer, voerIn, veilingActie,
-  meldingAfgehandeld, exportCsv, teVeelPogingen, noteerPoging,
+  meldingAfgehandeld, exportCsv, teVeelPogingen, noteerPoging, wisTestgegevens,
 } from '../../veiling/kern.mjs';
 import {
   json, leesJson, eigenHerkomst, ipAfdruk, wachtwoordIngesteld, wachtwoordKlopt, sessieKoekje, leegKoekje, ingelogd,
@@ -10,6 +10,12 @@ import {
 import { ververStand } from '../../veiling/berichten.mjs';
 
 const VEILING_ACTIES = ['nu_openen', 'nu_sluiten', 'sluitmoment', 'openmoment', 'spelregels', 'eindstand_vast', 'eindstand_los'];
+
+// Is dit een testadres van Netlify (en dus niet de echte site)? Alleen daar mogen testgegevens gewist worden.
+function isTestadres(context) {
+  const soort = context?.deploy?.context;
+  return Boolean(soort) && soort !== 'production';
+}
 
 export default async (req, context) => {
   const pad = new URL(req.url).pathname;
@@ -58,10 +64,14 @@ export default async (req, context) => {
     else if (data.actie === 'voer_in') uit = await voerIn(pool(), data.bod || {});
     else if (data.actie === 'melding_klaar') uit = await meldingAfgehandeld(pool(), data.id);
     else if (VEILING_ACTIES.includes(data.actie)) uit = await veilingActie(pool(), data.actie, data.waarde);
+    else if (data.actie === 'wis_testgegevens') {
+      if (!isTestadres(context)) return json(403, { ok: false, bericht: 'Dit kan alleen op een testadres. Op de echte site wordt er nooit iets gewist.' });
+      uit = await wisTestgegevens(pool());
+    }
     else return json(400, { ok: false, bericht: 'Onbekende handeling.' });
 
     if (gewijzigd) context.waitUntil(ververStand());
-    return json(200, { ok: true, uit, overzicht: await overzicht(pool()) });
+    return json(200, { ok: true, uit, overzicht: { ...(await overzicht(pool())), testadres: isTestadres(context) } });
   } catch (fout) {
     if (fout instanceof VeilingFout) return json(fout.status, { ok: false, code: fout.code, bericht: fout.message });
     console.error('Een handeling op de beheerpagina is mislukt:', fout);

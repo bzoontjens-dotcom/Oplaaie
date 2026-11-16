@@ -88,7 +88,7 @@
     bod_ingediend: 'Bod binnengekomen via de site', bevestigd: 'Bod bevestigd', afgewezen: 'Bod afgewezen', ingetrokken: 'Bod ingetrokken',
     teruggezet: 'Bod teruggezet in de wachtrij', gecorrigeerd: 'Bod gecorrigeerd', ingevoerd: 'Bod ingevoerd op de beheerpagina', verlengd: 'Veiling verlengd door een laat bod',
     veiling_nu_openen: 'Veiling geopend', veiling_nu_sluiten: 'Veiling gesloten', veiling_sluitmoment: 'Sluitmoment ingesteld', veiling_openmoment: 'Openingsmoment ingesteld',
-    veiling_spelregels: 'Klok teruggezet naar de spelregels', veiling_eindstand_vast: 'Eindstand vastgesteld', veiling_eindstand_los: 'Eindstand weer vrijgegeven', melding_afgehandeld: 'Melding afgehandeld',
+    veiling_spelregels: 'Klok teruggezet naar de spelregels', veiling_eindstand_vast: 'Eindstand vastgesteld', veiling_eindstand_los: 'Eindstand weer vrijgegeven', melding_afgehandeld: 'Melding afgehandeld', testgegevens_gewist: 'Testgegevens gewist',
   };
   function logDetail(l) {
     var d = l.details || {}, b = l.bodId ? bod(l.bodId) : null, delen = [];
@@ -132,6 +132,7 @@
     if (f === 'gesloten' && !O.eindstandVast) k += '<button class="btn sm groen" data-veiling="eindstand_vast">Stel de eindstand vast</button>';
     if (f === 'gesloten' && O.eindstandVast) k += '<button class="btn sm line" data-veiling="eindstand_los">Geef de eindstand weer vrij</button>';
     if (O.eigenTijden.opent || O.eigenTijden.sluit) k += '<button class="btn sm line" data-veiling="spelregels">Terug naar de tijden uit de spelregels</button>';
+    if (O.testadres) k += '<button class="btn sm rood" data-veiling="wis_testgegevens">Wis alle testgegevens</button>';
     $('veilingKnoppen').innerHTML = k;
 
     // wacht op bevestiging
@@ -193,7 +194,7 @@
     if (!knop || !O) return;
     var v = knop.getAttribute('data-veiling');
     if (v) {
-      var vraag = { nu_openen: 'De veiling nu openen? Vanaf dat moment kan iedereen bieden.', nu_sluiten: 'De veiling nu sluiten? Daarna kan niemand meer bieden.', spelregels: 'De tijden terugzetten naar de spelregels?', eindstand_vast: 'De eindstand vaststellen? De biedpagina toont dan de definitieve eindstand.', eindstand_los: 'De eindstand weer vrijgeven?' }[v];
+      var vraag = { nu_openen: 'De veiling nu openen? Vanaf dat moment kan iedereen bieden.', nu_sluiten: 'De veiling nu sluiten? Daarna kan niemand meer bieden.', spelregels: 'De tijden terugzetten naar de spelregels?', eindstand_vast: 'De eindstand vaststellen? De biedpagina toont dan de definitieve eindstand.', eindstand_los: 'De eindstand weer vrijgeven?', wis_testgegevens: 'Alle biedingen wissen en de klok terugzetten? Dit kan alleen op het testadres en is niet terug te draaien.' }[v];
       if (!window.confirm(vraag)) return;
       doe(v, {}, 'Gedaan.');
       return;

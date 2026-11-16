@@ -40,7 +40,7 @@ http.createServer(async (req, res) => {
       const brokken = [];
       for await (const b of req) brokken.push(b);
       const verzoek = new Request(url, { method: req.method, headers: req.headers, body: ['GET', 'HEAD'].includes(req.method) ? undefined : Buffer.concat(brokken) });
-      const antwoord = await functie[1](verzoek, { ip: req.headers['x-test-ip'] || req.socket.remoteAddress, waitUntil: (p) => { Promise.resolve(p).catch(() => {}); } });
+      const antwoord = await functie[1](verzoek, { ip: req.headers['x-test-ip'] || req.socket.remoteAddress, deploy: { context: 'dev' }, waitUntil: (p) => { Promise.resolve(p).catch(() => {}); } });
       const koppen = {};
       antwoord.headers.forEach((v, k) => { koppen[k] = v; });
       res.writeHead(antwoord.status, koppen);

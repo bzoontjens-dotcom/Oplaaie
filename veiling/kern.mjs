@@ -390,6 +390,17 @@ export async function meldingAfgehandeld(pool, id) {
   });
 }
 
+// Wist alle biedingen en zet de klok terug. Alleen bedoeld voor een testadres:
+// de serverfunctie weigert dit op de echte site (zie netlify/functions/beheer.mjs).
+export async function wisTestgegevens(pool) {
+  return metSlot(pool, async (client, v, nu) => {
+    await client.query('TRUNCATE meldingen, logboek, pogingen, biedingen RESTART IDENTITY CASCADE');
+    await client.query('UPDATE veiling SET opent_op = NULL, sluit_op = NULL, verlengd = FALSE, eindstand_vast = FALSE WHERE id = 1');
+    await log(client, nu, 'testgegevens_gewist', null, {});
+    return {};
+  });
+}
+
 // ---------- de openbare stand ----------
 // Let op: hier komen alleen bedrijfsnaam, bedrag, plek en tijdstip in. Nooit contactgegevens.
 
