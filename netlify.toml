@@ -1,0 +1,29 @@
+# Instellingen voor Netlify.
+# De map "site" is wat bezoekers te zien krijgen. De serverfuncties staan in
+# "netlify/functions", de spelregels van de veiling in "veiling/spelregels.mjs".
+
+[build]
+  publish = "site"
+  # Er hoeft niets gebouwd te worden: de site bestaat uit kant-en-klare bestanden.
+  command = "echo De site heeft geen bouwstap nodig"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# De beheerpagina hoort niet in zoekmachines en wordt nergens bewaard.
+[[headers]]
+  for = "/beheer/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
