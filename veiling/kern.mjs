@@ -5,7 +5,7 @@
 // worden biedingen één voor één verwerkt, ook als ze in dezelfde seconde
 // binnenkomen. Er kan dus niets verloren gaan of door elkaar lopen.
 
-import { SPELREGELS as R, STAND_BEWAAR_SECONDEN } from './spelregels.mjs';
+import { SPELREGELS as R, STAND_BEWAAR_SECONDEN, STAND_BEWAAR_MINIMUM, STAND_BEWAAR_NA_SLUITING } from './spelregels.mjs';
 
 export class VeilingFout extends Error {
   constructor(code, bericht, veld = '', status = 400) {
@@ -452,6 +452,14 @@ export async function stand(pool) {
   // Vóór de opening mag de stand niet langer blijven staan dan tot het moment van openen.
   let bewaar = STAND_BEWAAR_SECONDEN;
   if (f === 'voor') bewaar = Math.max(1, Math.min(bewaar, Math.ceil((opent.getTime() - nu.getTime()) / 1000)));
+  // Vangnet rond de sluiting. Normaal gooien we de bewaarde stand na elke wijziging weg, maar bij veel
+  // biedingen tegelijk kan dat een keer mislukken. Een laat bod verlengt de veiling, en dat moet iedereen
+  // snel zien. Daarom blijft de stand korter staan naarmate de sluiting dichterbij komt: een zesde van
+  // de resterende tijd, met een ondergrens. Een uur voor de sluiting is dat tien minuten, in de laatste
+  // minuut tien seconden.
+  else if (f === 'open') bewaar = Math.max(STAND_BEWAAR_MINIMUM, Math.min(bewaar, Math.ceil((sluit.getTime() - nu.getTime()) / 6000)));
+  // Na de sluiting worden de laatste biedingen nog afgehandeld. Tot de eindstand vaststaat, blijft de stand kort staan.
+  else if (!v.eindstand_vast) bewaar = STAND_BEWAAR_NA_SLUITING;
   return { stand: uit, bewaar };
 }
 

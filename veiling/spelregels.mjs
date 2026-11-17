@@ -42,3 +42,9 @@ export const SPELREGELS = {
 // database wakker wordt. Bij elke wijziging wordt hij meteen ververst; dit is
 // alleen het vangnet voor als dat verversen een keer mislukt.
 export const STAND_BEWAAR_SECONDEN = 3600;
+// Rond de sluiting is dat vangnet strakker: de stand blijft dan hooguit een zesde van de
+// resterende tijd staan, met deze ondergrens in seconden. Zo ziet iedereen een verlenging
+// door een laat bod snel, ook als het verversen een keer mislukt.
+export const STAND_BEWAAR_MINIMUM = 10;
+// Na de sluiting, zolang de eindstand nog niet is vastgesteld, in seconden.
+export const STAND_BEWAAR_NA_SLUITING = 30;

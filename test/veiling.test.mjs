@@ -145,6 +145,24 @@ test('een bod in de laatste vijf minuten verlengt de klok, na sluiting kan niema
   await assert.rejects(veilingActie(pool, 'eindstand_vast'), fout('wacht'));
 });
 
+test('rond de sluiting blijft de bewaarde stand maar kort staan', async () => {
+  await opnieuw();
+  // Ruim voor de sluiting: het gewone vangnet van een uur.
+  assert.equal((await stand(pool)).bewaar, 3600);
+  // Een uur voor de sluiting: een zesde van de resterende tijd, dus ongeveer tien minuten.
+  await veilingActie(pool, 'sluitmoment', new Date(Date.now() + 3600e3).toISOString());
+  const uur = (await stand(pool)).bewaar;
+  assert.ok(uur > 590 && uur <= 600, 'een uur voor de sluiting blijft de stand ongeveer tien minuten staan, was ' + uur);
+  // In de laatste minuut: de ondergrens van tien seconden.
+  await veilingActie(pool, 'sluitmoment', new Date(Date.now() + 40e3).toISOString());
+  assert.equal((await stand(pool)).bewaar, 10);
+  // Na de sluiting, zolang de eindstand niet vaststaat: een halve minuut. Daarna weer een uur.
+  await veilingActie(pool, 'nu_sluiten');
+  assert.equal((await stand(pool)).bewaar, 30);
+  await veilingActie(pool, 'eindstand_vast');
+  assert.equal((await stand(pool)).bewaar, 3600);
+});
+
 test('voor de opening kan niemand bieden', async () => {
   await opnieuw();
   await veilingActie(pool, 'spelregels');

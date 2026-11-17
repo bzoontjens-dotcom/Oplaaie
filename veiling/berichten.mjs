@@ -19,8 +19,9 @@ export async function ververStand() {
       return true;
     } catch (fout) {
       if (poging === 3) console.error('De stand verversen is niet gelukt:', fout?.message || fout);
-      // Netlify staat twee keer verversen per vijf seconden toe. Na een weigering wachten we die vijf seconden af.
-      else await wacht(5500);
+      // Netlify staat twee keer verversen per vijf seconden toe. Na een weigering wachten we die vijf seconden af,
+      // met een willekeurig stukje erbij. Zo proberen wijzigingen die tegelijk binnenkwamen het niet weer tegelijk.
+      else await wacht(5500 + Math.floor(Math.random() * 2500));
     }
   }
   return false;
