@@ -127,6 +127,12 @@
   .oplaaie .polaroids{gap:18px}
   .oplaaie .polaroid figcaption{font-size:22px}
 }
+/* Op een smal scherm staan de brief en de wagen onder elkaar. Dan komt de bakwagen eerst:
+   de onderdelen van de rechterkolom schuiven los in de rij, de wagen bovenaan, de polaroids onder de brief. */
+@media (max-width:1023px){
+  .oplaaie .wagenkolom{display:contents}
+  .oplaaie .wagenplek{order:-1;padding-bottom:0}
+}
 @media (max-width:760px){
   .oplaaie .borden{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:1fr;gap:22px;padding-left:78px}
   .oplaaie .weg{left:0;right:auto;top:0;bottom:0;width:58px;height:auto}

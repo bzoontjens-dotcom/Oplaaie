@@ -3,7 +3,7 @@
 
 /* de opening: de medaille op de foto van de volle Bierhal */
 .hero{position:relative;padding:0;overflow:hidden}
-.hero .bg{position:absolute;inset:0;background:url(/img/hero.jpg) center/cover no-repeat;opacity:.30}
+.hero .bg{position:absolute;inset:0;background:url(/img/hero.webp) center/cover no-repeat;opacity:.30}
 .hero .fade{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(14,29,74,.35) 0%,rgba(14,29,74,.85) 70%),linear-gradient(180deg,rgba(14,29,74,0) 60%,var(--diep) 100%)}
 .hero .wrap{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:48px 0 76px}
 .hero .medaille{width:min(400px,78vw,34vh)}
@@ -48,6 +48,9 @@
 .card .btn{margin-top:auto;align-self:flex-start}
 .inbegrepen{margin-top:26px;background:#F3E4C6;border-left:6px solid var(--oranje);border-radius:12px;padding:18px 22px;font-size:16px;max-width:880px}
 .inbegrepen b{font-weight:800}
+.doorsturen{margin-top:30px;padding-top:24px;border-top:1px solid var(--lijn);display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.doorsturen p{margin:0;flex:1 1 320px;font-size:16px}
+.doorsturen .knoppen{display:flex;flex-wrap:wrap;gap:10px}
 @media (max-width:980px){.tafels .cards{grid-template-columns:1fr;max-width:560px}}
 
 /* de twee goede doelen */
@@ -72,7 +75,9 @@
 
 /* bestellen en contact */
 .shop{background:var(--wit);border:1.5px solid var(--lijn);border-radius:18px;padding:18px;min-height:420px}
-.shop .nognet{min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px}
+.shop .nognet{min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px}
+.shop .nognet .seintje{margin-top:6px}
+.shop .nognet .seintje p{max-width:none}
 .shop .nognet b{font-family:var(--kop);font-weight:400;font-size:26px;line-height:1.2;color:var(--blauw);text-wrap:balance}
 .shop .nognet p{margin:0;max-width:36ch;color:var(--muted)}
 .bestellen .grid,.contact .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}

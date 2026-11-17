@@ -41,7 +41,7 @@ export async function meldNieuwBod(herkomst, bod) {
     bonnummer: bod.bonnummer,
     tijdstip: datumTekst(new Date(bod.nu)),
     soort: bod.verhoging ? 'Verhoging van een bestaand bod' : 'Nieuw bod',
-    bericht: `${bod.bedrijf} biedt ${euro(bod.bedrag)} op de eerste rij. Bel ${bod.contact} op ${bod.telefoon} om het bod te bevestigen en bevestig het daarna op de beheerpagina: ${herkomst}/beheer`,
+    bericht: `${bod.bedrijf} biedt ${euro(bod.bedrag)} op de eerste rij. Mail ${bod.contact} (${bod.email}) om het bod te bevestigen en bevestig het daarna op de beheerpagina: ${herkomst}/beheer`,
   });
   try {
     const antwoord = await fetch(herkomst + '/', {

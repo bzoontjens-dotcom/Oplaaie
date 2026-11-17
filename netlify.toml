@@ -21,6 +21,18 @@
     X-Frame-Options = "DENY"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Lettertypen veranderen nooit, dus de browser mag ze een jaar bewaren.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Agendabestanden openen direct in de agenda van de bezoeker.
+[[headers]]
+  for = "/agenda/*"
+  [headers.values]
+    Content-Type = "text/calendar; charset=utf-8"
+
 # De beheerpagina hoort niet in zoekmachines en wordt nergens bewaard.
 [[headers]]
   for = "/beheer/*"

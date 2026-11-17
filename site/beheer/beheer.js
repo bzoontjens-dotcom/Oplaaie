@@ -147,10 +147,12 @@
         tip = 'Zelfde e-mailadres als ' + b.lijktOp.bedrijf + ', dat al in de stand staat met ' + euro(b.lijktOp.bedrag) + ' op plek ' + b.lijktOp.plek + '. Is het hetzelfde bedrijf, bevestig het dan als verhoging.';
         knoppen = '<button class="btn sm groen" data-actie="bevestig" data-id="' + b.id + '" data-vervangt="' + b.lijktOp.id + '">Bevestig als verhoging van ' + esc(b.lijktOp.bedrijf) + '</button><button class="btn sm" data-actie="bevestig" data-id="' + b.id + '">Bevestig als nieuw bedrijf</button>';
       } else knoppen = '<button class="btn sm groen" data-actie="bevestig" data-id="' + b.id + '">Bevestig</button>';
+      var vraag = 'Dag ' + (voornaam(b.contact) || 'daar') + ',\n\nWe hebben het bod van ' + b.bedrijf + ' op de eerste rij van Veurpruuve ontvangen: ' + euro(b.bedrag) + ' exclusief btw, biednummer ' + b.bonnummer + '.\n\nKlopt dit, en bied je namens ' + b.bedrijf + '? Antwoord dan op deze mail met akkoord. Daarna staat jullie naam in de stand op veurpruuve.nl/eerste-rij.\n\nGroet,\nhet team van Veurpruuve\ninfo@veurpruuve.nl';
+      var mailKnop = b.email ? '<a class="btn sm line" href="mailto:' + esc(b.email) + '?subject=' + encodeURIComponent('Bevestig je bod op de eerste rij van Veurpruuve (' + b.bonnummer + ')') + '&body=' + encodeURIComponent(vraag) + '">Mail de bevestiging</a>' : '';
       return '<article class="kaart nieuw"><h3>' + esc(b.bedrijf) + '</h3><span class="bedrag">' + euro(b.bedrag) + '</span>'
         + '<dl><dt>Contact</dt><dd>' + esc(b.contact) + '</dd><dt>Telefoon</dt><dd>' + telLink(b.telefoon) + '</dd><dt>E-mail</dt><dd>' + mailLink(b.email) + '</dd><dt>Binnen</dt><dd>' + tijd(b.ingediend) + '</dd><dt>Nummer</dt><dd>' + b.bonnummer + '</dd></dl>'
         + '<p class="tip">' + esc(tip ? tip + ' ' : '') + esc(uitkomst) + '</p>'
-        + '<div class="knoppen">' + knoppen + '<button class="btn sm line" data-actie="corrigeer" data-id="' + b.id + '">Corrigeer</button><button class="btn sm rood" data-actie="wijs_af" data-id="' + b.id + '">Wijs af</button></div></article>';
+        + '<div class="knoppen">' + mailKnop + knoppen + '<button class="btn sm line" data-actie="corrigeer" data-id="' + b.id + '">Corrigeer</button><button class="btn sm rood" data-actie="wijs_af" data-id="' + b.id + '">Wijs af</button></div></article>';
     }).join('') : '<p class="leeg">Er wacht niets op bevestiging.</p>';
 
     // bellen of mailen

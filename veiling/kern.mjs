@@ -86,7 +86,7 @@ export function leesInvoer(invoer, { beheer = false } = {}) {
 function controleerBedrag(bedrag) {
   if (bedrag < R.bodem) throw new VeilingFout('onder_bodem', `Bieden kan vanaf ${euro(R.bodem)}. Een lager bod nemen we niet aan.`, 'bod');
   if (bedrag % R.stap !== 0) throw new VeilingFout('geen_stap', `Bieden gaat in stappen van ${euro(R.stap)}. Maak er bijvoorbeeld ${euro(Math.ceil(bedrag / R.stap) * R.stap)} van.`, 'bod');
-  if (bedrag > R.maxBod) throw new VeilingFout('te_hoog', `Een bod boven ${euro(R.maxBod)} nemen we niet via de site aan. Mail naar info@veurpruuve.nl, dan bellen we je.`, 'bod');
+  if (bedrag > R.maxBod) throw new VeilingFout('te_hoog', `Een bod boven ${euro(R.maxBod)} nemen we niet via de site aan. Mail naar info@veurpruuve.nl, dan nemen we contact met je op.`, 'bod');
 }
 
 // ---------- de klok ----------

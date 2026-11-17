@@ -118,6 +118,7 @@
   function render() {
     if (!S) return;
     var f = fase(), r = R(), z = S.zichtbaar, i;
+    document.documentElement.setAttribute('data-fase', f);   // de opmaak toont het seintje alleen zolang de veiling nog niet open is
 
     // bedragen in de teksten komen uit de spelregels op de server
     var waarden = { bodem: euro(r.bodem), stap: euro(r.stap), staantafel: euro(r.staantafelPrijs) };
@@ -293,7 +294,7 @@
       $('bonIncl').textContent = euro(mij.bedrag * (100 + r.btwProcent) / 100); $('bonFec').textContent = euro(Math.max(0, mij.bedrag - r.bodem));
       $('bonPlek').textContent = 'Volgt na bevestiging';
       el.bon.classList.remove('stamped'); void el.bon.offsetWidth; el.bon.classList.add('stamped');
-      $('klaarTekst').innerHTML = '<b>' + esc(mij.bedrijf) + '</b> biedt <b>' + euro(mij.bedrag) + '</b> exclusief btw. We bellen ' + esc(contact) + ' op ' + esc(telefoon) + ' om het bod te bevestigen. Je biednummer is ' + esc(d.bonnummer) + '.'
+      $('klaarTekst').innerHTML = '<b>' + esc(mij.bedrijf) + '</b> biedt <b>' + euro(mij.bedrag) + '</b> exclusief btw. We mailen ' + esc(contact) + ' op ' + esc(email) + ' om het bod te bevestigen. Je biednummer is ' + esc(d.bonnummer) + '.'
         + (d.verlengd ? ' Omdat je in de laatste ' + woord(r.verlengMinuten) + ' minuten bood, is de veiling met ' + woord(r.verlengMinuten) + ' minuten verlengd.' : '');
       $('deelTekst').textContent = mij.bedrijf + ' biedt mee op de eerste rij van Veurpruuve x Oplaaie mee Hans, de zakelijke carnavalsavond van Lampegat op donderdag 4 februari 2027 in de Bavaria Bierhal. Wie biedt er over ons heen? Alles boven het startbod van ' + euro(r.bodem) + ' gaat naar het carnaval in Lampegat. Salaai! Oplaaie! veurpruuve.nl/eerste-rij';
       $('klaar').hidden = false; $('deel').hidden = false;

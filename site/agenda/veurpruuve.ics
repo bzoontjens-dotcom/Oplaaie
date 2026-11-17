@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Veurpruuve//veurpruuve.nl//NL
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:veurpruuve-2027@veurpruuve.nl
+DTSTAMP:20261117T090000Z
+DTSTART:20270204T150000Z
+DTEND:20270204T200000Z
+SUMMARY:Veurpruuve x Oplaaie mee Hans
+DESCRIPTION:De zakelijke carnavalsavond van Lampegat. Inloop vanaf 16.
+ 00 uur\, het programma begint om 17.00 uur en eindigt om 21.00 uur. M
+ eer informatie: https://veurpruuve.nl/
+LOCATION:Bavaria Bierhal\, Stadhuisplein\, Eindhoven
+URL:https://veurpruuve.nl/
+END:VEVENT
+END:VCALENDAR
