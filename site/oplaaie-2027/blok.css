@@ -1,7 +1,7 @@
-/* Het blok "x Oplaaie mee Hans", het programma van Veurpruuve in 2027.
+/* Het blok "x Oplaaie mee Hans", het programma van Veurpruuve.
    Alles in dit bestand geldt alleen binnen het blok (alles begint met .oplaaie),
    zodat de stijl van Veurpruuve eromheen er geen last van heeft en andersom.
-   Volgend jaar kan deze hele map vervangen worden door een ander blok. */
+   Het blok heeft een eigen map, zodat het los van de rest onderhouden kan worden. */
 
 .oplaaie{
   /* kleuren */
