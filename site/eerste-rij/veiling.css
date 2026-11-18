@@ -1,0 +1,191 @@
+/* De biedpagina en de voorwaarden van de veiling, in de stijl van Veurpruuve.
+   De gedeelde huisstijl (kleuren, lettertypen, knoppen, kop en voet) staat in /stijl/veurpruuve.css.
+   Dit bestand regelt alleen de opmaak. De werking staat in veiling.js en op de server. */
+
+/* de klok in de balk bovenaan, die blijft staan tijdens het scrollen */
+.klok{display:flex;align-items:baseline;gap:8px;font-size:14px;font-weight:700;color:var(--muted-l);white-space:nowrap}
+.klok b{font-family:var(--kop);font-weight:400;font-size:19px;color:var(--oranje-2);font-variant-numeric:tabular-nums}
+
+/* op de biedpagina staat ook de klok in de balk, dus daar klapt het menu eerder in */
+@media (max-width:1320px){
+  .site-kop.metklok nav{gap:12px}
+  .site-kop.metklok .menuknop{display:inline-flex;align-items:center;justify-content:center}
+  .site-kop.metklok .menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;background:var(--diep);padding:6px 24px 18px;box-shadow:0 18px 30px rgba(0,0,0,.3);border-top:1px solid rgba(250,246,238,.12)}
+  .site-kop.metklok .menu.open{display:flex}
+  .site-kop.metklok .menu a{padding:13px 0;font-size:17px;opacity:1;border-bottom:1px solid rgba(250,246,238,.1)}
+}
+
+/* de aankondiging bovenaan */
+.veilinghero{position:relative;overflow:hidden;padding:64px 0 72px}
+.veilinghero::before{content:"";position:absolute;inset:0;background:url(/img/hero.webp) center/cover no-repeat;opacity:.16}
+.veilinghero .wrap{position:relative}
+.veilinghero h1{font-size:clamp(38px,6vw,72px);line-height:1.02;max-width:14ch}
+.veilinghero h1 span{display:block;color:var(--oranje)}
+.lead{margin:22px 0 0;font-size:clamp(17px,2vw,20px);font-weight:600;max-width:62ch;color:var(--ivoor)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:30px 0 0;padding:0}
+.facts li{border-radius:999px;padding:6px 14px;font-weight:700;font-size:14.5px;background:rgba(250,246,238,.1);box-shadow:inset 0 0 0 1.5px rgba(250,246,238,.22)}
+.facts li.hl{background:var(--oranje);color:var(--diep);box-shadow:none}
+
+/* het seintje: alleen in beeld zolang de veiling nog niet open is (veiling.js zet data-fase op de pagina) */
+.seinband{display:none;padding:56px 0}
+html[data-fase="voor"] .seinband{display:block}
+.seinband .wrap{display:grid;grid-template-columns:1fr minmax(0,440px);gap:40px 56px;align-items:center}
+.seinband h2{font-size:clamp(24px,3vw,32px);color:var(--blauw)}
+.seinband .tekst p{margin:14px 0 18px;font-size:17px;max-width:52ch}
+.seinband .seintje{max-width:none}
+@media (max-width:860px){.seinband .wrap{grid-template-columns:1fr}}
+
+/* koppen van de onderdelen */
+.sec-head{max-width:780px}
+.sec-head p{font-size:18px;margin:16px 0 0}
+
+/* de stand */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:32px}
+.stat{background:var(--wit);border:1.5px solid var(--lijn);border-radius:16px;padding:16px 20px;display:grid;gap:2px;align-content:start;min-width:0}
+.stat>span{font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.stat b{font-family:var(--kop);font-weight:400;font-size:clamp(21px,2.3vw,29px);line-height:1.2;color:var(--blauw);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.stat small{font-size:13.5px;color:var(--muted);line-height:1.35}
+.stat.fec{background:var(--blauw);border-color:var(--blauw)}
+.stat.fec>span,.stat.fec small{color:var(--muted-l)}
+.stat.fec b{color:var(--oranje)}
+.tel{margin:16px 0 0;font-weight:700;font-size:16px;display:flex;flex-wrap:wrap;gap:4px 22px}
+.tel b{color:var(--blauw);font-variant-numeric:tabular-nums}
+
+.melding{margin-top:18px;background:var(--wit);border:1.5px solid var(--lijn);border-left:6px solid var(--lichtblauw);border-radius:12px;padding:14px 18px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-weight:600}
+.melding p{flex:1 1 320px;margin:0}
+.melding b{color:var(--blauw)}
+.melding.goed{border-left-color:var(--groen)}
+.melding.eraf{border-left-color:var(--rood);background:#FCEBE8}
+.melding.hamer{border-left-color:var(--oranje);background:#F3E4C6}
+
+/* de plattegrond: de vloer van de Bierhal, met de laaiklep bovenaan en de tafels ervoor */
+.vloer{position:relative;margin-top:30px;padding:clamp(16px,2.6vw,30px);background-color:var(--wit);background-image:linear-gradient(rgba(14,29,74,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(14,29,74,.05) 1px,transparent 1px);background-size:26px 26px;border:1.5px solid var(--lijn);border-radius:18px}
+.podium{display:grid;justify-items:center;margin-bottom:18px}
+.bak{width:min(440px,86%);padding:12px 12px 10px;display:grid;place-items:center;background:var(--diep);border-radius:14px 14px 4px 4px}
+.bak span{font-family:var(--kop);font-size:24px;line-height:1.1;color:var(--ivoor)}
+.plaat{width:min(540px,100%);height:12px;border-radius:0 0 6px 6px}
+.hazard{background:linear-gradient(90deg,var(--oranje) 0 33.333%,var(--lichtblauw) 33.333% 66.666%,var(--oranje) 66.666%)}
+.rijlabel{font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px}
+.rij{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
+.tafel{grid-column:var(--col);grid-row:1;min-width:0;min-height:116px;display:grid;grid-template-rows:auto 1fr auto;gap:2px;padding:8px 10px 10px;background:var(--wit);border:1.5px solid rgba(14,29,74,.3);border-radius:12px}
+.tafel .rk{font-family:var(--kop);font-size:22px;line-height:1;color:var(--muted)}
+.tafel .nm{font-weight:700;font-size:15px;line-height:1.2;overflow-wrap:anywhere;hyphens:auto;align-self:center}
+.tafel .bd{font-weight:800;font-size:14.5px;color:var(--blauw);font-variant-numeric:tabular-nums}
+.tafel.vrij{border-style:dashed;border-color:var(--lijn);background:rgba(255,255,255,.6)}
+.tafel.vrij .nm,.tafel.vrij .bd{color:var(--muted);font-weight:500}
+.tafel.eerste{border:3px solid var(--oranje)}
+.tafel.eerste .rk{color:var(--oranje)}
+.tafel.mij{background:var(--blauw);border:3px solid var(--blauw);color:var(--ivoor)}
+.tafel.mij .rk,.tafel.mij .bd{color:var(--oranje-2)}
+.tafel.wissel{animation:wissel .9s ease-out}
+@keyframes wissel{0%{transform:scale(.9);background:#FFE2BF}100%{transform:none}}
+
+.dicht{display:grid;gap:8px;justify-items:center;text-align:center;padding:clamp(18px,4vw,40px) 12px}
+.dicht h3{font-family:var(--kop);font-weight:400;font-size:clamp(24px,3vw,32px);color:var(--blauw)}
+.dicht p{max-width:52ch;margin:0}
+.dicht .groot{font-family:var(--kop);font-size:clamp(46px,8vw,76px);line-height:1;color:var(--oranje);font-variant-numeric:tabular-nums}
+
+.onder{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:24px}
+.lijst{background:var(--wit);border:1.5px solid var(--lijn);border-radius:16px;padding:20px 22px;min-width:0}
+.lijst h3{font-family:var(--kop);font-weight:400;font-size:21px;color:var(--blauw)}
+.lijst ul{list-style:none;margin:8px 0 0;padding:0}
+.lijst li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:9px 0;border-bottom:1px solid var(--lijn);font-size:15.5px}
+.lijst li:last-child{border-bottom:0}
+.lijst li b{font-weight:700;overflow-wrap:anywhere}
+.lijst li em{font-style:normal;font-weight:800;color:var(--blauw);font-variant-numeric:tabular-nums}
+.lijst li small{grid-column:1/-1;font-size:13.5px;color:var(--muted);line-height:1.3}
+.lijst .leeg{color:var(--muted);font-size:15px;display:block}
+
+/* bieden */
+/* het stempel op de biedbon komt van buiten beeld aanvliegen; dit voorkomt dat je daardoor opzij kunt scrollen */
+.bieden{overflow:hidden}
+.laad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(28px,4vw,56px);margin-top:32px;align-items:start}
+#form{display:flex;flex-direction:column;gap:16px;min-width:0}
+.veld{display:flex;flex-direction:column;gap:6px;min-width:0;font-size:13px;font-weight:800;letter-spacing:.01em;color:var(--muted)}
+.veld label{font:inherit;color:inherit}
+.veld small{font-size:13px;font-weight:500;color:var(--muted)}
+.veld input,.bodveld input{font:inherit;font-size:16px;font-weight:500;letter-spacing:0;color:var(--ink);width:100%;min-width:0}
+.veld>input{padding:12px 14px;border:1.5px solid rgba(14,29,74,.25);border-radius:10px;background:var(--wit);min-height:48px}
+.veld>input:focus{outline:2px solid var(--oranje);outline-offset:1px;border-color:var(--oranje)}
+.veld input[aria-invalid="true"]{border-color:var(--rood)}
+.twee{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.bodveld{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;border:2px solid var(--blauw);border-radius:12px;background:var(--wit);overflow:hidden}
+.bodveld.mis{border-color:var(--rood)}
+.bodveld span{padding:0 4px 0 16px;font-family:var(--kop);font-size:24px;color:var(--blauw)}
+.bodveld input{border:0;height:60px;padding:0 14px 0 6px;font-family:var(--kop);font-weight:400;font-size:24px;font-variant-numeric:tabular-nums;background:transparent}
+.bodveld input:focus-visible{outline-offset:-3px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-family:var(--tekst);font-weight:700;font-size:15px;line-height:1.2;color:var(--ink);background:var(--wit);border:1.5px solid rgba(14,29,74,.3);border-radius:12px;padding:9px 14px;cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--oranje);background:#FFF4E8}
+.chip em{display:block;font-style:normal;font-weight:800;color:var(--blauw);font-variant-numeric:tabular-nums}
+.chip:disabled{opacity:.45;cursor:default;background:var(--wit);border-color:rgba(14,29,74,.3)}
+.vink{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;font-size:15px;cursor:pointer}
+.vink input{width:28px;height:28px;margin:2px 0 0;accent-color:var(--blauw)}
+.fine{color:var(--muted);font-size:14px;margin:0}
+#form .fout{margin:0}
+.slot{margin:0;background:#F3E4C6;border-left:6px solid var(--oranje);border-radius:10px;padding:12px 16px;font-weight:700}
+#form.uit input,#form.uit .chip{opacity:.55}
+
+/* de biedbon */
+.bonwrap{min-width:0;display:grid;gap:22px}
+.bon{position:relative;background:var(--wit);border:2px dashed var(--blauw);border-radius:18px;padding:24px 28px 26px}
+.bon-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:2px solid var(--diep);padding-bottom:8px;margin-bottom:4px}
+.bon-title{font-family:var(--kop);font-size:28px;line-height:1;color:var(--blauw)}
+.bon-nr{font-weight:800;font-size:14px}
+.bon dl{margin:0}
+.bon dl div{display:grid;grid-template-columns:112px minmax(0,1fr);gap:12px;padding:9px 0;border-bottom:1px solid var(--lijn)}
+.bon dl div:last-child{border-bottom:0}
+.bon dt{font-size:13px;font-weight:800;color:var(--muted);padding-top:3px}
+.bon dd{margin:0;font-size:15.5px;font-weight:700;overflow-wrap:anywhere}
+.bon .big dd{font-family:var(--kop);font-weight:400;font-size:20px;color:var(--blauw);font-variant-numeric:tabular-nums}
+.stamp{position:absolute;right:22px;bottom:22px;border:4px solid var(--oranje);color:var(--oranje);border-radius:12px;padding:4px 16px 6px;font-family:var(--kop);font-size:30px;line-height:1;opacity:0;transform:rotate(-13deg) scale(2.2);pointer-events:none;background:rgba(255,255,255,.75)}
+/* na het bieden komt er onderaan ruimte voor het stempel, zodat het niet over de bedragen valt */
+.bon.stamped{padding-bottom:84px}
+.bon.stamped .stamp{animation:stamp .45s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes stamp{0%{opacity:0;transform:rotate(-13deg) scale(2.2)}60%{opacity:.95;transform:rotate(-13deg) scale(.92)}100%{opacity:.92;transform:rotate(-13deg) scale(1)}}
+
+.klaar{background:var(--wit);border:2px solid var(--groen);border-radius:16px;padding:20px 24px}
+.klaar h3{font-family:var(--kop);font-weight:400;font-size:24px;color:var(--groen);margin-bottom:8px}
+.klaar p{font-size:15.5px;margin:0 0 8px}
+.klaar p:last-child{margin:0}
+.deel{background:var(--wit);border:1.5px solid var(--lijn);border-radius:16px;padding:20px 24px;display:grid;gap:10px}
+.deel h3{font-family:var(--kop);font-weight:400;font-size:21px;color:var(--blauw)}
+.deel p{font-size:15.5px;margin:0}
+.deel .tekst{background:var(--ivoor);border:1.5px dashed rgba(14,29,74,.25);border-radius:10px;padding:12px 14px}
+.deel .knoppen{display:flex;flex-wrap:wrap;gap:10px}
+
+/* zo werkt het */
+.stappen{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;counter-reset:stap}
+.stappen li{counter-increment:stap;background:var(--wit);border:1.5px solid var(--lijn);border-radius:16px;padding:22px 22px 20px;display:grid;gap:8px;align-content:start}
+.stappen li::before{content:counter(stap);width:34px;height:34px;border-radius:50%;background:var(--diep);color:var(--ivoor);font-family:var(--kop);font-size:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px var(--oranje);margin-bottom:6px}
+.stappen h3{font-size:19px;color:var(--blauw)}
+.stappen p{font-size:15.5px;margin:0}
+.waarheen{margin-top:26px;max-width:900px;background:#F3E4C6;border-left:6px solid var(--oranje);border-radius:12px;padding:20px 24px}
+.waarheen h3{margin-bottom:6px}
+.waarheen p{margin:0;font-size:16px}
+.afsluiter{margin:36px 0 0;font-family:var(--kop);font-size:clamp(22px,2.8vw,30px);line-height:1.2;color:var(--blauw)}
+.afsluiter b{font-weight:400;color:var(--oranje)}
+
+@media (max-width:900px){
+  .rij{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .tafel{grid-column:auto;grid-row:auto}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .laad,.onder{grid-template-columns:minmax(0,1fr)}
+  .stappen{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .site-kop nav .btn{display:none}
+  .klok span{display:none}
+  .veilinghero{padding:44px 0 52px}
+  .stats{grid-template-columns:minmax(0,1fr)}
+  .rij{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tafel{min-height:100px}
+  .twee,.stappen{grid-template-columns:minmax(0,1fr)}
+  .bon{padding:20px 18px 24px}
+  .bon dl div{grid-template-columns:96px minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  .tafel.wissel,.bon.stamped .stamp{animation:none}
+  .bon.stamped .stamp{opacity:.92;transform:rotate(-13deg)}
+}
