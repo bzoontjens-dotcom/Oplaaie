@@ -36,7 +36,8 @@
 @media (max-width:860px){.wat .grid{grid-template-columns:1fr;gap:36px}}
 
 /* tafels en kaarten */
-.tafels .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:40px}
+/* de kaarten verdelen de breedte, of het er nu twee of drie zijn */
+.tafels .cards{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:22px;margin-top:40px}
 .tafels .card h3{font-size:21px}
 .card .prijs{font-family:var(--kop);font-size:46px;color:var(--blauw);line-height:1;margin:14px 0 6px;white-space:nowrap}
 .card .prijs small{font-family:var(--tekst);font-weight:800;font-size:15px;margin-right:6px}
@@ -53,7 +54,7 @@
 .doorsturen{margin-top:30px;padding-top:24px;border-top:1px solid var(--lijn);display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
 .doorsturen p{margin:0;flex:1 1 320px;font-size:16px}
 .doorsturen .knoppen{display:flex;flex-wrap:wrap;gap:10px}
-@media (max-width:980px){.tafels .cards{grid-template-columns:1fr;max-width:560px}}
+@media (max-width:980px){.tafels .cards{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:1fr;max-width:560px}}
 
 /* de twee goede doelen */
 .doelen .intro{max-width:760px;font-size:18px;margin-top:18px}

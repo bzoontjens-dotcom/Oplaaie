@@ -2,6 +2,8 @@
 
 Versie 24 november 2026. Deze opdracht hoort op de branch `veurpruuve-x-oplaaie` en vervangt `OPDRACHT-veurpruuve-x-oplaaie.md`. Werk op deze branch verder.
 
+Bijgewerkt op 24 november 2026 met vijf besluiten van dezelfde dag: de verkoop start op dinsdag 1 december 2026, we verkopen bij de start alleen tafels, er is één vaste tekst voor minder of meer dan tien, en bij "drinken tot 21.00 uur" hoort altijd de zin over de drankjes na 21.00 uur.
+
 ## Met wie je werkt
 
 Ik ben Bart Zoontjens van Bravo B.V. Ik ben niet technisch. Dat betekent:
@@ -22,6 +24,7 @@ Wat vervalt:
 - De Muziekspeelplaats Eindhoven als goed doel.
 - De veiling van de eerste rij. De tafels vooraan hebben nu een vaste prijs.
 - De staantafel voor acht, het bijkopen tot tien en alle prijzen exclusief btw.
+- Losse tickets, bij de start. In januari 2027 beslissen we of ze er komen. Tot die tijd worden ze nergens op de site genoemd.
 
 Wat ervoor in de plaats komt:
 
@@ -29,7 +32,7 @@ Wat ervoor in de plaats komt:
 - **Eén goed doel: Heel Lampegat viert mee**, van de Federatie Eindhovens Carnaval. De federatie brengt carnaval naar mensen die er zelf niet naartoe kunnen: ouderen in een verzorgingshuis, mensen met een beperking en kinderen die opgroeien in armoede.
 - **De elfde.** Een tafel is voor tien. De elfde gast is iemand die er zelf niet bij kan zijn. Van elke tafel gaat € 25,- naar Heel Lampegat viert mee. Elf is het getal van carnaval, en dat is de rode draad van de site.
 - **Het rondje van de zaak.** Zo heet de veiling van de federatie op de avond zelf. De opbrengst gaat naar hetzelfde doel.
-- **De verkoop start op vrijdag 4 december 2026 om 11.11 uur.**
+- **De verkoop start op dinsdag 1 december 2026 om 11.11 uur.**
 
 ## Wat er al ligt
 
@@ -46,16 +49,16 @@ Wat ervoor in de plaats komt:
    - De elfde, in beeld: een tafel met tien pullen en één elfde pul die oplicht, in de stijl van het logo. Houd het licht en speels, en zorg dat het ook werkt voor wie animaties heeft uitgezet.
    - De gastheer, Joël Borelli, met ruimte voor een foto en een korte quote. Die lever ik aan. Tot die tijd staat er alleen tekst.
    - De avond in tijden (hieronder).
-3. **Het aanbod.** Drie kaarten, alle prijzen inclusief btw:
-   - Eigen tafel voor tien: € 1.500,- per tafel, € 150,- per persoon. Je bedrijfsnaam op de tafel.
-   - Losse tickets: € 170,- per persoon, vanaf vier tickets per bestelling. Je staat aan een gedeelde tafel.
-   - Tafel op de eerste rij voor tien: € 2.000,- per tafel. Zestien tafels vlak voor het podium. Vaste prijs, op is op.
-   - Onder de kaarten: "Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma en de garderobe." En: "Van elke tafel gaat € 25,- naar Heel Lampegat viert mee."
-   - In de ticketshop komen er servicekosten van Weeztix bij, € 1,- per ticket.
+3. **Het aanbod.** Twee kaarten, alle prijzen inclusief btw. We verkopen bij de start alleen tafels:
+   - Eigen tafel voor tien: € 1.500,- per tafel, € 150,- per persoon. Een staantafel met je bedrijfsnaam erop.
+   - Tafel op de eerste rij voor tien: € 2.000,- per tafel. Zestien zittafels vlak voor het podium. Vaste prijs, op is op.
+   - Onder de kaarten: "Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma en de garderobe. Na 21.00 uur zijn de drankjes voor eigen rekening." En: "Van elke tafel gaat € 25,- naar Heel Lampegat viert mee."
+   - In de ticketshop komen er servicekosten van Weeztix bij: € 1,- per ticket, dus € 10,- per tafel.
+   - Losse tickets staan niet op de site: geen kaart, geen knop, geen vraag, geen spelregel en geen zin over gedeelde tafels. De kaart staat wel klaar in de code, zodat hij in één keer terug kan. Dat regel je met `LOSSE_TICKETS` in `instellingen.mjs`.
 4. **De veiling van de eerste rij gaat van de site.** De biedpagina, de veilingvoorwaarden en alle links ernaartoe verdwijnen. Het adres `/eerste-rij/` verwijst door naar het aanbod op de homepage. Verwijder de code, de serverfuncties, de database en de beheerpagina niet zonder mijn akkoord. Leg mij eerst uit wat de nette manier is om ze uit te zetten en wat er gebeurt met de tests.
 5. **Het blok over het goede doel.** Eén doel, in de stijl van Veurpruuve. Het blok over de twee goede doelen vervalt.
 6. **De spelregels, de voorwaarden en de veelgestelde vragen** werk je bij op het nieuwe aanbod en de prijzen inclusief btw.
-7. **De verkoopstart.** In `site/home.js` wordt `VERKOOP_START` `'2026-12-04T11:11:00+01:00'`. Pas ook het agendabestand `site/agenda/verkoopstart.ics`, het seintje bij de verkoopstart en de mails die daarbij horen aan. De link naar de ticketshop blijft dezelfde.
+7. **De verkoopstart.** In `site/home.js` wordt `VERKOOP_START` `'2026-12-01T11:11:00+01:00'`. Pas ook het agendabestand `site/agenda/verkoopstart.ics`, het seintje bij de verkoopstart en de mails die daarbij horen aan. De link naar de ticketshop blijft dezelfde.
 8. **Het deelplaatje en de teksten voor zoekmachines** maak je opnieuw, zonder Hans en met de nieuwe regel.
 9. **De README** werk je bij, zodat hij klopt met wat er staat.
 
@@ -67,6 +70,8 @@ Vaste regels, overal gelijk:
 - De elfde: "Tien aan tafel. De elfde viert thuis mee."
 - Bij het logo: "Doar zedde U tege".
 - Om te verkopen: "Carnaval begint op vrijdag. Wij smokkelen een dag."
+- Minder of meer dan tien: "Een tafel is altijd voor tien. Met minder dan tien deel je een tafel met een ander bedrijf, of neem je klanten en relaties mee. Met meer dan tien neem je een tweede tafel."
+- Bij "drinken tot 21.00 uur", op elke plek: "Na 21.00 uur zijn de drankjes voor eigen rekening."
 
 Het verhaal, voor in het blok:
 
@@ -117,7 +122,7 @@ Neem in elk geval deze vragen op, met de antwoorden uit de teksten hierboven:
 
 - Wat kost het per persoon?
 - Wat zit erin?
-- We zijn met minder dan tien. Wat dan?
+- We zijn met minder dan tien. Wat dan? En: we zijn met meer dan tien. Wat dan? Antwoord, bij allebei: de vaste tekst over minder of meer dan tien.
 - Wie staat er op het podium?
 - Tot hoe laat duurt het?
 - Wat is Heel Lampegat viert mee?
@@ -129,8 +134,8 @@ Neem in elk geval deze vragen op, met de antwoorden uit de teksten hierboven:
 
 ## Techniek
 
-- De ticketshop van Weeztix is al omgezet. De kaarten heten daar "Eigen tafel (10 personen)", "Losse tickets (vanaf 4 personen)" en "Tafel eerste rij (10 personen)".
+- De ticketshop van Weeztix is al omgezet. De kaarten heten daar "Eigen tafel (10 personen)" en "Tafel eerste rij (10 personen)". De kaart "Losse tickets (vanaf 4 personen)" hoort bij de start niet te koop te staan.
 - Het contactformulier blijft via Netlify Forms lopen.
 - De tests moeten blijven slagen, of je legt mij uit welke tests bij de veiling horen en wat je ermee wilt doen.
 - Beschrijf voor de livegang wat er nodig is om veurpruuve.nl naar deze site te laten wijzen en oplaaie.nl te laten doorverwijzen naar veurpruuve.nl. Voer dat pas uit na mijn akkoord.
-- De site moet klaarstaan voor vrijdag 4 december 2026 om 11.11 uur. Ik wil hem uiterlijk woensdag 2 december 2026 op een testadres zien.
+- De site moet klaarstaan voor dinsdag 1 december 2026 om 11.11 uur.

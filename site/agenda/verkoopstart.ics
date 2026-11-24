@@ -6,11 +6,11 @@ METHOD:PUBLISH
 BEGIN:VEVENT
 UID:verkoopstart-2026@veurpruuve.nl
 DTSTAMP:20261124T090000Z
-DTSTART:20261204T101100Z
-DTEND:20261204T104100Z
+DTSTART:20261201T101100Z
+DTEND:20261201T104100Z
 SUMMARY:Verkoop Veurpruuve start om 11.11 uur
-DESCRIPTION:De verkoop van tafels en tickets voor Veurpruuve start. Be
- stellen: https://veurpruuve.nl/
+DESCRIPTION:De verkoop van tafels voor Veurpruuve start. Bestellen: ht
+ tps://veurpruuve.nl/
 URL:https://veurpruuve.nl/
 END:VEVENT
 END:VCALENDAR

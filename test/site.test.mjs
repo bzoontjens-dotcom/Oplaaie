@@ -45,12 +45,12 @@ test('de teksten van het vorige programma zijn weg', () => {
 
 test('het aanbod en de prijzen kloppen, inclusief btw', () => {
   const t = plat(home);
-  for (const stuk of ['Eigen tafel € 1.500,- per tafel voor tien personen, inclusief btw', '€ 150,- per persoon', 'Losse tickets € 170,- per persoon, inclusief btw', 'Vanaf vier tickets per bestelling',
+  for (const stuk of ['Eigen tafel € 1.500,- per tafel voor tien personen, inclusief btw', '€ 150,- per persoon',
     'Tafel op de eerste rij € 2.000,- per tafel voor tien personen, inclusief btw', 'Zestien tafels', 'Op is op',
-    'Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma en de garderobe.', `Van elke tafel gaat € 25,- naar ${INSTELLINGEN.DOEL}.`, '€ 1,- per ticket'])
+    'Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma en de garderobe. Na 21.00 uur zijn de drankjes voor eigen rekening.', `Van elke tafel gaat € 25,- naar ${INSTELLINGEN.DOEL}.`, '€ 1,- per ticket'])
     assert.ok(t.includes(stuk), 'op de homepage ontbreekt: ' + stuk);
   const s = plat(spelregels);
-  for (const stuk of ['€ 1.500,-', '€ 170,-', '€ 2.000,-', 'Alle prijzen zijn inclusief btw', 'Annuleren kan niet', 'dan krijgt iedereen zijn geld terug'])
+  for (const stuk of ['€ 1.500,-', '€ 2.000,-', 'Alle prijzen zijn inclusief btw', 'Annuleren kan niet', 'dan krijgt iedereen zijn geld terug'])
     assert.ok(s.includes(stuk), 'in de spelregels ontbreekt: ' + stuk);
   assert.ok(!/hele tafelgeld/i.test(t + s), 'nergens staat dat het hele tafelgeld naar het doel gaat');
 });
@@ -63,6 +63,29 @@ test('de vaste regels staan erin', () => {
   assert.ok(!/17\.11|18\.11/.test(t), 'de tijden 17.11 en 18.11 uur staan er niet in zolang ze niet bevestigd zijn');
 });
 
+test('bij de start verkopen we alleen tafels', async () => {
+  assert.equal(INSTELLINGEN.LOSSE_TICKETS, false, 'losse tickets staan uit tot er in januari 2027 over besloten is');
+  for (const [pad, inhoud] of bestanden) {
+    assert.ok(!/losse\s+tickets?/i.test(inhoud) && !/los\s+ticket/i.test(inhoud), `in ${pad} staan nog losse tickets`);
+    assert.ok(!/gedeelde\s+tafel/i.test(inhoud), `in ${pad} staat nog een gedeelde tafel`);
+    assert.ok(!/170,-/.test(inhoud), `in ${pad} staat nog de prijs van een los ticket`);
+    assert.ok(!inhoud.includes('ALS:') && !inhoud.includes('EINDE:'), `in ${pad} staat nog een schakelregel van de bouwstap`);
+  }
+  assert.equal((home.match(/<div class="card[ "]/g) || []).length, 2, 'er staan twee prijskaarten: de eigen tafel en de eerste rij');
+  // De kaart staat klaar in de bron, zodat hij in één keer terug kan.
+  const bron = await readFile(path.join(UIT, '..', 'site', 'index.html'), 'utf8');
+  assert.match(bron, /<!-- ALS:LOSSE_TICKETS -->[\s\S]*Losse tickets[\s\S]*<!-- EINDE:LOSSE_TICKETS -->/);
+});
+
+test('minder of meer dan tien: overal dezelfde tekst, en na 21.00 uur drankjes voor eigen rekening', () => {
+  const vast = 'Een tafel is altijd voor tien. Met minder dan tien deel je een tafel met een ander bedrijf, of neem je klanten en relaties mee. Met meer dan tien neem je een tweede tafel.';
+  assert.ok(plat(home).split(vast).length - 1 >= 3, 'de vaste tekst staat in de korte spelregels en bij beide vragen');
+  assert.ok(plat(spelregels).includes(vast), 'de vaste tekst staat in de spelregels');
+  for (const [naam, tekst] of [['de homepage', plat(home)], ['de spelregels', plat(spelregels)]])
+    for (const stuk of tekst.split(/drinken tot 21\.00 uur/i).slice(1))
+      assert.ok(stuk.slice(0, 160).includes('Na 21.00 uur zijn de drankjes voor eigen rekening.'), `op ${naam} ontbreekt de zin over de drankjes na 21.00 uur bij: drinken tot 21.00 uur${stuk.slice(0, 60)}`);
+});
+
 test('de afgesproken veelgestelde vragen staan erin', () => {
   const vragen = [...home.matchAll(/<summary>(.*?)<\/summary>/g)].map((m) => m[1]);
   for (const vraag of ['Wat kost het per persoon?', 'Wat zit erin?', 'We zijn met minder dan tien. Wat dan?', 'Wie staat er op het podium?', 'Tot hoe laat duurt het?',
@@ -71,13 +94,14 @@ test('de afgesproken veelgestelde vragen staan erin', () => {
     assert.ok(vragen.includes(vraag), 'de vraag ontbreekt: ' + vraag);
 });
 
-test('de verkoop start op vrijdag 4 december 2026 om 11.11 uur', async () => {
+test('de verkoop start op dinsdag 1 december 2026 om 11.11 uur', async () => {
   const js = bestanden.find(([p]) => p === 'home.js')[1];
-  assert.match(js, /VERKOOP_START = '2026-12-04T11:11:00\+01:00'/);
-  assert.equal(new Date('2026-12-04T11:11:00+01:00').toLocaleDateString('nl-NL', { weekday: 'long', timeZone: 'Europe/Amsterdam' }), 'vrijdag');
+  assert.match(js, /VERKOOP_START = '2026-12-01T11:11:00\+01:00'/);
+  assert.equal(new Date('2026-12-01T11:11:00+01:00').toLocaleDateString('nl-NL', { weekday: 'long', timeZone: 'Europe/Amsterdam' }), 'dinsdag');
   const ics = bestanden.find(([p]) => p === 'agenda/verkoopstart.ics')[1];
-  assert.match(ics, /DTSTART:20261204T101100Z/);
-  assert.ok(plat(home).includes('De verkoop start op vrijdag 4 december 2026 om 11.11 uur'));
+  assert.match(ics, /DTSTART:20261201T101100Z/);
+  assert.ok(plat(home).includes('De verkoop start op dinsdag 1 december 2026 om 11.11 uur'));
+  for (const [pad, inhoud] of bestanden) assert.ok(!/4(\s|&nbsp;)december/.test(inhoud) && !/vrijdag 4/.test(inhoud), `in ${pad} staat nog de oude startdatum`);
 });
 
 test('alle links en plaatjes op de pagina\'s bestaan', async () => {

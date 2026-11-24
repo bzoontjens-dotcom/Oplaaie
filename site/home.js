@@ -5,9 +5,9 @@
 
   /* ---------- instellingen ---------- */
   /* VERKOOPSTART: pas alleen deze regel aan. Formaat: jaar-maand-dagTuur:minuut:00 plus het tijdverschil met UTC.
-     +01:00 is wintertijd, +02:00 is zomertijd. Dit is vrijdag 4 december 2026, 11.11 uur. */
-  var VERKOOP_START = '2026-12-04T11:11:00+01:00';
-  /* De ticketshop van Weeztix voor de tafels en de losse tickets. */
+     +01:00 is wintertijd, +02:00 is zomertijd. Dit is dinsdag 1 december 2026, 11.11 uur. */
+  var VERKOOP_START = '2026-12-01T11:11:00+01:00';
+  /* De ticketshop van Weeztix voor de tafels. */
   var WEEZTIX_SHOP = 'https://shop.weeztix.com/2b320314-3240-4996-99af-5f3e3296a4a5';
 
   var start = new Date(VERKOOP_START);

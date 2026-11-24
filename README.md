@@ -10,7 +10,7 @@ De bron van de site staat in de map `site`. Bij elke uitrol draait Netlify een k
 
 | Map of bestand | Wat het is |
 | --- | --- |
-| `instellingen.mjs` | Instellingen die op veel plekken terugkomen. Nu is dat de naam van het goede doel. |
+| `instellingen.mjs` | Instellingen die op veel plekken terugkomen: de naam van het goede doel, en of de losse tickets aan staan. |
 | `bouw.mjs` | De bouwstap die de instellingen invult. |
 | `site/index.html` | De homepage. Het programma van 2027 staat erin tussen de regels `BLOK 2027 BEGIN` en `BLOK 2027 EINDE`. |
 | `site/home.js` | Het script van de homepage: de melding van de verkoopstart, de ticketshop en het contactformulier. |
@@ -51,21 +51,40 @@ In het blok is ruimte gelaten voor wat nog komt. Zoek in `site/index.html` op `R
 De prijzen staan in `site/index.html` en `site/spelregels.html`, en in de gegevens voor zoekmachines bovenin `site/index.html`. Alle prijzen zijn inclusief btw:
 
 - Eigen tafel voor tien: € 1.500,- per tafel, € 150,- per persoon.
-- Losse tickets: € 170,- per persoon, vanaf vier tickets per bestelling.
 - Tafel op de eerste rij voor tien: € 2.000,- per tafel. Zestien tafels.
 
-Van elke tafel gaat € 25,- naar het goede doel. Weeztix rekent € 1,- servicekosten per ticket.
+Van elke tafel gaat € 25,- naar het goede doel. Weeztix rekent € 1,- servicekosten per ticket, dus € 10,- per tafel.
+
+Twee vaste teksten, overal gelijk:
+
+- Minder of meer dan tien: "Een tafel is altijd voor tien. Met minder dan tien deel je een tafel met een ander bedrijf, of neem je klanten en relaties mee. Met meer dan tien neem je een tweede tafel."
+- Bij "drinken tot 21.00 uur" hoort altijd de zin: "Na 21.00 uur zijn de drankjes voor eigen rekening."
+
+## Losse tickets
+
+Bij de start verkopen we alleen tafels. Losse tickets worden nergens op de site genoemd. In januari 2027 wordt besloten of ze er komen.
+
+De kaart "Losse tickets" staat nog wel klaar in `site/index.html`, tussen de regels `ALS:LOSSE_TICKETS` en `EINDE:LOSSE_TICKETS`. Zolang `LOSSE_TICKETS` in `instellingen.mjs` op `false` staat, laat de bouwstap dat stuk weg. Zet je het op `true`, dan staat de kaart bij de volgende uitrol weer tussen de andere twee.
+
+Komen de losse tickets terug, loop dan ook dit na, want daar staan ze nu bewust niet in:
+
+- de prijs en de voorwaarden op de kaart zelf (nu € 170,- per persoon, vanaf vier tickets);
+- de vaste tekst over minder of meer dan tien;
+- de vragen "Wat kost het per persoon?" en "Wat zit erin?", en de spelregels;
+- de regel over de € 25,- per tafel, in het blok over het goede doel en in de spelregels;
+- de gegevens voor zoekmachines bovenin `site/index.html`, de doorstuurtekst in `site/site.js` en de voorbeeldmail hieronder;
+- de test "bij de start verkopen we alleen tafels" in `test/site.test.mjs`.
 
 ## De verkoop en de ticketshop
 
 Bovenaan in `site/home.js` staan twee instellingen:
 
-- `VERKOOP_START`: het moment waarop de verkoop begint, vrijdag 4 december 2026 om 11.11 uur. Tot dat moment toont de site een melding met de startdatum en wordt de ticketshop niet geladen.
+- `VERKOOP_START`: het moment waarop de verkoop begint, dinsdag 1 december 2026 om 11.11 uur. Tot dat moment toont de site een melding met de startdatum en wordt de ticketshop niet geladen.
 - `WEEZTIX_SHOP`: het adres van de ticketshop van Weeztix.
 
 Wil je de shop vóór de start bekijken, zet dan `?shop=1` achter het adres van de homepage.
 
-Verandert de startdatum, pas dan ook `site/agenda/verkoopstart.ics` aan en de datum in de teksten van `site/index.html`. De test in `test/site.test.mjs` controleert of ze gelijk lopen.
+Verandert de startdatum, pas dan ook `site/agenda/verkoopstart.ics` aan en de datum in de teksten van `site/index.html` en `site/site.js`. De test in `test/site.test.mjs` controleert of ze gelijk lopen.
 
 ## Het seintje bij de verkoopstart
 
@@ -73,7 +92,11 @@ Bezoekers kunnen hun e-mailadres achterlaten. Die aanmeldingen komen bij Netlify
 
 > Onderwerp: De verkoop van Veurpruuve is gestart
 >
-> Je vroeg om een seintje. De verkoop van Veurpruuve is vandaag om 11.11 uur gestart. Een eigen tafel voor tien kost € 1.500,- inclusief btw, losse tickets kosten € 170,- per persoon en een tafel op de eerste rij kost € 2.000,-. De zestien tafels op de eerste rij zijn op als ze op zijn.
+> Je vroeg om een seintje. De verkoop van Veurpruuve is vandaag, dinsdag 1 december 2026, om 11.11 uur gestart. Een eigen tafel voor tien kost € 1.500,- inclusief btw en een tafel op de eerste rij kost € 2.000,-. De zestien tafels op de eerste rij zijn op als ze op zijn.
+>
+> Een tafel is altijd voor tien. Met minder dan tien deel je een tafel met een ander bedrijf, of neem je klanten en relaties mee. Met meer dan tien neem je een tweede tafel.
+>
+> Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma en de garderobe. Na 21.00 uur zijn de drankjes voor eigen rekening.
 >
 > Bestellen kan op https://veurpruuve.nl
 >
