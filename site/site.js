@@ -35,9 +35,9 @@
   var mail = document.getElementById('deelMail'), wa = document.getElementById('deelWhatsapp');
   if (!mail || !wa) return;
   var adres = location.origin + '/';
-  var tekst = 'Veurpruuve x Oplaaie mee Hans, de zakelijke carnavalsavond van Lampegat. Donderdag 4 februari 2027 in de Bavaria Bierhal op het Stadhuisplein in Eindhoven, van 16.00 tot 21.00 uur. '
-    + 'Een staantafel voor acht kost € 1.600,- exclusief btw, een losse kaart € 200,-. De tafels op de eerste rij worden geveild. '
-    + 'De verkoop start op donderdag 26 november 2026 om 11.11 uur.';
-  mail.href = 'mailto:?subject=' + encodeURIComponent('Veurpruuve x Oplaaie mee Hans, donderdag 4 februari 2027') + '&body=' + encodeURIComponent('Dit lijkt me iets voor ons:\n\n' + tekst + '\n\n' + adres);
+  var tekst = 'Veurpruuve, de zakelijke carnavalsavond van Lampegat. Wij pruuve veur, heel Lampegat viert mee. Donderdag 4 februari 2027 in de Bavaria Bierhal op het Stadhuisplein in Eindhoven, van 16.00 tot 21.00 uur. '
+    + 'Een eigen tafel voor tien kost € 1.500,- inclusief btw, losse tickets kosten € 170,- per persoon. Van elke tafel gaat € 25,- naar {{DOEL}}. '
+    + 'De verkoop start op vrijdag 4 december 2026 om 11.11 uur.';
+  mail.href = 'mailto:?subject=' + encodeURIComponent('Veurpruuve, donderdag 4 februari 2027') + '&body=' + encodeURIComponent('Dit lijkt me iets voor ons:\n\n' + tekst + '\n\n' + adres);
   wa.href = 'https://wa.me/?text=' + encodeURIComponent(tekst + ' ' + adres);
 })();

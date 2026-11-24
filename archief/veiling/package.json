@@ -1,0 +1,21 @@
+{
+  "name": "veurpruuve-veiling-archief",
+  "private": true,
+  "type": "module",
+  "description": "De veiling van de eerste rij, uitgezet op 24 november 2026 en hier bewaard",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@netlify/cache": "^4.2.1",
+    "@netlify/database": "^2.0.3",
+    "@netlify/functions": "^6.1.1"
+  },
+  "devDependencies": {
+    "@netlify/database-dev": "^1.0.2",
+    "pg": "^8.23.1"
+  }
+}

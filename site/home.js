@@ -1,13 +1,13 @@
 /* De homepage van Veurpruuve: de melding van de verkoopstart, de ticketshop en het contactformulier.
-   Het blok "x Oplaaie mee Hans" heeft zijn eigen script in /oplaaie-2027/blok.js. */
+   Het blok voor 2027 heeft zijn eigen script in /programma-2027/blok.js. */
 (function(){
   'use strict';
 
   /* ---------- instellingen ---------- */
   /* VERKOOPSTART: pas alleen deze regel aan. Formaat: jaar-maand-dagTuur:minuut:00 plus het tijdverschil met UTC.
-     +01:00 is wintertijd, +02:00 is zomertijd. Dit is donderdag 26 november 2026, 11.11 uur. */
-  var VERKOOP_START = '2026-11-26T11:11:00+01:00';
-  /* De ticketshop van Weeztix voor de staantafels en de losse kaarten. */
+     +01:00 is wintertijd, +02:00 is zomertijd. Dit is vrijdag 4 december 2026, 11.11 uur. */
+  var VERKOOP_START = '2026-12-04T11:11:00+01:00';
+  /* De ticketshop van Weeztix voor de tafels en de losse tickets. */
   var WEEZTIX_SHOP = 'https://shop.weeztix.com/2b320314-3240-4996-99af-5f3e3296a4a5';
 
   var start = new Date(VERKOOP_START);
