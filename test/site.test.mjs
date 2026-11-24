@@ -81,7 +81,7 @@ test('bij de start verkopen we alleen tafels', async () => {
 
 test('minder of meer dan tien: overal dezelfde tekst, en na 21.00 uur drankjes voor eigen rekening', () => {
   const vast = 'Een tafel is altijd voor tien. Met minder dan tien deel je een tafel met een ander bedrijf, of neem je klanten en relaties mee. Met meer dan tien neem je een tweede tafel.';
-  assert.ok(plat(home).split(vast).length - 1 >= 3, 'de vaste tekst staat in de korte spelregels en bij beide vragen');
+  assert.equal(plat(home).split(vast).length - 1, 2, 'de vaste tekst staat in de korte spelregels en bij de vraag');
   assert.ok(plat(spelregels).includes(vast), 'de vaste tekst staat in de spelregels');
   for (const [naam, tekst] of [['de homepage', plat(home)], ['de spelregels', plat(spelregels)]])
     for (const stuk of tekst.split(/drinken tot 21\.00 uur/i).slice(1))
@@ -96,7 +96,7 @@ test('de speelse onderdelen staan erin, en werken ook zonder script', () => {
   assert.ok(uitkomst.includes(`Dat doet jouw tafel. Van elke tafel gaat € 25,- naar ${INSTELLINGEN.DOEL}.`), 'de uitkomst van de elfde staat in de pagina');
   assert.ok(uitkomst.includes('Zet je tafel neer'));
   // De uitleg van de elfde: wie het is, met een voorbeeld dat als voorbeeld is gebracht en niet als bestaand persoon.
-  for (const stuk of ['Wie is de elfde?', 'De elfde is iemand die er zelf niet bij kan zijn.', 'Neem iemand van zesentachtig.', 'Zij is de elfde.'])
+  for (const stuk of ['Kun jij niet naar carnaval, dan komt carnaval naar jou.', 'Daarom is een tafel voor tien. De elfde nemen we mee.', 'De elfde is iemand die er zelf niet bij kan zijn.', 'Neem iemand van zesentachtig.', 'Zij is de elfde.'])
     assert.ok(plat(home).includes(stuk), 'in de uitleg van de elfde ontbreekt: ' + stuk);
   // De medaille is een knop, de pul bij de tijden en de aftelling staan klaar.
   assert.match(home, /<button class="medaille" id="medaille" type="button" aria-label="[^"]*confetti[^"]*">/);
@@ -108,7 +108,7 @@ test('de speelse onderdelen staan erin, en werken ook zonder script', () => {
 
 test('de afgesproken veelgestelde vragen staan erin', () => {
   const vragen = [...home.matchAll(/<summary>(.*?)<\/summary>/g)].map((m) => m[1]);
-  for (const vraag of ['Wat kost het per persoon?', 'Wat zit erin?', 'We zijn met minder dan tien. Wat dan?', 'Wie staat er op het podium?', 'Tot hoe laat duurt het?',
+  for (const vraag of ['Wat kost het per persoon?', 'Wat zit erin?', 'We zijn met minder of meer dan tien. Wat dan?', 'Wie staat er op het podium?', 'Tot hoe laat duurt het?',
     `Wat is ${INSTELLINGEN.DOEL}?`, 'Gaat mijn tafelgeld ook naar het goede doel?', 'Hoe werkt het rondje van de zaak?', 'Kan ik annuleren, en krijg ik een factuur?',
     'Is dit hetzelfde als Roet Korte Put?', 'Wat als het niet doorgaat?'])
     assert.ok(vragen.includes(vraag), 'de vraag ontbreekt: ' + vraag);

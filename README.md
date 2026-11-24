@@ -17,7 +17,7 @@ De bron van de site staat in de map `site`. Bij elke uitrol draait Netlify een k
 | `site/site.js` | Het menu op een telefoon, het seintje bij de verkoopstart en de knoppen om de uitnodiging door te sturen. |
 | `site/stijl/veurpruuve.css` | De huisstijl voor alle pagina's: kleuren, lettertypen, knoppen, de kop en de voet. Een kleur of lettertype overal aanpassen doe je hier bovenaan. |
 | `site/stijl/home.css` | De opmaak van de onderdelen van de homepage. |
-| `site/programma-2027/` | Het blok voor 2027: het verhaal van het goede doel, de elfde, de gastheer en de avond. Met de opmaak (`blok.css`), het script (`blok.js`) en het handschrift (`letters.css`). |
+| `site/programma-2027/` | Het blok voor 2027: de elfde, met het verhaal van het goede doel, en de avond met de gastheer. Met de opmaak (`blok.css`), het script (`blok.js`) en het handschrift (`letters.css`). |
 | `site/spelregels.html` | De spelregels, de voorwaarden en de privacytekst. |
 | `site/agenda/` | De agendabestanden voor de verkoopstart en voor de avond. |
 | `site/bedankt.html` en `site/404.html` | De pagina na het contactformulier en de pagina voor een adres dat niet bestaat. |

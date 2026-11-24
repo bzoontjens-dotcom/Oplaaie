@@ -122,7 +122,7 @@ Neem in elk geval deze vragen op, met de antwoorden uit de teksten hierboven:
 
 - Wat kost het per persoon?
 - Wat zit erin?
-- We zijn met minder dan tien. Wat dan? En: we zijn met meer dan tien. Wat dan? Antwoord, bij allebei: de vaste tekst over minder of meer dan tien.
+- We zijn met minder of meer dan tien. Wat dan? Antwoord: de vaste tekst over minder of meer dan tien.
 - Wie staat er op het podium?
 - Tot hoe laat duurt het?
 - Wat is Heel Lampegat viert mee?
