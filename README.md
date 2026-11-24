@@ -54,6 +54,7 @@ In het blok is ruimte gelaten voor wat nog komt. Zoek in `site/index.html` op `R
 
 - De foto en de quote van de gastheer. Zet de foto in `site/programma-2027/img/` en haal de commentaartekens weg.
 - Een voorbeeld en een foto van het goede doel, in het verhaal en in het blok over het doel.
+- Bij de elfde staat een kaart met een voorbeeld ("Neem iemand van zesentachtig"). Dat is een bedacht voorbeeld, geen bestaand persoon. Een echt voorbeeld van de federatie komt daarvoor in de plaats.
 
 ## Het aanbod
 

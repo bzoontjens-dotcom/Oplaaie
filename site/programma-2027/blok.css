@@ -19,8 +19,19 @@
 .p27-elfde{overflow:hidden}
 .p27-elfde .kop{max-width:760px}
 .p27-elfde h2 .hand{display:block;margin-top:6px;font-size:1.35em;color:var(--oranje-2)}
-.p27-elfde .aanloop{margin:22px 0 0;max-width:58ch;font-size:18px;color:var(--ivoor)}
-.elfde-beeld{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:clamp(18px,4vw,56px);margin-top:40px}
+/* de uitleg: links wie de elfde is, rechts een voorbeeld op een kaart */
+.elfde-uitleg{display:grid;grid-template-columns:1fr minmax(0,470px);gap:36px 64px;align-items:center;margin-top:26px}
+.elfde-uitleg > *{min-width:0}
+.elfde-uitleg .wie p{margin:0 0 14px;font-size:18px;max-width:52ch;color:var(--ivoor)}
+.elfde-uitleg .wie .vraag{font-size:clamp(34px,3.8vw,44px);color:var(--oranje-2);margin-bottom:8px}
+.elfde-uitleg .wie .slot{margin-bottom:0;font-weight:800}
+.elfde-uitleg .voorbeeld{background:var(--ivoor);color:var(--ink);border-radius:16px;padding:26px 30px 24px;transform:rotate(1.2deg);box-shadow:0 18px 40px rgba(0,0,0,.35),0 0 0 4px var(--oranje)}
+.elfde-uitleg .voorbeeld p{margin:0 0 12px;font-size:16.5px;line-height:1.55}
+.elfde-uitleg .voorbeeld p:last-child{margin:0}
+.elfde-uitleg .voorbeeld .hand{font-size:clamp(30px,3.2vw,38px);color:var(--blauw);margin-bottom:8px}
+.elfde-uitleg .voorbeeld b{font-weight:800;color:var(--blauw)}
+@media (max-width:900px){.elfde-uitleg{grid-template-columns:1fr}.elfde-uitleg .voorbeeld{transform:rotate(.6deg)}}
+.elfde-beeld{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:clamp(18px,4vw,56px);margin-top:56px}
 .elfde-beeld .tafel{min-width:0}
 .elfde-beeld .pullen{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:clamp(2px,.8vw,10px);align-items:end;padding:0 3%}
 .elfde-beeld .pul{display:block;width:100%;height:auto;overflow:visible}

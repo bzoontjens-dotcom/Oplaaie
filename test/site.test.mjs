@@ -95,6 +95,9 @@ test('de speelse onderdelen staan erin, en werken ook zonder script', () => {
   const uitkomst = plat(home.slice(home.indexOf('id="elfdeUitkomst"'), home.indexOf('</section>', home.indexOf('id="elfdeUitkomst"'))));
   assert.ok(uitkomst.includes(`Dat doet jouw tafel. Van elke tafel gaat € 25,- naar ${INSTELLINGEN.DOEL}.`), 'de uitkomst van de elfde staat in de pagina');
   assert.ok(uitkomst.includes('Zet je tafel neer'));
+  // De uitleg van de elfde: wie het is, met een voorbeeld dat als voorbeeld is gebracht en niet als bestaand persoon.
+  for (const stuk of ['Wie is de elfde?', 'De elfde is iemand die er zelf niet bij kan zijn.', 'Neem iemand van zesentachtig.', 'Zij is de elfde.'])
+    assert.ok(plat(home).includes(stuk), 'in de uitleg van de elfde ontbreekt: ' + stuk);
   // De medaille is een knop, de pul bij de tijden en de aftelling staan klaar.
   assert.match(home, /<button class="medaille" id="medaille" type="button" aria-label="[^"]*confetti[^"]*">/);
   assert.match(home, /<li class="meeloper" aria-hidden="true">/);
