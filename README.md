@@ -41,6 +41,15 @@ Het programma van het jaar zit op drie plekken in `site/index.html`, elk gemarke
 2. In het midden, alles tussen `BLOK 2027 BEGIN` en `BLOK 2027 EINDE`.
 3. Onderaan, de regel die `blok.js` laadt.
 
+Het blok heeft twee speelse onderdelen, allebei in `blok.js`:
+
+- De elfde. De bezoeker tikt op "Schenk de elfde in". De tien pullen kantelen, de elfde loopt vol en licht op, en dan verschijnt wat een tafel doet voor het goede doel.
+- De avond. Een pul schuift langs de tijden mee terwijl je scrolt.
+
+Op de rest van de homepage zitten er nog twee, in `site/home.js`: een tik op de medaille strooit confetti, en bij Bestellen loopt een aftelling naar de verkoopstart. Op het moment van de start verschijnt de ticketshop vanzelf.
+
+Zonder script, en voor wie animaties heeft uitgezet, staat alles er meteen in de eindstand: de elfde is vol en de tekst is te lezen.
+
 In het blok is ruimte gelaten voor wat nog komt. Zoek in `site/index.html` op `RUIMTE VOOR`:
 
 - De foto en de quote van de gastheer. Zet de foto in `site/programma-2027/img/` en haal de commentaartekens weg.

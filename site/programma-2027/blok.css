@@ -15,47 +15,69 @@
 .p27-verhaal .quote span{color:var(--oranje)}
 @media (max-width:860px){.p27-verhaal .grid{grid-template-columns:1fr;gap:36px}}
 
-/* de elfde: tien pullen op tafel, de elfde licht op */
+/* de elfde: tien volle pullen op tafel, en een elfde die de bezoeker zelf inschenkt */
 .p27-elfde{overflow:hidden}
 .p27-elfde .kop{max-width:760px}
 .p27-elfde h2 .hand{display:block;margin-top:6px;font-size:1.35em;color:var(--oranje-2)}
-.p27-elfde .uitleg{margin:26px 0 0;max-width:62ch;font-size:18px;color:var(--ivoor)}
-.elfde-beeld{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:clamp(18px,4vw,56px);margin-top:44px}
+.p27-elfde .aanloop{margin:22px 0 0;max-width:58ch;font-size:18px;color:var(--ivoor)}
+.elfde-beeld{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:clamp(18px,4vw,56px);margin-top:40px}
 .elfde-beeld .tafel{min-width:0}
 .elfde-beeld .pullen{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:clamp(2px,.8vw,10px);align-items:end;padding:0 3%}
 .elfde-beeld .pul{display:block;width:100%;height:auto;overflow:visible}
+.elfde-beeld .pullen .pul{transform-origin:85% 100%}
 .elfde-beeld .blad{height:16px;margin-top:-3px;border-radius:8px;background:var(--ivoor);box-shadow:0 0 0 4px var(--diep),0 0 0 6px rgba(250,246,238,.35)}
 .elfde-beeld .poten{display:flex;justify-content:space-between;padding:0 12%}
 .elfde-beeld .poten i{width:14px;height:54px;border-radius:0 0 7px 7px;background:rgba(250,246,238,.55)}
 .elfde-beeld .tel{margin:14px 0 0;text-align:center;font-family:var(--hand);font-weight:700;font-size:clamp(24px,2.6vw,32px);line-height:1;color:var(--muted-l)}
 .elfde-beeld .de-elfde{position:relative;width:clamp(96px,13vw,150px);padding-bottom:70px;text-align:center}
-.elfde-beeld .de-elfde .gloed{position:absolute;left:50%;top:38%;width:230%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,150,54,.55),rgba(255,150,54,0));pointer-events:none}
-.elfde-beeld .de-elfde .stralen{position:absolute;left:50%;top:-34%;width:150%;transform:translateX(-50%);overflow:visible}
-.elfde-beeld .de-elfde .pul{position:relative}
-.elfde-beeld .de-elfde .naam{position:absolute;left:50%;bottom:0;transform:translateX(-50%) rotate(-4deg);white-space:nowrap;font-family:var(--hand);font-weight:700;font-size:clamp(34px,4vw,48px);line-height:1;color:var(--oranje-2)}
+.elfde-beeld .de-elfde .gloed{position:absolute;left:50%;top:38%;width:230%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,150,54,.55),rgba(255,150,54,0));pointer-events:none;transition:opacity .8s}
+.elfde-beeld .de-elfde .stralen{position:absolute;left:50%;top:-34%;width:150%;transform:translateX(-50%);overflow:visible;transition:opacity .5s .3s}
+/* het glas: onderop de lege pul in grijs, daarbovenop de volle. De volle wordt van onder naar boven zichtbaar. */
+.elfde-beeld .glas{position:relative;display:block}
+.elfde-beeld .pul.leeg{filter:grayscale(1) brightness(1.5);opacity:.3}
+.elfde-beeld .pul.vol{position:absolute;inset:0;clip-path:inset(0 -20% -5% -20%)}
+.elfde-beeld .de-elfde .naam{position:absolute;left:50%;bottom:0;transform:translateX(-50%) rotate(-4deg);white-space:nowrap;font-family:var(--hand);font-weight:700;font-size:clamp(34px,4vw,48px);line-height:1;color:var(--oranje-2);transition:color .5s}
+.elfde-beeld .druppel{position:absolute;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;background:#F5AE2E;box-shadow:0 0 0 2.5px var(--diep);pointer-events:none;opacity:0}
 
-/* De beweging. Zonder script en voor wie animaties heeft uitgezet staat alles er meteen: tien pullen en een elfde die brandt.
-   Het script zet .start op het beeld zodra het in beeld komt; tot dan wachten de pullen (.wacht). */
+/* de knop en de uitkomst delen dezelfde plek: eerst staat de knop er, na het inschenken de uitkomst */
+.elfde-onder{display:grid;margin-top:34px}
+.elfde-onder > *{grid-area:1/1}
+.elfde-actie{display:flex;flex-wrap:wrap;align-items:center;align-self:start;gap:10px 22px;transition:opacity .3s}
+.elfde-actie .btn{min-height:58px;padding:16px 32px;font-size:18px}
+.elfde-actie .wenk{font-size:28px;color:var(--oranje-2);transform:rotate(-2deg)}
+.elfde-uitkomst{max-width:720px}
+.elfde-uitkomst .knoppen{display:flex;flex-wrap:wrap;gap:12px}
+.elfde-uitkomst .groot{margin:0;font-size:clamp(19px,2.2vw,23px);font-weight:700;line-height:1.4;color:var(--ivoor)}
+.elfde-uitkomst .groot .hand{display:block;font-size:1.9em;color:var(--oranje-2);margin-bottom:4px}
+.elfde-uitkomst .uitleg{margin:12px 0 22px;font-size:17px;color:var(--muted-l)}
+
+/* Het spel. Zonder script staat alles in de eindstand: de elfde is vol, de uitkomst is te lezen.
+   Het script zet .speel op het blok. Dan begint de elfde leeg, en wordt hij vol (.vol) na een tik op de knop. */
+.p27-elfde.speel:not(.vol) .pul.vol{clip-path:inset(100% -20% -5% -20%)}
+.p27-elfde.speel:not(.vol) .gloed,.p27-elfde.speel:not(.vol) .stralen{opacity:0}
+.p27-elfde.speel:not(.vol) .de-elfde .naam{color:var(--muted-l)}
+.p27-elfde.speel .elfde-uitkomst{transition:opacity .6s,transform .6s cubic-bezier(.2,1.3,.4,1)}
+.p27-elfde.speel:not(.vol) .elfde-uitkomst{opacity:0;transform:translateY(14px);visibility:hidden}
+.p27-elfde.speel.vol .elfde-actie{opacity:0;visibility:hidden}
+.p27-elfde.speel .pul.vol{transition:clip-path 1.3s cubic-bezier(.3,.1,.3,1)}
+.p27-elfde.speel:not(.bezig):not(.vol) #schenk{animation:p27-wenk 2.4s ease-in-out 1.2s infinite}
+.p27-elfde.vol .gloed{animation:p27-adem 3.2s ease-in-out 1s infinite alternate}
+/* de tien komen een voor een op tafel zodra het beeld in beeld komt */
 .elfde-beeld.wacht .tafel .pul{opacity:0;transform:translateY(-26px) scale(.8)}
-.elfde-beeld.wacht .de-elfde .pul{opacity:.28;filter:grayscale(1)}
-.elfde-beeld.wacht .de-elfde .gloed,.elfde-beeld.wacht .de-elfde .stralen,.elfde-beeld.wacht .de-elfde .naam{opacity:0}
 .elfde-beeld.start .tafel .pul{animation:p27-neer .5s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--i) * 110ms)}
-.elfde-beeld.start .de-elfde .pul{animation:p27-aan .9s ease-out 1.5s both}
-.elfde-beeld.start .de-elfde .gloed{animation:p27-gloed 1s ease-out 1.6s both,p27-adem 3.2s ease-in-out 2.8s infinite alternate}
-.elfde-beeld.start .de-elfde .stralen{animation:p27-in .5s ease-out 2s both}
-.elfde-beeld.start .de-elfde .naam{animation:p27-in .5s ease-out 2.2s both}
 @keyframes p27-neer{from{opacity:0;transform:translateY(-26px) scale(.8)}to{opacity:1;transform:none}}
-@keyframes p27-aan{from{opacity:.28;filter:grayscale(1)}to{opacity:1;filter:none}}
-@keyframes p27-gloed{from{opacity:0;transform:translate(-50%,-50%) scale(.4)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
 @keyframes p27-adem{from{transform:translate(-50%,-50%) scale(1)}to{transform:translate(-50%,-50%) scale(1.12)}}
-@keyframes p27-in{from{opacity:0}to{opacity:1}}
-@media (prefers-reduced-motion:reduce){.elfde-beeld .pul,.elfde-beeld .gloed,.elfde-beeld .stralen,.elfde-beeld .naam{animation:none!important;opacity:1!important;filter:none!important;transform:none}.elfde-beeld .de-elfde .gloed{transform:translate(-50%,-50%)!important}.elfde-beeld .de-elfde .stralen{transform:translateX(-50%)!important}.elfde-beeld .de-elfde .naam{transform:translateX(-50%) rotate(-4deg)!important}}
+@keyframes p27-wenk{0%,82%,100%{transform:none}88%{transform:translateY(-4px) rotate(-1.5deg)}94%{transform:translateY(1px) rotate(1deg)}}
+@media (prefers-reduced-motion:reduce){.elfde-beeld .pul,.elfde-beeld .gloed,#schenk{animation:none!important}}
 @media (max-width:700px){
   /* op een telefoon staan de tien in twee rijen van vijf, de elfde eronder */
   .elfde-beeld{grid-template-columns:1fr;justify-items:center;gap:26px}
   .elfde-beeld .tafel{width:100%}
   .elfde-beeld .pullen{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px 8px;padding:0 4%}
   .elfde-beeld .de-elfde{width:118px;margin-top:46px}
+  .elfde-actie{justify-content:center;text-align:center}
+  .elfde-uitkomst{text-align:center}
+  .elfde-uitkomst .knoppen{justify-content:center}
 }
 
 /* de gastheer en de avond */
@@ -67,7 +89,13 @@
 .p27-gastheer figure{margin:28px 0 0}
 .p27-gastheer figure img{width:100%;max-width:420px;border-radius:14px;aspect-ratio:4/5;object-fit:cover}
 .p27-gastheer blockquote{margin:24px 0 0;padding-left:22px;border-left:6px solid var(--oranje);font-family:var(--hand);font-weight:700;font-size:32px;line-height:1.1;color:var(--blauw)}
-.p27-tijden{list-style:none;margin:26px 0 0;padding:0}
+/* links van de tijden loopt een lijn, en daarlangs schuift een pul mee met het scrollen */
+.p27-tijden{position:relative;list-style:none;margin:26px 0 0;padding:0 0 0 54px}
+.p27-tijden::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:4px;border-radius:2px;background:repeating-linear-gradient(180deg,var(--oranje) 0 10px,transparent 10px 18px)}
+.p27-tijden .meeloper{position:absolute;left:0;top:0;width:42px;padding:0;border:0!important;display:block;transform:translateY(var(--y,0px));will-change:transform;filter:drop-shadow(0 3px 5px rgba(14,29,74,.25))}
+.p27-tijden .meeloper .pul{display:block;width:100%;height:auto;overflow:visible}
+.p27-tijden li{transition:opacity .3s}
+.p27-tijden.loopt li:not(.meeloper):not(.geweest){opacity:.45}
 .p27-tijden li{display:grid;grid-template-columns:118px minmax(0,1fr);gap:4px 22px;align-items:baseline;padding:16px 0;border-top:1.5px solid var(--lijn)}
 .p27-tijden li:last-child{border-bottom:1.5px solid var(--lijn)}
 .p27-tijden .t{font-family:var(--kop);font-size:28px;line-height:1;color:var(--oranje);font-variant-numeric:tabular-nums}
@@ -75,4 +103,4 @@
 .p27-tijden b{display:block;font-weight:800;font-size:18px;color:var(--blauw)}
 .p27-tijden span{font-size:15.5px;color:var(--muted)}
 @media (max-width:860px){.p27-avond .grid{grid-template-columns:1fr}}
-@media (max-width:460px){.p27-tijden li{grid-template-columns:92px minmax(0,1fr);gap:4px 14px}.p27-tijden .t,.p27-tijden .t.woord{font-size:24px}}
+@media (max-width:460px){.p27-tijden{padding-left:46px}.p27-tijden .meeloper{width:36px}.p27-tijden::before{left:16px}.p27-tijden li{grid-template-columns:86px minmax(0,1fr);gap:4px 12px}.p27-tijden .t,.p27-tijden .t.woord{font-size:23px}}

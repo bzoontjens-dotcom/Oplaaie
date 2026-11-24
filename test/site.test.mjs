@@ -59,7 +59,9 @@ test('de vaste regels staan erin', () => {
   const t = plat(home);
   for (const regel of ['Wij pruuve veur, heel Lampegat viert mee.', 'Tien aan tafel. De elfde viert thuis mee.', 'Carnaval begint op vrijdag. Wij smokkelen een dag.', 'Joël Borelli praat de avond aan elkaar en zingt hem uit.'])
     assert.ok(t.includes(regel), 'ontbreekt: ' + regel);
-  assert.equal((home.match(/<svg class="pul"/g) || []).length, 11, 'het beeld van de elfde heeft tien pullen en een elfde');
+  const tafel = home.slice(home.indexOf('<div class="pullen">'), home.indexOf('<div class="blad">'));
+  assert.equal((tafel.match(/<svg class="pul"/g) || []).length, 10, 'er staan tien pullen op tafel');
+  assert.equal((home.match(/<svg class="pul vol"/g) || []).length, 1, 'en er is een elfde');
   assert.ok(!/17\.11|18\.11/.test(t), 'de tijden 17.11 en 18.11 uur staan er niet in zolang ze niet bevestigd zijn');
 });
 
@@ -84,6 +86,21 @@ test('minder of meer dan tien: overal dezelfde tekst, en na 21.00 uur drankjes v
   for (const [naam, tekst] of [['de homepage', plat(home)], ['de spelregels', plat(spelregels)]])
     for (const stuk of tekst.split(/drinken tot 21\.00 uur/i).slice(1))
       assert.ok(stuk.slice(0, 160).includes('Na 21.00 uur zijn de drankjes voor eigen rekening.'), `op ${naam} ontbreekt de zin over de drankjes na 21.00 uur bij: drinken tot 21.00 uur${stuk.slice(0, 60)}`);
+});
+
+test('de speelse onderdelen staan erin, en werken ook zonder script', () => {
+  // De elfde inschenken: de knop staat verborgen in de pagina en wordt door het script getoond.
+  // Zonder script is de uitkomst dus gewoon te lezen.
+  assert.match(home, /<div class="elfde-actie" hidden>[\s\S]*?<button[^>]*id="schenk"[^>]*>Schenk de elfde in<\/button>/);
+  const uitkomst = plat(home.slice(home.indexOf('id="elfdeUitkomst"'), home.indexOf('</section>', home.indexOf('id="elfdeUitkomst"'))));
+  assert.ok(uitkomst.includes(`Dat doet jouw tafel. Van elke tafel gaat € 25,- naar ${INSTELLINGEN.DOEL}.`), 'de uitkomst van de elfde staat in de pagina');
+  assert.ok(uitkomst.includes('Zet je tafel neer'));
+  // De medaille is een knop, de pul bij de tijden en de aftelling staan klaar.
+  assert.match(home, /<button class="medaille" id="medaille" type="button" aria-label="[^"]*confetti[^"]*">/);
+  assert.match(home, /<li class="meeloper" aria-hidden="true">/);
+  assert.match(home, /<div class="aftel" id="aftel" hidden aria-hidden="true">/);
+  for (const [naam, pad] of [['het blok', 'programma-2027/blok.js'], ['de confetti', 'site.js']])
+    assert.match(bestanden.find(([p]) => p === pad)[1], /prefers-reduced-motion/, `${naam} houdt rekening met wie animaties uit heeft staan`);
 });
 
 test('de afgesproken veelgestelde vragen staan erin', () => {
