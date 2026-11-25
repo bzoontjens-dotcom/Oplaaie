@@ -47,7 +47,7 @@ test('het aanbod en de prijzen kloppen, inclusief btw', () => {
   const t = plat(home);
   for (const stuk of ['Eigen tafel € 1.500,- per tafel voor tien personen, inclusief btw', '€ 150,- per persoon',
     'Tafel op de eerste rij € 2.000,- per tafel voor tien personen, inclusief btw', 'Zestien tafels', 'Op is op',
-    'Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma en de garderobe. Na 21.00 uur zijn de drankjes voor eigen rekening.', `Van elke tafel gaat € 25,- naar ${INSTELLINGEN.DOEL}.`, '€ 1,- per ticket'])
+    'Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma, de garderobe en de toiletten. Na 21.00 uur zijn de drankjes voor eigen rekening.', `Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}.`, '€ 1,- per ticket'])
     assert.ok(t.includes(stuk), 'op de homepage ontbreekt: ' + stuk);
   const s = plat(spelregels);
   for (const stuk of ['€ 1.500,-', '€ 2.000,-', 'Alle prijzen zijn inclusief btw', 'Annuleren kan niet', 'dan krijgt iedereen zijn geld terug'])
@@ -57,7 +57,7 @@ test('het aanbod en de prijzen kloppen, inclusief btw', () => {
 
 test('de vaste regels staan erin', () => {
   const t = plat(home);
-  for (const regel of ['Wij pruuve veur, heel Lampegat viert mee.', 'Tien aan tafel. De elfde viert thuis mee.', 'Carnaval begint op vrijdag. Wij smokkelen een dag.', 'Joël Borelli praat de avond aan elkaar en zingt hem uit.'])
+  for (const regel of ['Wij pruuve veur, heel Lampegat viert mee.', 'Tien aan tafel. De elfde viert thuis mee.', 'Een dag voordat 3 Uurkes Vurraf begint, gaan wij al veurpruuve.', 'Joël Borelli praat de avond aan elkaar en zingt hem uit.'])
     assert.ok(t.includes(regel), 'ontbreekt: ' + regel);
   const tafel = home.slice(home.indexOf('<div class="pullen">'), home.indexOf('<div class="blad">'));
   assert.equal((tafel.match(/<svg class="pul"/g) || []).length, 10, 'er staan tien pullen op tafel');
@@ -93,7 +93,7 @@ test('de speelse onderdelen staan erin, en werken ook zonder script', () => {
   // Zonder script is de uitkomst dus gewoon te lezen.
   assert.match(home, /<div class="elfde-actie" hidden>[\s\S]*?<button[^>]*id="schenk"[^>]*>Schenk de elfde in<\/button>/);
   const uitkomst = plat(home.slice(home.indexOf('id="elfdeUitkomst"'), home.indexOf('</section>', home.indexOf('id="elfdeUitkomst"'))));
-  assert.ok(uitkomst.includes(`Dat doet jouw tafel. Van elke tafel gaat € 25,- naar ${INSTELLINGEN.DOEL}.`), 'de uitkomst van de elfde staat in de pagina');
+  assert.ok(uitkomst.includes(`Dat doet jouw tafel. Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}.`), 'de uitkomst van de elfde staat in de pagina');
   assert.ok(uitkomst.includes('Zet je tafel neer'));
   // De uitleg van de elfde: wie het is, met een voorbeeld dat als voorbeeld is gebracht en niet als bestaand persoon.
   for (const stuk of ['Kun jij niet naar carnaval, dan komt carnaval naar jou.', 'Daarom is een tafel voor tien. De elfde nemen we mee.', 'De elfde is iemand die er zelf niet bij kan zijn.', 'Neem iemand van zesentachtig.', 'Zij is de elfde.'])

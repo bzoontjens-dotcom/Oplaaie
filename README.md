@@ -63,7 +63,7 @@ De prijzen staan in `site/index.html` en `site/spelregels.html`, en in de gegeve
 - Eigen tafel voor tien: € 1.500,- per tafel, € 150,- per persoon.
 - Tafel op de eerste rij voor tien: € 2.000,- per tafel. Zestien tafels.
 
-Van elke tafel gaat € 25,- naar het goede doel. Weeztix rekent € 1,- servicekosten per ticket, dus € 10,- per tafel.
+Van elke tafel gaat € 111,- naar het goede doel. Weeztix rekent € 1,- servicekosten per ticket, dus € 10,- per tafel.
 
 Twee vaste teksten, overal gelijk:
 
@@ -81,7 +81,7 @@ Komen de losse tickets terug, loop dan ook dit na, want daar staan ze nu bewust 
 - de prijs en de voorwaarden op de kaart zelf (nu € 170,- per persoon, vanaf vier tickets);
 - de vaste tekst over minder of meer dan tien;
 - de vragen "Wat kost het per persoon?" en "Wat zit erin?", en de spelregels;
-- de regel over de € 25,- per tafel, in het blok over het goede doel en in de spelregels;
+- de regel over de € 111,- per tafel, in het blok over het goede doel en in de spelregels;
 - de gegevens voor zoekmachines bovenin `site/index.html`, de doorstuurtekst in `site/site.js` en de voorbeeldmail hieronder;
 - de test "bij de start verkopen we alleen tafels" in `test/site.test.mjs`.
 
@@ -106,7 +106,7 @@ Bezoekers kunnen hun e-mailadres achterlaten. Die aanmeldingen komen bij Netlify
 >
 > Een tafel is altijd voor tien. Met minder dan tien deel je een tafel met een ander bedrijf, of neem je klanten en relaties mee. Met meer dan tien neem je een tweede tafel.
 >
-> Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma en de garderobe. Na 21.00 uur zijn de drankjes voor eigen rekening.
+> Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma, de garderobe en de toiletten. Na 21.00 uur zijn de drankjes voor eigen rekening.
 >
 > Bestellen kan op https://veurpruuve.nl
 >

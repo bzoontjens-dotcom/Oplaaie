@@ -36,7 +36,7 @@
   if (!mail || !wa) return;
   var adres = location.origin + '/';
   var tekst = 'Veurpruuve, de zakelijke carnavalsavond van Lampegat. Wij pruuve veur, heel Lampegat viert mee. Donderdag 4 februari 2027 in de Bavaria Bierhal op het Stadhuisplein in Eindhoven, van 16.00 tot 21.00 uur. '
-    + 'Een eigen tafel voor tien kost € 1.500,- inclusief btw, een tafel op de eerste rij € 2.000,-. Van elke tafel gaat € 25,- naar {{DOEL}}. '
+    + 'Een eigen tafel voor tien kost € 1.500,- inclusief btw, een tafel op de eerste rij € 2.000,-. Van elke tafel gaat € 111,- naar {{DOEL}}. '
     + 'De verkoop start op dinsdag 1 december 2026 om 11.11 uur.';
   mail.href = 'mailto:?subject=' + encodeURIComponent('Veurpruuve, donderdag 4 februari 2027') + '&body=' + encodeURIComponent('Dit lijkt me iets voor ons:\n\n' + tekst + '\n\n' + adres);
   wa.href = 'https://wa.me/?text=' + encodeURIComponent(tekst + ' ' + adres);
