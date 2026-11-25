@@ -1,0 +1,14 @@
+{
+  "name": "veurpruuve",
+  "private": true,
+  "type": "module",
+  "description": "De site van Veurpruuve, de zakelijke carnavalsavond van Lampegat",
+  "scripts": {
+    "bouw": "node bouw.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:veiling": "npm --prefix archief/veiling install --no-audit --no-fund && npm --prefix archief/veiling test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

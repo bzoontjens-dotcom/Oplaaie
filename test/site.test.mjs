@@ -1,0 +1,194 @@
+// Tests voor de site zelf. Ze bouwen de site (bouw.mjs) en controleren het resultaat in _site:
+// staan de afgesproken prijzen en regels erin, zijn de oude teksten weg en werken alle links.
+import { test, before } from 'node:test';
+import assert from 'node:assert/strict';
+import { readFile, readdir, stat } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { bouw } from '../bouw.mjs';
+import { INSTELLINGEN } from '../instellingen.mjs';
+
+const UIT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '_site');
+const TEKST = new Set(['.html', '.js', '.css', '.ics', '.txt', '.xml']);
+let bestanden = [];   // [pad binnen _site, inhoud]
+let home = '', spelregels = '';
+
+async function lees(map, basis = '') {
+  for (const item of await readdir(map, { withFileTypes: true })) {
+    const rel = path.posix.join(basis, item.name);
+    if (item.isDirectory()) await lees(path.join(map, item.name), rel);
+    else if (TEKST.has(path.extname(item.name))) bestanden.push([rel, await readFile(path.join(map, item.name), 'utf8')]);
+  }
+}
+const bestaat = (rel) => stat(path.join(UIT, rel)).then((s) => s.isFile(), () => false);
+// leesbare tekst: zonder opmaak, met gewone spaties
+const plat = (html) => html.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&middot;/g, '·').replace(/&amp;/g, '&').replace(/\s+/g, ' ');
+
+before(async () => {
+  await bouw();
+  await lees(UIT);
+  home = bestanden.find(([p]) => p === 'index.html')[1];
+  spelregels = bestanden.find(([p]) => p === 'spelregels.html')[1];
+});
+
+test('de naam van het goede doel is overal ingevuld', () => {
+  for (const [pad, inhoud] of bestanden) assert.ok(!inhoud.includes('{{'), `in ${pad} staat nog een niet ingevulde instelling`);
+  assert.ok(plat(home).includes(INSTELLINGEN.DOEL), 'de naam van het doel staat op de homepage');
+  assert.ok(plat(spelregels).includes(INSTELLINGEN.DOEL), 'de naam van het doel staat in de spelregels');
+});
+
+test('de teksten van het vorige programma zijn weg', () => {
+  const oud = [/\bHans\b/, /Oplaaie/i, /laaiklep/i, /bakwagen/i, /Muziekspeelplaats/i, /exclusief\s+(21%\s+)?btw/i, /staantafel voor acht/i, /bijkopen/i,
+    /26(\s|&nbsp;)november/i, /veiling van de eerste rij/i, /onder de hamer/i, /winstoogmerk/i, /1\.600,-/, /2\.400,-/, /eerste-rij/, /\/beheer/, /dertig adressen/i];
+  for (const [pad, inhoud] of bestanden) for (const patroon of oud) assert.ok(!patroon.test(inhoud), `in ${pad} staat nog ${patroon}`);
+});
+
+test('het aanbod en de prijzen kloppen, inclusief btw', () => {
+  const t = plat(home);
+  for (const stuk of ['Eigen tafel € 1.500,- per tafel voor tien personen, inclusief btw', '€ 150,- per persoon',
+    'Tafel op de eerste rij € 2.000,- per tafel voor tien personen, inclusief btw', 'Zestien tafels, op is op', 'Eigen statafel met je bedrijfsnaam erop', 'Eten en drinken inbegrepen*',
+    '* Drinken is inbegrepen tot 21.00 uur. Na 21.00 uur zijn de drankjes voor eigen rekening.', `€ 111,- naar ${INSTELLINGEN.DOEL}`, `Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}.`, '€ 1,- per ticket'])
+    assert.ok(t.includes(stuk), 'op de homepage ontbreekt: ' + stuk);
+  const s = plat(spelregels);
+  for (const stuk of ['€ 1.500,-', '€ 2.000,-', 'Alle prijzen zijn inclusief btw', 'Annuleren kan niet', 'dan krijgt iedereen zijn geld terug'])
+    assert.ok(s.includes(stuk), 'in de spelregels ontbreekt: ' + stuk);
+  assert.ok(!/hele tafelgeld/i.test(t + s), 'nergens staat dat het hele tafelgeld naar het doel gaat');
+});
+
+test('de vaste regels staan erin', () => {
+  const t = plat(home);
+  for (const regel of ['Wij pruuve veur, heel Lampegat viert mee.', 'Tien aan tafel. De elfde viert thuis mee.', 'Een dag voordat 3 Uurkes Vurraf begint, gaan wij al veurpruuve.', 'Joël Borelli praat de avond aan elkaar en zingt hem uit.'])
+    assert.ok(t.includes(regel), 'ontbreekt: ' + regel);
+  const tafel = home.slice(home.indexOf('<div class="pullen">'), home.indexOf('<div class="blad">'));
+  assert.equal((tafel.match(/<svg class="pul"/g) || []).length, 10, 'er staan tien pullen op tafel');
+  assert.equal((home.match(/<svg class="pul vol"/g) || []).length, 1, 'en er is een elfde');
+  assert.ok(!/17\.11|18\.11/.test(t), 'de tijden 17.11 en 18.11 uur staan er niet in zolang ze niet bevestigd zijn');
+});
+
+test('bij de start verkopen we alleen tafels', async () => {
+  assert.equal(INSTELLINGEN.LOSSE_TICKETS, false, 'losse tickets staan uit tot er in januari 2027 over besloten is');
+  for (const [pad, inhoud] of bestanden) {
+    assert.ok(!/losse\s+tickets?/i.test(inhoud) && !/los\s+ticket/i.test(inhoud), `in ${pad} staan nog losse tickets`);
+    assert.ok(!/gedeelde\s+tafel/i.test(inhoud), `in ${pad} staat nog een gedeelde tafel`);
+    assert.ok(!/170,-/.test(inhoud), `in ${pad} staat nog de prijs van een los ticket`);
+    assert.ok(!inhoud.includes('ALS:') && !inhoud.includes('EINDE:'), `in ${pad} staat nog een schakelregel van de bouwstap`);
+  }
+  assert.equal((home.match(/<div class="card[ "]/g) || []).length, 2, 'er staan twee prijskaarten: de eigen tafel en de eerste rij');
+  // De kaart staat klaar in de bron, zodat hij in één keer terug kan.
+  const bron = await readFile(path.join(UIT, '..', 'site', 'index.html'), 'utf8');
+  assert.match(bron, /<!-- ALS:LOSSE_TICKETS -->[\s\S]*Losse tickets[\s\S]*<!-- EINDE:LOSSE_TICKETS -->/);
+});
+
+test('minder of meer dan tien: overal dezelfde tekst, en na 21.00 uur drankjes voor eigen rekening', () => {
+  const vast = 'Een tafel is altijd voor tien. Met minder dan tien deel je een tafel met een ander bedrijf, of neem je klanten en relaties mee. Met meer dan tien neem je een tweede tafel.';
+  assert.equal(plat(home).split(vast).length - 1, 2, 'de vaste tekst staat in de korte spelregels en bij de vraag');
+  assert.ok(plat(spelregels).includes(vast), 'de vaste tekst staat in de spelregels');
+  for (const [naam, tekst] of [['de homepage', plat(home)], ['de spelregels', plat(spelregels)]])
+    for (const stuk of tekst.split(/drinken tot 21\.00 uur/i).slice(1))
+      assert.ok(stuk.slice(0, 160).includes('Na 21.00 uur zijn de drankjes voor eigen rekening.'), `op ${naam} ontbreekt de zin over de drankjes na 21.00 uur bij: drinken tot 21.00 uur${stuk.slice(0, 60)}`);
+});
+
+test('de speelse onderdelen staan erin, en werken ook zonder script', () => {
+  // De elfde inschenken: de knop staat verborgen in de pagina en wordt door het script getoond.
+  // Zonder script is de uitkomst dus gewoon te lezen.
+  assert.match(home, /<div class="elfde-actie" hidden>[\s\S]*?<button[^>]*id="schenk"[^>]*>Schenk de elfde in<\/button>/);
+  const uitkomst = plat(home.slice(home.indexOf('id="elfdeUitkomst"'), home.indexOf('</section>', home.indexOf('id="elfdeUitkomst"'))));
+  assert.ok(uitkomst.includes('Jullie zijn met elf.'), 'de uitkomst van de elfde');
+  assert.ok(uitkomst.includes(`Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}. Het zit in de prijs.`), 'en het bedrag staat erbij, kort');
+  assert.ok(uitkomst.includes('Zet je tafel neer'));
+  // De uitleg van de elfde: wat het doel doet en het voorbeeld dat de federatie heeft aangeleverd.
+  for (const stuk of ['Kun jij niet naar carnaval, dan komt carnaval naar jou.', 'Op Veurpruuve proeft zakelijk Eindhoven als eerste. En wie als eerste proeft, zorgt dat de rest ook wat krijgt.', 'een initiatief van Stichting Federatie Eindhovens Carnaval', 'naar het Máxima Medisch Centrum', 'Even aandacht, even gezien worden, even niet ziek zijn.', 'optredens, middagen vol muziek en bezoek van de Stadsprins'])
+    assert.ok(plat(home).includes(stuk), 'in de uitleg van de elfde ontbreekt: ' + stuk);
+  // De medaille is een knop, de pul bij de tijden en de aftelling staan klaar.
+  assert.match(home, /<button class="medaille" id="medaille" type="button" aria-label="[^"]*confetti[^"]*">/);
+  assert.match(home, /<li class="meeloper" aria-hidden="true">/);
+  assert.match(home, /<div class="aftel" id="aftel" hidden aria-hidden="true">/);
+  for (const [naam, pad] of [['het blok', 'programma-2027/blok.js'], ['de confetti', 'site.js']])
+    assert.match(bestanden.find(([p]) => p === pad)[1], /prefers-reduced-motion/, `${naam} houdt rekening met wie animaties uit heeft staan`);
+});
+
+test('de afgesproken veelgestelde vragen staan erin', () => {
+  const vragen = [...home.matchAll(/<summary>(.*?)<\/summary>/g)].map((m) => m[1]);
+  for (const vraag of ['Wat kost het per persoon?', 'Wat zit erin?', 'We zijn met minder of meer dan tien. Wat dan?', 'Wie staat er op het podium?', 'Tot hoe laat duurt het?',
+    `Wat is ${INSTELLINGEN.DOEL}?`, 'Wat doet mijn tafel voor het goede doel?', 'Hoe werkt het rondje van de zaak?', 'Kan ik annuleren, en krijg ik een factuur?',
+    'Is dit hetzelfde als Roet Korte Put?', 'Wat als het niet doorgaat?'])
+    assert.ok(vragen.includes(vraag), 'de vraag ontbreekt: ' + vraag);
+});
+
+test('de verkoop start op dinsdag 1 december 2026 om 11.11 uur', async () => {
+  const js = bestanden.find(([p]) => p === 'home.js')[1];
+  assert.match(js, /VERKOOP_START = '2026-12-01T11:11:00\+01:00'/);
+  assert.equal(new Date('2026-12-01T11:11:00+01:00').toLocaleDateString('nl-NL', { weekday: 'long', timeZone: 'Europe/Amsterdam' }), 'dinsdag');
+  const ics = bestanden.find(([p]) => p === 'agenda/verkoopstart.ics')[1];
+  assert.match(ics, /DTSTART:20261201T101100Z/);
+  assert.ok(plat(home).includes('De verkoop start op dinsdag 1 december 2026 om 11.11 uur'));
+  for (const [pad, inhoud] of bestanden) assert.ok(!/4(\s|&nbsp;)december/.test(inhoud) && !/vrijdag 4/.test(inhoud), `in ${pad} staat nog de oude startdatum`);
+});
+
+test('alle links en plaatjes op de pagina\'s bestaan', async () => {
+  const doorverwijzingen = new Set(['/', '/spelregels', '/bedankt']);   // Netlify toont spelregels.html ook als /spelregels
+  for (const [pad, metOpmerkingen] of bestanden.filter(([p]) => p.endsWith('.html'))) {
+    const inhoud = metOpmerkingen.replace(/<!--[\s\S]*?-->/g, '');   // wat in een opmerking staat, is nog niet in gebruik
+    const ids = new Set([...inhoud.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+    for (const [, soort, doel] of inhoud.matchAll(/\s(href|src|action)="([^"]+)"/g)) {
+      if (/^(https?:|mailto:|data:)/.test(doel)) continue;
+      const [route, anker] = doel.split('#');
+      if (route === '' ) { assert.ok(ids.has(anker), `${pad}: het anker #${anker} bestaat niet`); continue; }
+      if (doorverwijzingen.has(route)) {
+        if (anker && route === '/') assert.ok(new RegExp(`\\sid="${anker}"`).test(home), `${pad}: het anker /#${anker} bestaat niet op de homepage`);
+        if (anker && route === '/spelregels') assert.ok(new RegExp(`\\sid="${anker}"`).test(spelregels), `${pad}: het anker ${doel} bestaat niet`);
+        continue;
+      }
+      assert.ok(await bestaat(route.replace(/^\//, '')), `${pad}: ${soort} ${doel} bestaat niet`);
+    }
+  }
+  for (const [pad, inhoud] of bestanden.filter(([p]) => p.endsWith('.css')))
+    for (const [, doel] of inhoud.matchAll(/url\((\/[^)]+)\)/g)) assert.ok(await bestaat(doel.replace(/^\//, '')), `${pad}: ${doel} bestaat niet`);
+});
+
+test('de weg naar de ticketshop is kort, en op factuur bestellen kan', () => {
+  // De volgorde op de homepage: de elfde, de avond, de tafels en dan meteen bestellen. Vragen en spelregels komen daarna.
+  const plek = (id) => home.indexOf(`id="${id}"`);
+  const volgorde = ['wat', 'elfde', 'avond', 'tafels', 'bestellen', 'faq', 'spelregels', 'contact'];
+  for (let i = 1; i < volgorde.length; i++) assert.ok(plek(volgorde[i - 1]) > 0 && plek(volgorde[i - 1]) < plek(volgorde[i]), `${volgorde[i - 1]} staat voor ${volgorde[i]}`);
+  // Het losse blok over het goede doel is opgegaan in de elfde. Het adres /#doel blijft werken.
+  assert.ok(!home.includes('class="band blauw doelen"'), 'het losse blok over het doel is weg');
+  assert.ok(plek('elfde') < plek('doel') && plek('doel') < plek('avond'), '/#doel komt uit bij de elfde');
+  assert.ok(plat(home).includes('De rest van het tafelgeld betaalt de avond.'), 'er staat eerlijk bij dat de rest van het tafelgeld de avond betaalt (bij de vraag)');
+  for (const tekst of [plat(home), plat(spelregels)]) assert.match(tekst, /niet online afrekenen/, 'op factuur bestellen staat erbij');
+});
+
+test('de feedback van de federatie: de avond verkoopt zichzelf, het doel staat er kort en goed', () => {
+  const t = plat(home);
+  // De opening: één boodschap en één knop, zonder de verkoopregel, zonder het bedrag voor het doel.
+  const opening = home.slice(home.indexOf('<section class="hero'), home.indexOf('</section>', home.indexOf('<section class="hero')));
+  assert.equal((opening.match(/class="btn/g) || []).length, 1, 'in de opening staat één knop');
+  assert.ok(!plat(opening).includes('111'), 'het bedrag voor het doel staat niet in de opening');
+  assert.ok(!plat(opening).includes('Vurraf'), 'de verkoopregel staat niet in de opening');
+  // Het doel: de kop en het bedrag, met de naam zoals de federatie die schrijft, en het logo.
+  const doel = plat(home.slice(home.indexOf('id="elfde"'), home.indexOf('id="tien"')));
+  assert.ok(doel.includes(`Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}, een initiatief van Stichting Federatie Eindhovens Carnaval. Daarmee geeft de federatie ongeveer elf mensen per verkochte tafel een mooie carnaval.`), 'het bedrag staat bij het doel, zonder dat je hoeft te tikken');
+  assert.match(home, /<img src="\/img\/fec-logo\.png"[^>]*alt="Logo van Stichting Federatie Eindhovens Carnaval"/, 'het logo van de federatie staat erbij');
+  assert.equal(INSTELLINGEN.DOEL, 'Lampegat voor Iedereen', 'het doel heet zoals de federatie het heeft opgegeven');
+  assert.ok(!t.includes('Heel Lampegat viert mee'), 'de oude naam van het doel staat nergens meer');
+  assert.ok(t.includes('Wij pruuve veur, heel Lampegat viert mee.'), 'de hoofdregel blijft zoals hij is');
+  assert.ok(t.includes('een optreden van de Stadshofkapel en een schilderij op maat van Peer Retera'), 'de twee kavels staan erbij');
+  // Niet te vaak: het bedrag staat bij wat is het, bij het doel, bij de pullen, op de twee kaarten, bij de spelregels en bij de vragen.
+  assert.ok(!t.includes('Daarom geen € 100,-'), 'de uitleg van het getal elf is eruit');
+  assert.ok(!t.includes('voor de elfde.'), 'de stempel met het bedrag staat niet meer bij het bestellen en in het slot');
+  assert.ok(!t.includes('de garderobe en de toiletten. Na 21.00 uur zijn de drankjes voor eigen rekening. Van elke'), 'de strook met alles inbegrepen staat niet meer onder de kaarten');
+  assert.ok(!home.includes('id="deelMail"'), 'het blok over intern voorleggen is weg');
+  assert.ok(!t.includes('staantafel') && !plat(spelregels).includes('staantafel'), 'het is statafel');
+  const slot = plat(home.slice(home.indexOf('id="slot"')));
+  assert.ok(slot.includes('Donderdag 4 februari 2027. Zorg dat je erbij bent.') && !slot.slice(0, 200).includes('111'), 'het slot is een oproep, zonder het goede doel');
+  assert.ok(home.indexOf('id="slot"') > home.indexOf('id="contact"'), 'het slot staat onderaan');
+  assert.match(home, /<meta property="og:description" content="[^"]*€ 111,-[^"]*">/, 'het bedrag staat in de voorvertoning bij delen');
+  const vragen = [...home.matchAll(/<summary>(.*?)<\/summary>/g)].map((m) => m[1]);
+  assert.ok(vragen.indexOf('Wat doet mijn tafel voor het goede doel?') <= 2, 'de vraag over het goede doel staat bij de eerste drie');
+});
+
+test('de formulieren lopen via Netlify Forms', () => {
+  assert.match(home, /<form[^>]*name="contact"[^>]*data-netlify="true"/);
+  assert.match(home, /<form[^>]*name="verkoopstart"[^>]*data-netlify="true"/);
+  assert.ok(plat(home).includes('info@veurpruuve.nl'));
+});

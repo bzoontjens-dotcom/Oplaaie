@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spelregels en voorwaarden, Veurpruuve</title>
+<meta name="description" content="Spelregels, voorwaarden en privacy van Veurpruuve, de zakelijke carnavalsavond van Lampegat op donderdag 4 februari 2027.">
+<meta property="og:title" content="Veurpruuve. Doar zedde U tege.">
+<meta property="og:description" content="De zakelijke carnavalsavond van Lampegat, op de donderdag voor carnaval. Donderdag 4 februari 2027 in de Bavaria Bierhal, Stadhuisplein Eindhoven.">
+<meta property="og:image" content="https://veurpruuve.nl/img/og.jpg">
+<meta property="og:type" content="website">
+<!-- DOMEIN: de adressen hieronder staan voorlopig op https://veurpruuve.nl/. Zodra veurpruuve.nl gekoppeld is: zoek en vervang in alle bestanden (index.html, spelregels.html, robots.txt, sitemap.xml) "https://veurpruuve.nl/" door "https://veurpruuve.nl/". -->
+<meta property="og:url" content="https://veurpruuve.nl/spelregels">
+<link rel="canonical" href="https://veurpruuve.nl/spelregels">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://veurpruuve.nl/img/og.jpg">
+<meta name="theme-color" content="#0E1D4A">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-180-apple.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: blauwe banden (hero, programma, faq, footer) afgewisseld met ivoren banden; driekleur oranje-blauw-oranje als scheiding */
+:root{
+  color-scheme:light;
+  --diep:#0E1D4A;      /* basis */
+  --oranje:#F07D1A;    /* accent en knoppen */
+  --oranje-2:#FF9636;
+  --blauw:#16307A;
+  --lichtblauw:#3B66CF;
+  --ivoor:#FAF6EE;
+  --ivoor-2:#F1EADC;
+  --bier:#F5AE2E;
+  --wit:#FFFFFF;
+  --ink:#0E1D4A;
+  --muted:rgba(14,29,74,.70);
+  --muted-l:rgba(250,246,238,.76);
+  --lijn:rgba(14,29,74,.14);
+  --kop:"Alfa Slab One",Rockwell,"Roboto Slab",Georgia,serif;
+  --tekst:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;font-family:var(--tekst);font-weight:500;color:var(--ink);background:var(--ivoor);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;line-height:1.12;text-wrap:balance}
+h1,h2{font-family:var(--kop);font-weight:400}
+h2{font-size:clamp(28px,3.6vw,40px)}
+h3{font-family:var(--tekst);font-weight:800;font-size:20px;line-height:1.25}
+p{margin:0 0 1em}
+a{color:var(--blauw)}
+img{display:block;max-width:100%;height:auto}
+:focus-visible{outline:3px solid var(--oranje);outline-offset:2px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+.u{color:var(--oranje)}
+
+.driekleur{height:6px;background:linear-gradient(90deg,var(--oranje) 0 33.333%,var(--lichtblauw) 33.333% 66.666%,var(--oranje) 66.666%)}
+.kicker{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--blauw);margin-bottom:16px}
+.kicker::before{content:"";flex:none;width:36px;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--oranje) 0 33.333%,var(--lichtblauw) 33.333% 66.666%,var(--oranje) 66.666%)}
+.blauw .kicker{color:var(--oranje-2)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 26px;border-radius:999px;background:var(--oranje);color:var(--diep);font-weight:800;text-decoration:none;font-size:16px;border:0;cursor:pointer;transition:background .15s,transform .15s;font-family:var(--tekst)}
+.btn:hover{background:var(--oranje-2);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ivoor);box-shadow:inset 0 0 0 2px rgba(250,246,238,.5)}
+.btn.ghost:hover{background:rgba(250,246,238,.08)}
+section{padding:88px 0}
+.blauw{background:var(--diep);color:var(--ivoor)}
+@media (max-width:700px){section{padding:64px 0}}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(14,29,74,.94);backdrop-filter:blur(8px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:70px}
+header .brand img{height:48px;width:auto}
+nav{display:flex;gap:24px;align-items:center}
+nav a{color:var(--ivoor);text-decoration:none;font-weight:700;font-size:15px;opacity:.85}
+nav a:hover{opacity:1;color:var(--oranje-2)}
+nav .btn{min-height:42px;padding:10px 18px;font-size:14px;opacity:1;white-space:nowrap}
+nav .btn:hover{color:var(--diep)}
+.menu{display:flex;gap:24px;align-items:center}
+.menu a.mob{display:none}
+.menuknop{display:none;background:transparent;border:0;color:var(--ivoor);width:44px;height:44px;padding:10px;cursor:pointer;border-radius:10px;flex:none}
+.menuknop svg{width:24px;height:24px;display:block}
+.menuknop:hover{background:rgba(250,246,238,.08)}
+@media (max-width:900px){
+  nav{gap:8px}
+  .menuknop{display:inline-flex;align-items:center;justify-content:center}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;background:var(--diep);padding:6px 24px 18px;box-shadow:0 18px 30px rgba(0,0,0,.3);border-top:1px solid rgba(250,246,238,.12)}
+  .menu.open{display:flex}
+  .menu a{padding:13px 0;font-size:17px;opacity:1;border-bottom:1px solid rgba(250,246,238,.1)}
+  .menu a.mob{display:block;color:var(--oranje-2)}
+}
+@media (max-width:420px){header .brand img{height:38px}nav .btn{padding:10px 14px}}
+
+/* hero */
+.hero{position:relative;padding:0;overflow:hidden}
+.hero .bg{position:absolute;inset:0;background:url(img/hero.jpg) center/cover no-repeat;opacity:.30}
+.hero .fade{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(14,29,74,.35) 0%,rgba(14,29,74,.85) 70%),linear-gradient(180deg,rgba(14,29,74,0) 60%,var(--diep) 100%)}
+.hero .wrap{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:64px 0 76px}
+.hero .medaille{width:min(400px,78vw);filter:drop-shadow(0 18px 40px rgba(0,0,0,.45))}
+.hero h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hero .sub{margin-top:30px;font-size:clamp(17px,2vw,20px);font-weight:700;color:var(--ivoor)}
+.hero .when{margin-top:10px;font-size:clamp(15px,1.8vw,18px);font-weight:600;color:var(--muted-l)}
+.hero .when span{color:var(--oranje);margin:0 10px}
+.hero .lead{margin:24px auto 0;max-width:680px;font-size:clamp(19px,2.3vw,24px);font-weight:600;line-height:1.45;color:var(--ivoor)}
+.hero .cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;justify-content:center}
+@media (max-width:700px){.hero .when span{display:block;height:0;overflow:hidden}.hero .when{line-height:1.7}}
+
+/* wat */
+.wat .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.wat .grid > *{min-width:0}
+.wat p{font-size:18px}
+.wat p b{display:block;font-family:var(--kop);font-weight:400;font-size:21px;color:var(--blauw);margin-bottom:2px}
+.wat .photos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.wat .photos img{border-radius:14px;aspect-ratio:3/2;object-fit:cover;width:100%}
+.wat .photos img:first-child{grid-column:1/-1;aspect-ratio:16/9}
+@media (max-width:860px){.wat .grid{grid-template-columns:1fr;gap:36px}}
+
+/* programma */
+.tl{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.tl div{border-top:3px solid var(--oranje);padding-top:18px}
+.tl .t{font-family:var(--kop);font-size:36px;color:var(--oranje);line-height:1;font-variant-numeric:tabular-nums}
+.tl h3{margin:12px 0 8px;font-size:19px}
+.tl p{color:var(--muted-l);font-size:15px;margin:0}
+@media (max-width:760px){.tl{grid-template-columns:1fr}}
+@media (max-width:460px){.tl{grid-template-columns:1fr}}
+
+/* tafels */
+.tafels .cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
+.card{background:var(--wit);border:1.5px solid var(--lijn);border-radius:18px;padding:30px 32px;display:flex;flex-direction:column}
+.card.blauw{background:var(--blauw);border-color:var(--blauw)}
+.card .prijs{font-family:var(--kop);font-size:52px;color:var(--blauw);line-height:1;margin:14px 0 6px}
+.card.blauw .prijs{color:var(--oranje)}
+.card .per{font-size:14px;color:var(--muted);margin-bottom:16px}
+.card.blauw .per{color:var(--muted-l)}
+.card ul{margin:0 0 22px;padding-left:18px;font-size:15.5px}
+.card ul li{margin-bottom:6px}
+.card ul li::marker{color:var(--oranje)}
+.card .btn{margin-top:auto;align-self:flex-start}
+.note{font-size:14px;color:var(--muted);margin-top:18px;max-width:880px}
+@media (max-width:760px){.tafels .cards{grid-template-columns:1fr}.card{padding:26px 22px}}
+
+/* partners */
+.partners{background:var(--ivoor-2)}
+.partners .pk{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.partners .pk > div{background:var(--wit);border-radius:16px;padding:24px;border:1.5px solid var(--lijn)}
+.partners .pk h3{font-family:var(--kop);font-weight:400;font-size:21px;color:var(--blauw);margin-bottom:8px}
+.partners .pk p{font-size:15px;margin:0}
+.partners .pk .pr{font-family:var(--kop);font-size:24px;color:var(--oranje);margin-bottom:8px}
+.partners .pk .pill{display:inline-block;font-size:13px;font-weight:800;border-radius:99px;padding:4px 12px;background:var(--oranje);color:var(--diep);margin-bottom:12px}
+.partners .pk .pill.uit{background:transparent;box-shadow:inset 0 0 0 1.5px var(--lijn);color:var(--blauw)}
+.partners .excl{margin-top:22px;background:#F3E4C6;border-left:6px solid var(--oranje);border-radius:12px;padding:18px 22px;font-size:16px;max-width:860px}
+.partners .excl b{font-weight:800}
+@media (max-width:760px){.partners .pk{grid-template-columns:1fr}}
+
+/* spelregels */
+.regels ol{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,auto);grid-auto-flow:column;gap:20px 40px}
+@media (max-width:760px){.regels ol{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.regels li{display:flex;gap:14px;font-size:15.5px}
+.regels .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--diep);color:var(--ivoor);font-family:var(--kop);display:flex;align-items:center;justify-content:center;font-size:15px;margin-top:1px;box-shadow:0 0 0 3px var(--oranje)}
+.regels b{display:block;font-weight:800;color:var(--blauw)}
+@media (max-width:760px){.regels ol{grid-template-columns:1fr}}
+
+/* faq */
+.faq details{border-top:1px solid rgba(250,246,238,.18);padding:18px 0}
+.faq details:last-of-type{border-bottom:1px solid rgba(250,246,238,.18)}
+.faq summary{cursor:pointer;font-weight:800;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--oranje);font-family:var(--kop);font-size:26px;flex:none}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:12px 0 0;color:var(--muted-l);max-width:720px}
+.faq .list{margin-top:36px}
+
+/* bestellen en contact */
+.contact{background:var(--ivoor-2)}
+.btn.groot{font-size:19px;padding:18px 34px}
+.bestellen .grid,.contact .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.bestellen .grid > *,.contact .grid > *{min-width:0}
+form{background:var(--wit);border:1.5px solid var(--lijn);border-radius:18px;padding:30px}
+.f{display:grid;gap:6px;margin-bottom:16px}
+.f label{font-size:13px;font-weight:800;letter-spacing:.01em;color:var(--muted)}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid rgba(14,29,74,.25);border-radius:10px;background:var(--wit);color:var(--ink);min-height:48px;width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--oranje);outline-offset:1px;border-color:var(--oranje)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:860px){.bestellen .grid,.contact .grid{grid-template-columns:1fr;gap:36px}}
+@media (max-width:520px){.row{grid-template-columns:1fr}form{padding:22px}}
+.hp{position:absolute;left:-9999px}
+.f[hidden],.fg[hidden]{display:none}
+.fg{border:1.5px dashed rgba(14,29,74,.2);border-radius:12px;padding:14px 16px 2px;margin:0 0 16px}
+.fg legend{font-size:13px;font-weight:800;color:var(--muted);padding:0 6px}
+
+/* footer */
+footer{background:var(--diep);color:var(--muted-l);padding:48px 0 36px;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+footer .wm{height:56px;width:auto;margin-left:-14px}
+footer .slogan{height:26px;width:auto;margin-top:14px}
+footer a{color:var(--ivoor);text-decoration:none}
+footer a:hover{color:var(--oranje-2)}
+footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+.legal{background:var(--blauw);color:var(--muted-l);font-size:14px;padding:40px 0}
+.legal h3{color:var(--ivoor);font-size:18px;margin-bottom:8px}
+.legal a{color:var(--ivoor)}
+.legal .grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+@media (max-width:760px){.legal .grid{grid-template-columns:1fr}}
+.pagina{padding:72px 0 88px}
+.pagina h1{font-size:clamp(32px,4.4vw,48px);color:var(--blauw);margin:0 0 14px}
+.pagina .intro{max-width:720px;font-size:17px}
+.pagina h2{margin-top:64px;font-size:clamp(24px,3vw,32px);color:var(--blauw)}
+.pagina .tekst{max-width:760px}
+.pagina .tekst p{margin:14px 0 0}
+.pagina .terug{display:inline-block;margin-top:48px}
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Veurpruuve, naar boven"><img src="img/veurpruuve-woordmerk-ivoor.svg" alt="Veurpruuve" width="1229" height="338"></a>
+    <nav aria-label="Hoofdmenu">
+      <div class="menu" id="menu">
+        <a href="index.html#wat">Wat is het</a>
+        <a href="index.html#programma">Programma</a>
+        <a href="index.html#tafels">Tafels en kaarten</a>
+        <a href="index.html#partners">Partners</a>
+        <a href="spelregels.html">Spelregels</a>
+        <a href="index.html#faq">Vragen</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="mob" href="index.html#partner-worden">Partner worden</a>
+      </div>
+      <a class="btn" href="index.html#bestellen">Bestel je tafel</a>
+      <button class="menuknop" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
+    </nav>
+  </div>
+</header>
+<div class="driekleur" aria-hidden="true"></div>
+
+<main>
+<section class="pagina regels">
+  <div class="wrap">
+    <div class="kicker">Zo werkt het</div>
+    <h1>Spelregels en voorwaarden</h1>
+    <p class="intro">Wat je moet weten over Veurpruuve, donderdag 4 februari 2027 in de Bavaria Bierhal op het Stadhuisplein in Eindhoven.</p>
+    <h2 id="spelregels">De spelregels</h2>
+    <ol>
+      <li><span class="n">1</span><div><b>Besloten avond.</b> Alleen voor bedrijven en hun gasten. Geen kaartverkoop aan de deur.</div></li>
+      <li><span class="n">2</span><div><b>Tafel of losse kaarten.</b> Een tafel is voor tien personen, met de naam van je bedrijf erop. Kleiner gezelschap? Koop losse kaarten.</div></li>
+      <li><span class="n">3</span><div><b>Donderdag 4 februari 2027.</b> Bavaria Bierhal, Stadhuisplein Eindhoven. Open om 16.00 uur, programma 17.30 tot 23.00 uur.</div></li>
+      <li><span class="n">4</span><div><b>Alles inbegrepen.</b> Borrelplank, drinken de hele avond tot 23.00 uur en drie eetmunten per persoon. Meer trek? De foodtrucks blijven open.</div></li>
+      <li><span class="n">5</span><div><b>Host en artiesten.</b> De hele avond op het podium. De line-up volgt.</div></li>
+      <li><span class="n">6</span><div><b>Prijzen exclusief btw.</b> Tafel €&nbsp;1.500,- en losse kaart €&nbsp;150,- exclusief 21% btw. Inclusief btw is dat €&nbsp;1.815,- per tafel en €&nbsp;181,50 per kaart. In de ticketshop reken je af inclusief btw, plus de servicekosten van Weeztix.</div></li>
+      <li><span class="n">7</span><div><b>Jouw tafel, jouw gasten.</b> Je bestelt als bedrijf en bepaalt zelf wie er zit. De toegangsbewijzen krijg je direct na je bestelling.</div></li>
+      <li><span class="n">8</span><div><b>Wie eerst boekt, zit eerst.</b> We delen de tafels in op volgorde van bestelling. Founding partners zitten vooraan.</div></li>
+      <li><span class="n">9</span><div><b>Vanaf 18 jaar.</b> Legitimatie kan gevraagd worden.</div></li>
+      <li><span class="n">10</span><div><b>Direct boeken en betalen.</b> Je betaalt online bij het bestellen en krijgt direct een betalingsbevestiging.</div></li>
+      <li><span class="n">11</span><div><b>Doar zedde U tege.</b> Je klanten, je leverancier, je concurrent. Neem visitekaartjes mee en een goed humeur.</div></li>
+    </ol>
+    <h2 id="voorwaarden">Voorwaarden</h2>
+    <div class="tekst">
+      <p><b>Bestellen.</b> Op bestellingen zijn de spelregels op deze pagina van toepassing. Tafels en losse kaarten bestel en betaal je via de ticketshop van Weeztix; de koopovereenkomst sluit je met Bravo B.V. Van Weeztix ontvang je direct je toegangsbewijzen en een betalingsbevestiging.</p>
+      <p><b>Definitief en overdraagbaar.</b> Een bestelling is definitief en kan niet geannuleerd worden. Toegangsbewijzen zijn overdraagbaar aan een collega, relatie of ander bedrijf.</p>
+      <p><b>Doorgang.</b> Op 15 december 2026 maken we bekend of er genoeg aanmeldingen zijn. Gaat het evenement niet door, dan betalen we het volledige bedrag terug.</p>
+      <p><b>Servicekosten.</b> Bij bestellingen via de ticketshop rekent Weeztix servicekosten per ticket: €&nbsp;1,- per kaart, dus €&nbsp;10,- per tafel van tien. Die zie je voordat je afrekent.</p>
+      <p><b>Partners.</b> Voor partnerschappen gelden de afspraken in de partnerovereenkomst.</p>
+      <p><b>Leeftijd.</b> Toegang vanaf 18 jaar.</p>
+      <p><b>Organisator.</b> Bravo B.V., Ekkersweijer 7, 5681 RZ Best, KvK 68503040.</p>
+    </div>
+    <h2 id="privacy">Privacy</h2>
+    <div class="tekst"><p>De gegevens die je bij je bestelling of via het formulier achterlaat, gebruiken we alleen om je bestelling of aanvraag af te handelen, je betalingsbevestiging of factuur te maken en je te informeren over Veurpruuve. Bestellingen lopen via Weeztix, dat je gegevens in onze opdracht verwerkt. We delen ze niet met anderen en bewaren ze niet langer dan nodig, behalve wat we wettelijk voor onze administratie moeten bewaren. Vragen over je gegevens? Stel ze via het <a href="index.html#contact">contactformulier</a>.</p></div>
+    <a class="btn terug" href="index.html#bestellen">Bestel je tafel</a>
+  </div>
+</section>
+</main>
+
+<div class="driekleur" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="wm" src="img/veurpruuve-woordmerk-ivoor.svg" alt="Veurpruuve" width="1229" height="338">
+      <img class="slogan" src="img/veurpruuve-slogan-ivoor.svg" alt="Doar zedde U tege" width="719" height="92">
+      <p style="margin-top:12px;max-width:420px">De zakelijke carnavalsavond van Lampegat, op de donderdag voor carnaval. Een initiatief van Bravo B.V.</p>
+    </div>
+    <div>
+      <div class="links">
+        <a href="index.html#wat">Wat is het</a><a href="index.html#programma">Programma</a><a href="index.html#tafels">Tafels</a><a href="spelregels.html">Spelregels</a><a href="index.html#faq">Vragen</a><a href="index.html#contact">Contact</a><a href="spelregels.html#voorwaarden">Voorwaarden</a><a href="spelregels.html#privacy">Privacy</a><a href="https://www.linkedin.com/company/veurpruuve" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/veurpruuve/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <p style="margin-top:14px">Donderdag 4 februari 2027<br>Bavaria Bierhal, Stadhuisplein Eindhoven<br><a href="index.html#contact">Contactformulier</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){var b=document.querySelector('.menuknop'),m=document.getElementById('menu');if(!b||!m)return;
+function z(o){m.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');}
+b.addEventListener('click',function(){z(!m.classList.contains('open'));});
+m.addEventListener('click',function(e){if(e.target.closest('a'))z(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open')){z(false);b.focus();}});})();
+</script>
+</body>
+</html>

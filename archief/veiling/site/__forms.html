@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><meta name="robots" content="noindex"><title>Formulieren</title></head>
+<body>
+<!-- Deze pagina is er alleen voor Netlify. Hier staat het formulier waarmee de
+     server bij elk nieuw bod een e-mail naar info@veurpruuve.nl laat sturen. -->
+<form name="bod-melding" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="bod-melding">
+  <input type="hidden" name="subject" value="Veurpruuve: nieuw bod op de eerste rij (%{submissionId})">
+  <input name="bedrijf">
+  <input name="bod">
+  <input name="contact">
+  <input name="telefoon">
+  <input name="email" type="email">
+  <input name="bonnummer">
+  <input name="tijdstip">
+  <input name="soort">
+  <textarea name="bericht"></textarea>
+  <input name="bot-field">
+</form>
+</body>
+</html>

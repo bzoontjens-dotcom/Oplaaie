@@ -1,0 +1,64 @@
+# Instellingen voor Netlify.
+# De bron van de site staat in de map "site". De bouwstap (bouw.mjs) kopieert die naar "_site"
+# en vult daarbij de instellingen uit instellingen.mjs in, zoals de naam van het goede doel.
+# Netlify toont de map "_site".
+
+[build]
+  publish = "_site"
+  command = "node bouw.mjs"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Lettertypen veranderen nooit, dus de browser mag ze een jaar bewaren.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Agendabestanden openen direct in de agenda van de bezoeker.
+[[headers]]
+  for = "/agenda/*"
+  [headers.values]
+    Content-Type = "text/calendar; charset=utf-8"
+
+# De veiling van de eerste rij is op 24 november 2026 uitgezet. De tafels op de eerste rij
+# hebben nu een vaste prijs. Wie het oude adres nog heeft, komt bij het aanbod uit.
+[[redirects]]
+  from = "/eerste-rij"
+  to = "/#tafels"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/eerste-rij/*"
+  to = "/#tafels"
+  status = 302
+  force = true
+
+# oplaaie.nl verwijst door naar veurpruuve.nl. Deze regels doen pas iets zodra
+# het domein oplaaie.nl aan deze site gekoppeld is. Zie README.md, "Live zetten".
+[[redirects]]
+  from = "https://oplaaie.nl/*"
+  to = "https://veurpruuve.nl/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.oplaaie.nl/*"
+  to = "https://veurpruuve.nl/"
+  status = 301
+  force = true
+
+# De oude adressen van de Veurpruuve-site blijven werken.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
