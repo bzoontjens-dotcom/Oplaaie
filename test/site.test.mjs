@@ -46,8 +46,8 @@ test('de teksten van het vorige programma zijn weg', () => {
 test('het aanbod en de prijzen kloppen, inclusief btw', () => {
   const t = plat(home);
   for (const stuk of ['Eigen tafel € 1.500,- per tafel voor tien personen, inclusief btw', '€ 150,- per persoon',
-    'Tafel op de eerste rij € 2.000,- per tafel voor tien personen, inclusief btw', 'Zestien tafels', 'Op is op',
-    'Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma, de garderobe en de toiletten. Na 21.00 uur zijn de drankjes voor eigen rekening.', `Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}.`, '€ 1,- per ticket'])
+    'Tafel op de eerste rij € 2.000,- per tafel voor tien personen, inclusief btw', 'Zestien tafels, op is op', 'Eigen statafel met je bedrijfsnaam erop', 'Eten en drinken inbegrepen*',
+    '* Drinken is inbegrepen tot 21.00 uur. Na 21.00 uur zijn de drankjes voor eigen rekening.', `€ 111,- naar ${INSTELLINGEN.DOEL}`, `Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}.`, '€ 1,- per ticket'])
     assert.ok(t.includes(stuk), 'op de homepage ontbreekt: ' + stuk);
   const s = plat(spelregels);
   for (const stuk of ['€ 1.500,-', '€ 2.000,-', 'Alle prijzen zijn inclusief btw', 'Annuleren kan niet', 'dan krijgt iedereen zijn geld terug'])
@@ -93,11 +93,11 @@ test('de speelse onderdelen staan erin, en werken ook zonder script', () => {
   // Zonder script is de uitkomst dus gewoon te lezen.
   assert.match(home, /<div class="elfde-actie" hidden>[\s\S]*?<button[^>]*id="schenk"[^>]*>Schenk de elfde in<\/button>/);
   const uitkomst = plat(home.slice(home.indexOf('id="elfdeUitkomst"'), home.indexOf('</section>', home.indexOf('id="elfdeUitkomst"'))));
-  assert.ok(uitkomst.includes('Jullie zijn met elf. Jouw tafel neemt iemand mee die er zelf niet bij kan zijn.'), 'de uitkomst van de elfde eindigt bij een mens');
-  assert.ok(uitkomst.includes(`Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}, van de Federatie Eindhovens Carnaval.`), 'en het bedrag staat erbij');
+  assert.ok(uitkomst.includes('Jullie zijn met elf.'), 'de uitkomst van de elfde');
+  assert.ok(uitkomst.includes(`Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}. Het zit in de prijs.`), 'en het bedrag staat erbij, kort');
   assert.ok(uitkomst.includes('Zet je tafel neer'));
   // De uitleg van de elfde: wat het doel doet en het voorbeeld dat de federatie heeft aangeleverd.
-  for (const stuk of ['Kun jij niet naar carnaval, dan komt carnaval naar jou.', 'Daarom is een tafel voor tien. De elfde nemen we mee.', 'De elfde is iemand die er zelf niet bij kan zijn.', 'naar het Máxima Medisch Centrum', 'Even aandacht, even gezien worden, even niet ziek zijn.', 'optredens, middagen vol muziek en bezoek van de Stadsprins'])
+  for (const stuk of ['Kun jij niet naar carnaval, dan komt carnaval naar jou.', 'Op Veurpruuve proeft zakelijk Eindhoven als eerste. En wie als eerste proeft, zorgt dat de rest ook wat krijgt.', 'een initiatief van Stichting Federatie Eindhovens Carnaval', 'naar het Máxima Medisch Centrum', 'Even aandacht, even gezien worden, even niet ziek zijn.', 'optredens, middagen vol muziek en bezoek van de Stadsprins'])
     assert.ok(plat(home).includes(stuk), 'in de uitleg van de elfde ontbreekt: ' + stuk);
   // De medaille is een knop, de pul bij de tijden en de aftelling staan klaar.
   assert.match(home, /<button class="medaille" id="medaille" type="button" aria-label="[^"]*confetti[^"]*">/);
@@ -154,34 +154,37 @@ test('de weg naar de ticketshop is kort, en op factuur bestellen kan', () => {
   // Het losse blok over het goede doel is opgegaan in de elfde. Het adres /#doel blijft werken.
   assert.ok(!home.includes('class="band blauw doelen"'), 'het losse blok over het doel is weg');
   assert.ok(plek('elfde') < plek('doel') && plek('doel') < plek('avond'), '/#doel komt uit bij de elfde');
-  assert.ok(plat(home).includes('De rest van het tafelgeld betaalt de avond.'), 'er staat eerlijk bij dat de rest van het tafelgeld de avond betaalt');
+  assert.ok(plat(home).includes('De rest van het tafelgeld betaalt de avond.'), 'er staat eerlijk bij dat de rest van het tafelgeld de avond betaalt (bij de vraag)');
   for (const tekst of [plat(home), plat(spelregels)]) assert.match(tekst, /niet online afrekenen/, 'op factuur bestellen staat erbij');
 });
 
-test('het bedrag voor de elfde staat vroeg en zichtbaar op de homepage', () => {
+test('de feedback van de federatie: de avond verkoopt zichzelf, het doel staat er kort en goed', () => {
   const t = plat(home);
-  // in de opening, onder de kop van de elfde, op beide prijskaarten, bij het bestellen en in het slot
-  const opening = plat(home.slice(home.indexOf('<section class="hero'), home.indexOf('</section>', home.indexOf('<section class="hero'))));
-  assert.ok(opening.includes('Daarvan gaat € 111,- naar wie zelf geen carnaval kan vieren.'), 'het bedrag staat in de opening');
-  const kop = plat(home.slice(home.indexOf('id="elfde"'), home.indexOf('class="elfde-uitleg"')));
-  assert.ok(kop.includes(`Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}, van de Federatie Eindhovens Carnaval. Daarmee geeft de federatie ongeveer elf mensen een mooie carnaval.`), 'het bedrag staat onder de kop van de elfde, met wat het doet');
+  // De opening: één boodschap en één knop, zonder de verkoopregel, zonder het bedrag voor het doel.
+  const opening = home.slice(home.indexOf('<section class="hero'), home.indexOf('</section>', home.indexOf('<section class="hero')));
+  assert.equal((opening.match(/class="btn/g) || []).length, 1, 'in de opening staat één knop');
+  assert.ok(!plat(opening).includes('111'), 'het bedrag voor het doel staat niet in de opening');
+  assert.ok(!plat(opening).includes('Vurraf'), 'de verkoopregel staat niet in de opening');
+  // Het doel: de kop en het bedrag, met de naam zoals de federatie die schrijft, en het logo.
+  const doel = plat(home.slice(home.indexOf('id="elfde"'), home.indexOf('id="tien"')));
+  assert.ok(doel.includes(`Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}, een initiatief van Stichting Federatie Eindhovens Carnaval. Daarmee geeft de federatie ongeveer elf mensen een mooie carnaval.`), 'het bedrag staat bij het doel, zonder dat je hoeft te tikken');
+  assert.match(home, /<img src="\/img\/fec-logo\.png"[^>]*alt="Logo van Stichting Federatie Eindhovens Carnaval"/, 'het logo van de federatie staat erbij');
   assert.equal(INSTELLINGEN.DOEL, 'Lampegat voor Iedereen', 'het doel heet zoals de federatie het heeft opgegeven');
-  assert.ok(!t.includes('Heel Lampegat viert mee') , 'de oude naam van het doel staat nergens meer');
+  assert.ok(!t.includes('Heel Lampegat viert mee'), 'de oude naam van het doel staat nergens meer');
   assert.ok(t.includes('Wij pruuve veur, heel Lampegat viert mee.'), 'de hoofdregel blijft zoals hij is');
-  assert.ok(t.split('ongeveer elf mensen een mooie carnaval').length - 1 >= 2, 'elf mensen per tafel staat er, met "ongeveer"');
   assert.ok(t.includes('een optreden van de Stadshofkapel en een schilderij op maat van Peer Retera'), 'de twee kavels staan erbij');
-  assert.equal(t.split('Inclusief € 111,- voor de elfde').length - 1, 2, 'het bedrag staat op beide prijskaarten');
-  assert.ok(t.includes('Daarom geen € 100,- maar € 111,- per tafel.'), 'er staat waarom het € 111,- is');
-  assert.ok(t.split('Het zit in de prijs').length - 1 >= 3, 'er staat dat het in de prijs zit');
-  const bestellen = plat(home.slice(home.indexOf('id="bestellen"'), home.indexOf('id="shop"')));
-  assert.ok(bestellen.includes('€ 111,- per tafel voor de elfde.'), 'het bedrag staat bij het bestellen');
-  assert.ok(home.indexOf('id="slot"') > home.indexOf('id="contact"'), 'de pagina sluit af met de elfde');
-  assert.equal(t.split('De rest van het tafelgeld betaalt de avond.').length - 1, 2, 'en er staat eerlijk bij dat de rest de avond betaalt: bij de prijzen en bij de vraag');
+  // Niet te vaak: het bedrag staat bij wat is het, bij het doel, bij de pullen, op de twee kaarten, bij de spelregels en bij de vragen.
+  assert.ok(!t.includes('Daarom geen € 100,-'), 'de uitleg van het getal elf is eruit');
+  assert.ok(!t.includes('voor de elfde.'), 'de stempel met het bedrag staat niet meer bij het bestellen en in het slot');
+  assert.ok(!t.includes('de garderobe en de toiletten. Na 21.00 uur zijn de drankjes voor eigen rekening. Van elke'), 'de strook met alles inbegrepen staat niet meer onder de kaarten');
+  assert.ok(!home.includes('id="deelMail"'), 'het blok over intern voorleggen is weg');
+  assert.ok(!t.includes('staantafel') && !plat(spelregels).includes('staantafel'), 'het is statafel');
+  const slot = plat(home.slice(home.indexOf('id="slot"')));
+  assert.ok(slot.includes('Donderdag 4 februari 2027. Zorg dat je erbij bent.') && !slot.slice(0, 200).includes('111'), 'het slot is een oproep, zonder het goede doel');
+  assert.ok(home.indexOf('id="slot"') > home.indexOf('id="contact"'), 'het slot staat onderaan');
   assert.match(home, /<meta property="og:description" content="[^"]*€ 111,-[^"]*">/, 'het bedrag staat in de voorvertoning bij delen');
-  // de vraag staat bovenaan en begint niet meer met "Een deel"
   const vragen = [...home.matchAll(/<summary>(.*?)<\/summary>/g)].map((m) => m[1]);
   assert.ok(vragen.indexOf('Wat doet mijn tafel voor het goede doel?') <= 2, 'de vraag over het goede doel staat bij de eerste drie');
-  assert.ok(!t.includes('Een deel. Van elke tafel'), 'het antwoord begint niet meer met "Een deel"');
 });
 
 test('de formulieren lopen via Netlify Forms', () => {

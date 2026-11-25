@@ -110,3 +110,12 @@
 /* het bedrag staat direct onder de kop van de elfde, zonder dat je hoeft te tikken */
 .p27-elfde .kop .bedrag{margin:18px 0 0;font-size:19px;line-height:1.5;color:var(--ivoor)}
 .p27-elfde .kop .bedrag b{color:var(--oranje-2);font-weight:800}
+
+/* het doel staat kort bovenaan, met het logo van de federatie; de pullen hebben een eigen kop */
+.p27-elfde .verhaal .bedrag{margin:0 0 18px;font-size:19px;line-height:1.5;color:var(--ivoor)}
+.p27-elfde .verhaal .bedrag b{color:var(--oranje-2);font-weight:800}
+.p27-elfde .verhaal .fec{margin-top:26px}
+.p27-elfde .verhaal .fec img{display:block;width:170px;height:auto;padding:14px 18px;background:var(--ivoor);border-radius:16px}
+.p27-elfde .kop.tweede{margin-top:72px}
+.p27-elfde .kop.tweede .aanloop{margin:18px 0 0;max-width:60ch}
+@media (max-width:600px){.p27-elfde .kop.tweede{margin-top:52px}.p27-elfde .verhaal .fec img{width:140px}}

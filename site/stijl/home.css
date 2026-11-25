@@ -125,3 +125,10 @@
   .hero .when span:first-of-type{display:inline;height:auto;overflow:visible;margin:0 5px}
   .hero .lead{text-wrap:balance}
 }
+
+/* Na de feedback van de federatie (25 november 2026): rustiger opening, meer op de prijskaarten, een voetnoot voor de drank. */
+.wat .feiten{margin-top:18px;font-weight:800;color:var(--blauw)}
+.wat .regel{margin-top:22px;font-family:var(--display);font-size:22px;line-height:1.25;color:var(--blauw)}
+.wat .regel b{font-weight:inherit}
+.tafels .ster{margin-top:22px;font-size:15.5px;font-weight:700;color:var(--blauw)}
+.slotband h2{margin-bottom:26px}

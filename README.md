@@ -90,6 +90,21 @@ Verandert het bedrag, zoek dan op "111" in `site/`, `linkedin/teksten.md` en `te
 - Twee kavels voor het rondje van de zaak: een optreden van de Stadshofkapel en een schilderij op maat van Peer Retera.
 - Het logo van de federatie mag op de site. Het bestand is nog niet binnen.
 
+## De feedback van de federatie op de teksten (25 november 2026, avond)
+
+Naomi van de federatie heeft de testversie nagelopen met een marketingblik. Haar lijn: de avond moet zichzelf verkopen ("hier moet ik bij zijn"), het goede doel vertel je één keer goed en daarna licht. Daarom:
+
+- De opening heeft één boodschap en één knop. De verkoopregel "Een dag voordat 3 Uurkes Vurraf begint, gaan wij al veurpruuve" staat nu bij "Wat is het". Het bedrag voor het doel staat niet in de opening.
+- "Wat is het" is haar tekst: "De carnavalsavond voor ondernemers van Lampegat."
+- Het blok over het doel opent met "Op Veurpruuve proeft zakelijk Eindhoven als eerste. En wie als eerste proeft, zorgt dat de rest ook wat krijgt." Daaronder het bedrag, wat het doel doet, het logo van de federatie en het voorbeeld van het Máxima. De pullen hebben een eigen kop: "Tien aan tafel. De elfde viert thuis mee."
+- Op de prijskaarten staat wat je krijgt. De drank heeft een sterretje: "Drinken is inbegrepen tot 21.00 uur. Na 21.00 uur zijn de drankjes voor eigen rekening." De garderobe en de toiletten staan alleen nog bij de vragen en de spelregels.
+- Het blok "Moet je het eerst intern voorleggen?" is weg. Het script voor de doorstuurknoppen staat er nog en doet niets zolang de knoppen er niet zijn.
+- Bij Bestellen en in het slot staat het doel niet meer. Het slot is een oproep: "Donderdag 4 februari 2027. Zorg dat je erbij bent."
+- Het is statafel, niet staantafel.
+- De federatie heet voluit Stichting Federatie Eindhovens Carnaval. Het logo staat in `site/img/fec-logo.webp` en `.png`.
+
+Het bedrag van € 111,- staat nu bij "Wat is het", bij het doel, bij de pullen, op de twee prijskaarten, bij de spelregels en bij de vragen. De drie vaste vormen uit het stuk hierboven gelden nog voor mails en posts; op de site staat de korte stempel niet meer.
+
 ## Bestellen op factuur
 
 Bij Bestellen, bij de vraag over annuleren en in de voorwaarden staat dat een bedrijf dat niet online kan afrekenen via het contactformulier een factuur kan aanvragen. Dat is handwerk: iemand maakt de factuur en geeft de tickets uit in Weeztix. Wil je dat niet meer, zoek dan op "niet online afrekenen" en haal de zinnen weg.
