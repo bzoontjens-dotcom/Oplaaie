@@ -58,11 +58,28 @@ In het blok is ruimte gelaten voor wat nog komt. Zoek in `site/index.html` op `R
 
 ## De volgorde van de homepage
 
-Sinds 25 november 2026 is de volgorde: de opening, wat is het, de elfde, de avond, de tafels, bestellen, de veelgestelde vragen, de spelregels en contact. De ticketshop staat dus direct onder de prijzen.
+Sinds 25 november 2026 is de volgorde: de opening, wat is het, de elfde, de avond, de tafels, bestellen, de veelgestelde vragen, de spelregels, contact en een slot met de elfde. De ticketshop staat dus direct onder de prijzen.
 
 Het losse blok "Het goede doel" is opgegaan in de elfde. Wat er stond, staat nu op drie plekken: bij de uitkomst van de elfde (de € 111,- per tafel), bij de tijden van de avond (het rondje van de zaak) en onder de prijskaarten ("De rest van het tafelgeld betaalt de avond."). Het adres `/#doel` komt uit bij de elfde.
 
 Op de kaart bij de elfde staat één mens, niet drie. Het inschenken eindigt met: "Jullie zijn met elf. Jouw tafel neemt iemand mee die er zelf niet bij kan zijn."
+
+## De elfde en het bedrag per tafel
+
+Van elke tafel gaat € 111,- naar het goede doel. Sinds 25 november 2026 staat dat vroeg en zichtbaar op de homepage, zonder dat je hoeft te tikken of een vraag open te klappen:
+
+- in de opening, onder de prijs;
+- direct onder de kop van de elfde, met wat het doel is;
+- op beide prijskaarten ("Inclusief € 111,- voor de elfde") en in de regel eronder;
+- bij Bestellen;
+- in het slot onder het contactformulier;
+- in de voorvertoning die je ziet als iemand de site deelt.
+
+Er zijn drie vaste vormen. Kort: "€ 111,- per tafel voor de elfde." Warm: "Jouw tafel brengt carnaval bij iemand die er zelf niet naartoe kan." Zakelijk, voor de spelregels en de voorwaarden: "Van elke tafel gaat € 111,- naar Heel Lampegat viert mee."
+
+Twee zinnen horen erbij. "Het zit in de prijs, jij betaalt niets extra", zodat niemand denkt dat het erbovenop komt. En "De rest van het tafelgeld betaalt de avond", één keer bij de prijzen en één keer bij de vraag, zodat het niet groter lijkt dan het is. De tests bewaken dit.
+
+Verandert het bedrag, zoek dan op "111" in `site/`, `linkedin/teksten.md` en `test/site.test.mjs`.
 
 ## Bestellen op factuur
 

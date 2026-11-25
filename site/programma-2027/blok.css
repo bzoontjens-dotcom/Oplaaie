@@ -106,3 +106,7 @@
 .p27-tijden span{font-size:15.5px;color:var(--muted)}
 @media (max-width:860px){.p27-avond .grid{grid-template-columns:1fr}}
 @media (max-width:460px){.p27-tijden{padding-left:46px}.p27-tijden .meeloper{width:36px}.p27-tijden::before{left:16px}.p27-tijden li{grid-template-columns:86px minmax(0,1fr);gap:4px 12px}.p27-tijden .t,.p27-tijden .t.woord{font-size:23px}}
+
+/* het bedrag staat direct onder de kop van de elfde, zonder dat je hoeft te tikken */
+.p27-elfde .kop .bedrag{margin:18px 0 0;font-size:19px;line-height:1.5;color:var(--ivoor)}
+.p27-elfde .kop .bedrag b{color:var(--oranje-2);font-weight:800}

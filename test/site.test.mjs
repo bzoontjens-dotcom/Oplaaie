@@ -110,7 +110,7 @@ test('de speelse onderdelen staan erin, en werken ook zonder script', () => {
 test('de afgesproken veelgestelde vragen staan erin', () => {
   const vragen = [...home.matchAll(/<summary>(.*?)<\/summary>/g)].map((m) => m[1]);
   for (const vraag of ['Wat kost het per persoon?', 'Wat zit erin?', 'We zijn met minder of meer dan tien. Wat dan?', 'Wie staat er op het podium?', 'Tot hoe laat duurt het?',
-    `Wat is ${INSTELLINGEN.DOEL}?`, 'Gaat mijn tafelgeld ook naar het goede doel?', 'Hoe werkt het rondje van de zaak?', 'Kan ik annuleren, en krijg ik een factuur?',
+    `Wat is ${INSTELLINGEN.DOEL}?`, 'Wat doet mijn tafel voor het goede doel?', 'Hoe werkt het rondje van de zaak?', 'Kan ik annuleren, en krijg ik een factuur?',
     'Is dit hetzelfde als Roet Korte Put?', 'Wat als het niet doorgaat?'])
     assert.ok(vragen.includes(vraag), 'de vraag ontbreekt: ' + vraag);
 });
@@ -156,6 +156,27 @@ test('de weg naar de ticketshop is kort, en op factuur bestellen kan', () => {
   assert.ok(plek('elfde') < plek('doel') && plek('doel') < plek('avond'), '/#doel komt uit bij de elfde');
   assert.ok(plat(home).includes('De rest van het tafelgeld betaalt de avond.'), 'er staat eerlijk bij dat de rest van het tafelgeld de avond betaalt');
   for (const tekst of [plat(home), plat(spelregels)]) assert.match(tekst, /niet online afrekenen/, 'op factuur bestellen staat erbij');
+});
+
+test('het bedrag voor de elfde staat vroeg en zichtbaar op de homepage', () => {
+  const t = plat(home);
+  // in de opening, onder de kop van de elfde, op beide prijskaarten, bij het bestellen en in het slot
+  const opening = plat(home.slice(home.indexOf('<section class="hero'), home.indexOf('</section>', home.indexOf('<section class="hero'))));
+  assert.ok(opening.includes('Daarvan gaat € 111,- naar wie zelf geen carnaval kan vieren.'), 'het bedrag staat in de opening');
+  const kop = plat(home.slice(home.indexOf('id="elfde"'), home.indexOf('class="elfde-uitleg"')));
+  assert.ok(kop.includes(`Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}: carnaval voor wie er zelf niet naartoe kan, van de Federatie Eindhovens Carnaval.`), 'het bedrag staat onder de kop van de elfde, met wat het doel is');
+  assert.equal(t.split('Inclusief € 111,- voor de elfde').length - 1, 2, 'het bedrag staat op beide prijskaarten');
+  assert.ok(t.includes('Daarom geen € 100,- maar € 111,- per tafel.'), 'er staat waarom het € 111,- is');
+  assert.ok(t.split('Het zit in de prijs').length - 1 >= 3, 'er staat dat het in de prijs zit');
+  const bestellen = plat(home.slice(home.indexOf('id="bestellen"'), home.indexOf('id="shop"')));
+  assert.ok(bestellen.includes('€ 111,- per tafel voor de elfde.'), 'het bedrag staat bij het bestellen');
+  assert.ok(home.indexOf('id="slot"') > home.indexOf('id="contact"'), 'de pagina sluit af met de elfde');
+  assert.equal(t.split('De rest van het tafelgeld betaalt de avond.').length - 1, 2, 'en er staat eerlijk bij dat de rest de avond betaalt: bij de prijzen en bij de vraag');
+  assert.match(home, /<meta property="og:description" content="[^"]*€ 111,-[^"]*">/, 'het bedrag staat in de voorvertoning bij delen');
+  // de vraag staat bovenaan en begint niet meer met "Een deel"
+  const vragen = [...home.matchAll(/<summary>(.*?)<\/summary>/g)].map((m) => m[1]);
+  assert.ok(vragen.indexOf('Wat doet mijn tafel voor het goede doel?') <= 2, 'de vraag over het goede doel staat bij de eerste drie');
+  assert.ok(!t.includes('Een deel. Van elke tafel'), 'het antwoord begint niet meer met "Een deel"');
 });
 
 test('de formulieren lopen via Netlify Forms', () => {
