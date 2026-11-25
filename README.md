@@ -2,7 +2,7 @@
 
 De site van Veurpruuve, de zakelijke carnavalsavond van Lampegat op de donderdag voor carnaval. In 2027 is dat donderdag 4 februari 2027 in de Bavaria Bierhal op het Stadhuisplein in Eindhoven.
 
-De hoofdregel van 2027 is: "Wij pruuve veur, heel Lampegat viert mee." Het goede doel is Heel Lampegat viert mee, van de Federatie Eindhovens Carnaval. De gastheer is Joël Borelli.
+De hoofdregel van 2027 is: "Wij pruuve veur, heel Lampegat viert mee." Het goede doel is Lampegat voor Iedereen, van de Federatie Eindhovens Carnaval. Die naam heeft de federatie op 25 november 2026 opgegeven; hij staat op één plek, in `instellingen.mjs`. De gastheer is Joël Borelli.
 
 ## Hoe de site is opgebouwd
 
@@ -75,11 +75,20 @@ Van elke tafel gaat € 111,- naar het goede doel. Sinds 25 november 2026 staat 
 - in het slot onder het contactformulier;
 - in de voorvertoning die je ziet als iemand de site deelt.
 
-Er zijn drie vaste vormen. Kort: "€ 111,- per tafel voor de elfde." Warm: "Jouw tafel brengt carnaval bij iemand die er zelf niet naartoe kan." Zakelijk, voor de spelregels en de voorwaarden: "Van elke tafel gaat € 111,- naar Heel Lampegat viert mee."
+Er zijn drie vaste vormen. Kort: "€ 111,- per tafel voor de elfde." Warm: "Jouw tafel geeft ongeveer elf mensen een mooie carnaval." Zakelijk, voor de spelregels en de voorwaarden: "Van elke tafel gaat € 111,- naar Lampegat voor Iedereen."
 
 Twee zinnen horen erbij. "Het zit in de prijs, jij betaalt niets extra", zodat niemand denkt dat het erbovenop komt. En "De rest van het tafelgeld betaalt de avond", één keer bij de prijzen en één keer bij de vraag, zodat het niet groter lijkt dan het is. De tests bewaken dit.
 
 Verandert het bedrag, zoek dan op "111" in `site/`, `linkedin/teksten.md` en `test/site.test.mjs`.
+
+## Wat de federatie heeft aangeleverd (25 november 2026)
+
+- De naam van het doel: Lampegat voor Iedereen.
+- Wat het doel doet: meer mensen laten meedoen, van de optocht tot het feest zelf, en carnaval brengen naar wie niet naar Lampegat kan komen, met optredens, middagen vol muziek en bezoek van de Stadsprins.
+- Wat het kost: ongeveer € 10,- per persoon. Daarom staat er dat een tafel ongeveer elf mensen een mooie carnaval geeft (€ 111,- gedeeld door € 10,-). Het is een schatting van de federatie; schrijf altijd "ongeveer". Verandert het bedrag per tafel, pas dan ook dit aantal aan.
+- Het voorbeeld op de kaart bij de elfde: het bezoek van de Stadsprins en de Stadshofkapel aan het Máxima Medisch Centrum. De foto volgt als het ziekenhuis akkoord is.
+- Twee kavels voor het rondje van de zaak: een optreden van de Stadshofkapel en een schilderij op maat van Peer Retera.
+- Het logo van de federatie mag op de site. Het bestand is nog niet binnen.
 
 ## Bestellen op factuur
 

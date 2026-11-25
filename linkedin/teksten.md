@@ -21,7 +21,7 @@ Donderdag 4 februari 2027 in de Bavaria Bierhal op het Stadhuisplein in Eindhove
 
 Een eigen tafel voor tien kost € 1.500,- inclusief btw. Een tafel op de eerste rij kost € 2.000,- inclusief btw. Bij alles inbegrepen: drinken tot 21.00 uur, eten, het programma, de garderobe en de toiletten. Na 21.00 uur zijn de drankjes voor eigen rekening.
 
-Tien aan tafel. De elfde viert thuis mee. Van elke tafel gaat € 111,- naar Heel Lampegat viert mee, van de Federatie Eindhovens Carnaval. De federatie brengt carnaval naar mensen die er zelf niet naartoe kunnen.
+Tien aan tafel. De elfde viert thuis mee. Van elke tafel gaat € 111,- naar Lampegat voor Iedereen, van de Federatie Eindhovens Carnaval. De federatie brengt carnaval naar mensen die er zelf niet naartoe kunnen.
 
 De verkoop start op dinsdag 1 december 2026 om 11.11 uur op veurpruuve.nl.
 
@@ -33,7 +33,7 @@ Een dag voordat 3 Uurkes Vurraf begint, gaan wij al veurpruuve.
 
 Op donderdag 4 februari 2027 gaat de Bavaria Bierhal op het Stadhuisplein een dag eerder open, alleen voor bedrijven en hun gasten. Dat is Veurpruuve, de zakelijke carnavalsavond van Lampegat.
 
-Je staat met tien aan tafel. De elfde is iemand die er zelf niet bij kan zijn. Van elke tafel gaat € 111,- naar Heel Lampegat viert mee, van de Federatie Eindhovens Carnaval.
+Je staat met tien aan tafel. De elfde is iemand die er zelf niet bij kan zijn. Van elke tafel gaat € 111,- naar Lampegat voor Iedereen, van de Federatie Eindhovens Carnaval.
 
 De verkoop start op dinsdag 1 december 2026 om 11.11 uur. Wil je een seintje, laat dan je adres achter op veurpruuve.nl.
 
@@ -67,4 +67,4 @@ LinkedIn bewaart het plaatje en de tekst van een link een tijd. Staat de nieuwe 
 
 ## Let op
 
-De naam Heel Lampegat viert mee moet de Federatie Eindhovens Carnaval nog bevestigen. Plaats de teksten waar die naam in staat pas als dat rond is.
+De naam Lampegat voor Iedereen is op 25 november 2026 opgegeven door de Federatie Eindhovens Carnaval. De hoofdregel "Wij pruuve veur, heel Lampegat viert mee" is onze eigen slogan en blijft zoals hij is.
