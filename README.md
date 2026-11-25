@@ -75,7 +75,7 @@ Van elke tafel gaat € 111,- naar het goede doel. Sinds 25 november 2026 staat 
 - in het slot onder het contactformulier;
 - in de voorvertoning die je ziet als iemand de site deelt.
 
-Er zijn drie vaste vormen. Kort: "€ 111,- per tafel voor de elfde." Warm: "Jouw tafel geeft ongeveer elf mensen een mooie carnaval." Zakelijk, voor de spelregels en de voorwaarden: "Van elke tafel gaat € 111,- naar Lampegat voor Iedereen."
+Er zijn drie vaste vormen. Kort: "€ 111,- per tafel voor de elfde." Warm: "Daarmee geeft de federatie ongeveer elf mensen per verkochte tafel een mooie carnaval." (altijd met "per verkochte tafel" of "jouw tafel" erbij, anders lijkt het alsof de hele avond maar elf mensen helpt) Zakelijk, voor de spelregels en de voorwaarden: "Van elke tafel gaat € 111,- naar Lampegat voor Iedereen."
 
 Twee zinnen horen erbij. "Het zit in de prijs, jij betaalt niets extra", zodat niemand denkt dat het erbovenop komt. En "De rest van het tafelgeld betaalt de avond", één keer bij de prijzen en één keer bij de vraag, zodat het niet groter lijkt dan het is. De tests bewaken dit.
 

@@ -167,7 +167,7 @@ test('de feedback van de federatie: de avond verkoopt zichzelf, het doel staat e
   assert.ok(!plat(opening).includes('Vurraf'), 'de verkoopregel staat niet in de opening');
   // Het doel: de kop en het bedrag, met de naam zoals de federatie die schrijft, en het logo.
   const doel = plat(home.slice(home.indexOf('id="elfde"'), home.indexOf('id="tien"')));
-  assert.ok(doel.includes(`Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}, een initiatief van Stichting Federatie Eindhovens Carnaval. Daarmee geeft de federatie ongeveer elf mensen een mooie carnaval.`), 'het bedrag staat bij het doel, zonder dat je hoeft te tikken');
+  assert.ok(doel.includes(`Van elke tafel gaat € 111,- naar ${INSTELLINGEN.DOEL}, een initiatief van Stichting Federatie Eindhovens Carnaval. Daarmee geeft de federatie ongeveer elf mensen per verkochte tafel een mooie carnaval.`), 'het bedrag staat bij het doel, zonder dat je hoeft te tikken');
   assert.match(home, /<img src="\/img\/fec-logo\.png"[^>]*alt="Logo van Stichting Federatie Eindhovens Carnaval"/, 'het logo van de federatie staat erbij');
   assert.equal(INSTELLINGEN.DOEL, 'Lampegat voor Iedereen', 'het doel heet zoals de federatie het heeft opgegeven');
   assert.ok(!t.includes('Heel Lampegat viert mee'), 'de oude naam van het doel staat nergens meer');
