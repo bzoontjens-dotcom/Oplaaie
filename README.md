@@ -53,8 +53,24 @@ Zonder script, en voor wie animaties heeft uitgezet, staat alles er meteen in de
 In het blok is ruimte gelaten voor wat nog komt. Zoek in `site/index.html` op `RUIMTE VOOR`:
 
 - De foto en de quote van de gastheer. Zet de foto in `site/programma-2027/img/` en haal de commentaartekens weg.
-- Een voorbeeld en een foto van het goede doel, in het verhaal en in het blok over het doel.
+- Een voorbeeld en een foto van het goede doel, in het verhaal bij de elfde.
 - Bij de elfde staat een kaart met een voorbeeld ("Neem iemand van zesentachtig"). Dat is een bedacht voorbeeld, geen bestaand persoon. Een echt voorbeeld van de federatie komt daarvoor in de plaats.
+
+## De volgorde van de homepage
+
+Sinds 25 november 2026 is de volgorde: de opening, wat is het, de elfde, de avond, de tafels, bestellen, de veelgestelde vragen, de spelregels en contact. De ticketshop staat dus direct onder de prijzen.
+
+Het losse blok "Het goede doel" is opgegaan in de elfde. Wat er stond, staat nu op drie plekken: bij de uitkomst van de elfde (de € 25,- per tafel), bij de tijden van de avond (het rondje van de zaak) en onder de prijskaarten ("De rest van het tafelgeld betaalt de avond."). Het adres `/#doel` komt uit bij de elfde.
+
+Op de kaart bij de elfde staat één mens, niet drie. Het inschenken eindigt met: "Jullie zijn met elf. Jouw tafel neemt iemand mee die er zelf niet bij kan zijn."
+
+## Bestellen op factuur
+
+Bij Bestellen, bij de vraag over annuleren en in de voorwaarden staat dat een bedrijf dat niet online kan afrekenen via het contactformulier een factuur kan aanvragen. Dat is handwerk: iemand maakt de factuur en geeft de tickets uit in Weeztix. Wil je dat niet meer, zoek dan op "niet online afrekenen" en haal de zinnen weg.
+
+## De link naar LinkedIn
+
+De link onderaan gaat naar het vaste adres van de pagina (linkedin.com/company/146742677). Dat blijft werken, ook als de naam in het adres verandert van oplaaie naar veurpruuve.
 
 ## Het aanbod
 

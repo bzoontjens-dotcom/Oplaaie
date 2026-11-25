@@ -93,7 +93,8 @@ test('de speelse onderdelen staan erin, en werken ook zonder script', () => {
   // Zonder script is de uitkomst dus gewoon te lezen.
   assert.match(home, /<div class="elfde-actie" hidden>[\s\S]*?<button[^>]*id="schenk"[^>]*>Schenk de elfde in<\/button>/);
   const uitkomst = plat(home.slice(home.indexOf('id="elfdeUitkomst"'), home.indexOf('</section>', home.indexOf('id="elfdeUitkomst"'))));
-  assert.ok(uitkomst.includes(`Dat doet jouw tafel. Van elke tafel gaat € 25,- naar ${INSTELLINGEN.DOEL}.`), 'de uitkomst van de elfde staat in de pagina');
+  assert.ok(uitkomst.includes('Jullie zijn met elf. Jouw tafel neemt iemand mee die er zelf niet bij kan zijn.'), 'de uitkomst van de elfde eindigt bij een mens');
+  assert.ok(uitkomst.includes(`Van elke tafel gaat € 25,- naar ${INSTELLINGEN.DOEL}, van de Federatie Eindhovens Carnaval.`), 'en het bedrag staat erbij');
   assert.ok(uitkomst.includes('Zet je tafel neer'));
   // De uitleg van de elfde: wie het is, met een voorbeeld dat als voorbeeld is gebracht en niet als bestaand persoon.
   for (const stuk of ['Kun jij niet naar carnaval, dan komt carnaval naar jou.', 'Daarom is een tafel voor tien. De elfde nemen we mee.', 'De elfde is iemand die er zelf niet bij kan zijn.', 'Neem iemand van zesentachtig.', 'Zij is de elfde.'])
@@ -143,6 +144,18 @@ test('alle links en plaatjes op de pagina\'s bestaan', async () => {
   }
   for (const [pad, inhoud] of bestanden.filter(([p]) => p.endsWith('.css')))
     for (const [, doel] of inhoud.matchAll(/url\((\/[^)]+)\)/g)) assert.ok(await bestaat(doel.replace(/^\//, '')), `${pad}: ${doel} bestaat niet`);
+});
+
+test('de weg naar de ticketshop is kort, en op factuur bestellen kan', () => {
+  // De volgorde op de homepage: de elfde, de avond, de tafels en dan meteen bestellen. Vragen en spelregels komen daarna.
+  const plek = (id) => home.indexOf(`id="${id}"`);
+  const volgorde = ['wat', 'elfde', 'avond', 'tafels', 'bestellen', 'faq', 'spelregels', 'contact'];
+  for (let i = 1; i < volgorde.length; i++) assert.ok(plek(volgorde[i - 1]) > 0 && plek(volgorde[i - 1]) < plek(volgorde[i]), `${volgorde[i - 1]} staat voor ${volgorde[i]}`);
+  // Het losse blok over het goede doel is opgegaan in de elfde. Het adres /#doel blijft werken.
+  assert.ok(!home.includes('class="band blauw doelen"'), 'het losse blok over het doel is weg');
+  assert.ok(plek('elfde') < plek('doel') && plek('doel') < plek('avond'), '/#doel komt uit bij de elfde');
+  assert.ok(plat(home).includes('De rest van het tafelgeld betaalt de avond.'), 'er staat eerlijk bij dat de rest van het tafelgeld de avond betaalt');
+  for (const tekst of [plat(home), plat(spelregels)]) assert.match(tekst, /niet online afrekenen/, 'op factuur bestellen staat erbij');
 });
 
 test('de formulieren lopen via Netlify Forms', () => {
