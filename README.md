@@ -147,7 +147,7 @@ Komen de losse tickets terug, loop dan ook dit na, want daar staan ze nu bewust 
 Bovenaan in `site/home.js` staan twee instellingen:
 
 - `VERKOOP_START`: het moment waarop de verkoop begint, dinsdag 1 december 2026 om 11.11 uur. Tot dat moment toont de site een melding met de startdatum en wordt de ticketshop niet geladen.
-- `WEEZTIX_SHOP`: het adres van de ticketshop van Weeztix.
+- `WEEZTIX_SHOP`, `WEEZTIX_SHOP_CODE` en `WEEZTIX_SCRIPT`: het adres van de ticketshop, de code van de shop en het script van Weeztix. Samen zijn ze de insluitcode die Weeztix geeft (een vak met de klasse `ot-iframe` en het script `injector.js`, sinds 28 november 2026). De site zet dat vak pas neer op het moment van de verkoopstart. Met `?shop=1` achter het adres zie je de shop vooraf.
 
 Wil je de shop vóór de start bekijken, zet dan `?shop=1` achter het adres van de homepage.
 

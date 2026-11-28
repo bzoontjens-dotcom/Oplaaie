@@ -8,8 +8,11 @@
   /* VERKOOPSTART: pas alleen deze regel aan. Formaat: jaar-maand-dagTuur:minuut:00 plus het tijdverschil met UTC.
      +01:00 is wintertijd, +02:00 is zomertijd. Dit is dinsdag 1 december 2026, 11.11 uur. */
   var VERKOOP_START = '2026-12-01T11:11:00+01:00';
-  /* De ticketshop van Weeztix voor de tafels. */
+  /* De ticketshop van Weeztix voor de tafels. Het adres en de code van de shop komen uit de insluitcode
+     die Weeztix geeft (28 november 2026): een vak met de klasse ot-iframe en het script injector.js. */
   var WEEZTIX_SHOP = 'https://shop.weeztix.com/2b320314-3240-4996-99af-5f3e3296a4a5';
+  var WEEZTIX_SHOP_CODE = '2b320314-3240-4996-99af-5f3e3296a4a5';
+  var WEEZTIX_SCRIPT = 'https://v1.widget.shop.weeztix.com/injector.js';
 
   var start = new Date(VERKOOP_START);
   /* Om de shop vooraf te bekijken: zet ?shop=1 achter het adres. */
@@ -18,13 +21,17 @@
   /* ---------- de ticketshop: pas laden als de verkoop gestart is ---------- */
   function openShop(){
     var shop = document.getElementById('shop'), wacht = document.getElementById('shopWacht');
-    if (!shop || document.getElementById('shop-frame')) return;
+    if (!shop || shop.querySelector('.ot-iframe')) return;
     if (wacht) wacht.remove();
     document.querySelectorAll('.startmelding').forEach(function(el){ el.hidden = true; });
     var frame = document.createElement('div');
-    frame.id = 'shop-frame'; frame.setAttribute('data-url', WEEZTIX_SHOP); frame.style.cssText = 'max-width:600px;margin:0 auto';
+    /* Het vak moet er staan voordat het script laadt: het script zoekt bij het laden naar vakken met de klasse ot-iframe. */
+    frame.className = 'ot-iframe';
+    frame.setAttribute('data-ot-url', WEEZTIX_SHOP); frame.setAttribute('data-ot-guid', WEEZTIX_SHOP_CODE);
+    frame.setAttribute('data-ot-iframe-title', 'Ticketshop van Veurpruuve');
+    frame.style.cssText = 'max-width:600px;margin:0 auto';
     shop.appendChild(frame);
-    var s = document.createElement('script'); s.src = 'https://shop.weeztix.com/build/integrate.js'; document.body.appendChild(s);
+    var s = document.createElement('script'); s.src = WEEZTIX_SCRIPT; document.body.appendChild(s);
     document.getElementById('shopLink').hidden = false;
   }
 
