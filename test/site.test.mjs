@@ -158,6 +158,16 @@ test('de weg naar de ticketshop is kort, en op factuur bestellen kan', () => {
   for (const tekst of [plat(home), plat(spelregels)]) assert.match(tekst, /niet online afrekenen/, 'op factuur bestellen staat erbij');
 });
 
+test('de ticketshop wordt ingesloten met de code van Weeztix', () => {
+  const js = bestanden.find(([p]) => p === 'home.js')[1];
+  assert.match(js, /className = 'ot-iframe'/, 'het vak heeft de klasse ot-iframe');
+  assert.match(js, /data-ot-url/, 'het vak noemt het adres van de shop');
+  assert.match(js, /data-ot-guid/, 'het vak noemt de code van de shop');
+  assert.match(js, /v1\.widget\.shop\.weeztix\.com\/injector\.js/, 'het script van Weeztix wordt geladen');
+  assert.ok(!js.includes('integrate.js') && !js.includes('shop-frame'), 'de oude insluitcode is weg');
+  assert.ok(js.indexOf('shop.appendChild(frame)') < js.indexOf('s.src = WEEZTIX_SCRIPT'), 'het vak staat er voordat het script laadt');
+});
+
 test('de feedback van de federatie: de avond verkoopt zichzelf, het doel staat er kort en goed', () => {
   const t = plat(home);
   // De opening: één boodschap en één knop, zonder de verkoopregel, zonder het bedrag voor het doel.
