@@ -188,7 +188,9 @@ Het adres `/eerste-rij/` verwijst door naar het aanbod op de homepage. Dat staat
 
 ## Live zetten
 
-Dit gebeurt pas na akkoord. De stappen:
+De site staat sinds donderdag 26 november 2026 live op veurpruuve.nl. De stappen hieronder zijn toen gedaan en staan er nog voor als het ooit opnieuw moet. Wijzigingen gaan nu via een nieuwe branch en een voorstel naar `main`: Netlify maakt dan een testversie, en alles wat op `main` komt staat direct live.
+
+De stappen van toen:
 
 1. Het voorstel op GitHub samenvoegen met `main`. Netlify rolt de site dan uit op het project `oplaaie`.
 2. In Netlify de meldingen van de formulieren naar info@veurpruuve.nl laten gaan.

@@ -168,6 +168,16 @@ test('de ticketshop wordt ingesloten met de code van Weeztix', () => {
   assert.ok(js.indexOf('shop.appendChild(frame)') < js.indexOf('s.src = WEEZTIX_SCRIPT'), 'het vak staat er voordat het script laadt');
 });
 
+test('na de verkoopstart staat er nergens meer dat de verkoop nog moet beginnen', () => {
+  const js = bestanden.find(([p]) => p === 'home.js')[1];
+  // Elke vaste zin over de start staat in een vak met de klasse voorstart of startmelding; het script verbergt die op het startmoment.
+  const zonder = home.replace(/<span class="voorstart">[\s\S]*?<\/span>/g, '').replace(/<script[\s\S]*?<\/script>/g, '');
+  const rest = plat(zonder.replace(/<div class="nognet"[\s\S]*?<\/form>[\s\S]*?<\/div>/, ''));
+  assert.ok(!/De verkoop start op dinsdag/.test(rest), 'buiten het wachtblok staat geen losse zin meer over de start');
+  assert.ok(!/vanaf dinsdag 1 december 2026/.test(rest), 'ook de zin bij Wat is het valt weg na de start');
+  assert.match(js, /querySelectorAll\('\.voorstart'\)/, 'het script verbergt de zinnen op het startmoment');
+});
+
 test('de feedback van de federatie: de avond verkoopt zichzelf, het doel staat er kort en goed', () => {
   const t = plat(home);
   // De opening: één boodschap en één knop, zonder de verkoopregel, zonder het bedrag voor het doel.
