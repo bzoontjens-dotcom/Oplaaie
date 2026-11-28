@@ -24,6 +24,8 @@
     if (!shop || shop.querySelector('.ot-iframe')) return;
     if (wacht) wacht.remove();
     document.querySelectorAll('.startmelding').forEach(function(el){ el.hidden = true; });
+    /* Zinnen die alleen kloppen zolang de verkoop nog moet beginnen, hebben de klasse voorstart. */
+    document.querySelectorAll('.voorstart').forEach(function(el){ el.hidden = true; });
     var frame = document.createElement('div');
     /* Het vak moet er staan voordat het script laadt: het script zoekt bij het laden naar vakken met de klasse ot-iframe. */
     frame.className = 'ot-iframe';

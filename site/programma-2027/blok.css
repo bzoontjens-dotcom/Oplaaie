@@ -97,7 +97,7 @@
 .p27-tijden .meeloper .pul{display:block;width:100%;height:auto;overflow:visible}
 .p27-tijden li{transition:opacity .3s}
 /* wat nog komt is iets lichter, maar blijft goed leesbaar */
-.p27-tijden.loopt li:not(.meeloper):not(.geweest){opacity:.72}
+.p27-tijden.loopt li:not(.meeloper):not(.geweest){opacity:.88}
 .p27-tijden li{display:grid;grid-template-columns:118px minmax(0,1fr);gap:4px 22px;align-items:baseline;padding:16px 0;border-top:1.5px solid var(--lijn)}
 .p27-tijden li:last-child{border-bottom:1.5px solid var(--lijn)}
 .p27-tijden .t{font-family:var(--kop);font-size:28px;line-height:1;color:var(--oranje);font-variant-numeric:tabular-nums}
